@@ -14,14 +14,17 @@ function DashboardScreen({ userName, onLogout }: DashboardScreenProps) {
             {/* Header */}
             <header className="dashboard-header">
                 <div className="logo-section">
-                    <div className="logo-dashboard">
-                        <span className="logo-text-dashboard">Guest</span>
+                    <h1 className="logo-dashboard">
+                        <span className="logo-text-dashboard">Guest </span>
                         <span className="logo-os-dashboard">OS</span>
-                    </div>
+                    </h1>
                 </div>
                 <div className="header-actions">
                     <button className="notification-btn" aria-label="Notifications">
-                        🔔
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                        </svg>
                     </button>
                     <button className="profile-btn" aria-label="Profile">
                         <img src="https://i.pravatar.cc/150?img=33" alt="Profile" className="profile-img" />
@@ -128,25 +131,25 @@ function DashboardScreen({ userName, onLogout }: DashboardScreenProps) {
                                     transform="rotate(-90 100 100)"
                                 />
                             </svg>
-                            <div className="chart-center">
-                                <span className="chart-percentage">60%</span>
-                            </div>
                         </div>
 
                         <div className="chart-legend">
                             <div className="legend-item">
                                 <span className="legend-dot completed"></span>
                                 <span className="legend-text">Completed</span>
+                                <span className="legend-percentage">60%</span>
                             </div>
                             <div className="legend-item">
                                 <span className="legend-dot progress"></span>
                                 <span className="legend-text">In Progress</span>
+                                <span className="legend-percentage">35%</span>
                             </div>
                             <div className="legend-item">
                                 <span className="legend-dot yet-to-start"></span>
                                 <span className="legend-text">Yet to Start</span>
+                                <span className="legend-percentage">5%</span>
                             </div>
-                            <button className="add-todo-btn">➕</button>
+
                         </div>
                     </div>
 
@@ -226,32 +229,64 @@ function DashboardScreen({ userName, onLogout }: DashboardScreenProps) {
                     className={`nav-btn ${activeNav === 'home' ? 'active' : ''}`}
                     onClick={() => setActiveNav('home')}
                 >
-                    <span className="nav-icon">🏠</span>
-                    <span className="nav-label">Home</span>
+                    <span className="nav-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                            <polyline points="9 22 9 12 15 12 15 22" />
+                        </svg>
+                    </span>
+                    {activeNav === 'home' && <span className="nav-label">Home</span>}
                 </button>
                 <button
-                    className={`nav-btn ${activeNav === 'search' ? 'active' : ''}`}
-                    onClick={() => setActiveNav('search')}
+                    className={`nav-btn ${activeNav === 'view' ? 'active' : ''}`}
+                    onClick={() => setActiveNav('view')}
                 >
-                    <span className="nav-icon">🔍</span>
+                    <span className="nav-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                            <circle cx="12" cy="12" r="3" />
+                        </svg>
+                    </span>
                 </button>
                 <button
-                    className={`nav-btn ${activeNav === 'files' ? 'active' : ''}`}
-                    onClick={() => setActiveNav('files')}
+                    className={`nav-btn ${activeNav === 'info' ? 'active' : ''}`}
+                    onClick={() => setActiveNav('info')}
                 >
-                    <span className="nav-icon">📁</span>
+                    <span className="nav-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <circle cx="12" cy="12" r="10" />
+                            <line x1="12" y1="16" x2="12" y2="12" />
+                            <line x1="12" y1="8" x2="12.01" y2="8" />
+                        </svg>
+                        <span className="notification-badge">0</span>
+                    </span>
                 </button>
                 <button
                     className={`nav-btn ${activeNav === 'menu' ? 'active' : ''}`}
                     onClick={() => setActiveNav('menu')}
                 >
-                    <span className="nav-icon">☰</span>
+                    <span className="nav-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <line x1="8" y1="6" x2="21" y2="6" />
+                            <line x1="8" y1="12" x2="21" y2="12" />
+                            <line x1="8" y1="18" x2="21" y2="18" />
+                            <line x1="3" y1="6" x2="3.01" y2="6" />
+                            <line x1="3" y1="12" x2="3.01" y2="12" />
+                            <line x1="3" y1="18" x2="3.01" y2="18" />
+                        </svg>
+                    </span>
                 </button>
                 <button
                     className={`nav-btn ${activeNav === 'more' ? 'active' : ''}`}
                     onClick={() => setActiveNav('more')}
                 >
-                    <span className="nav-icon">⋯</span>
+                    <span className="nav-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <circle cx="12" cy="12" r="1" />
+                            <circle cx="19" cy="12" r="1" />
+                            <circle cx="5" cy="12" r="1" />
+                        </svg>
+                    </span>
                 </button>
             </nav>
         </div>
