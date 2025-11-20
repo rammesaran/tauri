@@ -2,7 +2,11 @@ import { useState } from "react";
 import { invoke } from "@tauri-apps/api/core";
 import "./LoginScreen.css";
 
-function LoginScreen() {
+interface LoginScreenProps {
+    onLoginSuccess: (username: string) => void;
+}
+
+function LoginScreen({ onLoginSuccess }: LoginScreenProps) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
@@ -16,13 +20,14 @@ function LoginScreen() {
 
         try {
             // Call your Tauri backend command for authentication
-            const response = await invoke("authenticate", {
-                username,
-                password
-            });
+            // const response = await invoke("authenticate", {
+            //     username,
+            //     password
+            // });
 
-            console.log("Login successful:", response);
-            // Handle successful login (e.g., navigate to dashboard)
+            // console.log("Login successful:", response);
+            // Handle successful login - navigate to dashboard
+            onLoginSuccess(username);
 
         } catch (err) {
             setError("Invalid username or password");

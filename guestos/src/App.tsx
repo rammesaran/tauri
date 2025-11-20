@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import LoginScreen from "./screens/login/loginscreen";
+import DashboardScreen from "./screens/dashboard/dashboardscreen";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -18,37 +19,10 @@ function App() {
   };
 
   if (!isAuthenticated) {
-    return <LoginScreen />;
+    return <LoginScreen onLoginSuccess={handleLoginSuccess} />;
   }
 
-  // Your main app content after login
-  return (
-    <main className="container">
-      <h1>Welcome, {userName}!</h1>
-      <p>You are now logged into your personalized workspace.</p>
-
-      <div className="dashboard">
-        <div className="card">
-          <h2>Tasks</h2>
-          <p>View and manage your tasks</p>
-        </div>
-
-        <div className="card">
-          <h2>Data</h2>
-          <p>Access your data and analytics</p>
-        </div>
-
-        <div className="card">
-          <h2>Goals</h2>
-          <p>Track your goals and progress</p>
-        </div>
-      </div>
-
-      <button onClick={handleLogout} className="logout-button">
-        Logout
-      </button>
-    </main>
-  );
+  return <DashboardScreen userName={userName} onLogout={handleLogout} />;
 }
 
 export default App;
