@@ -4,10 +4,18 @@ import "./dashboardscreen.css";
 interface DashboardScreenProps {
     userName: string;
     onLogout: () => void;
+    onNavigate?: (screen: "dashboard" | "vision") => void;
 }
 
-function DashboardScreen({ userName, onLogout }: DashboardScreenProps) {
+function DashboardScreen({ userName, onLogout, onNavigate }: DashboardScreenProps) {
     const [activeNav, setActiveNav] = useState("home");
+
+    const handleNavClick = (nav: string) => {
+        setActiveNav(nav);
+        if (nav === "view" && onNavigate) {
+            onNavigate("vision");
+        }
+    };
 
     return (
         <div className="dashboard-container">
@@ -240,7 +248,7 @@ function DashboardScreen({ userName, onLogout }: DashboardScreenProps) {
                 </button>
                 <button
                     className={`nav-btn ${activeNav === 'view' ? 'active' : ''}`}
-                    onClick={() => setActiveNav('view')}
+                    onClick={() => handleNavClick('view')}
                 >
                     <span className="nav-icon">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
