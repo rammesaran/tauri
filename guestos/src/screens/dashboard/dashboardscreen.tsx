@@ -130,6 +130,7 @@ function DashboardScreen({ userName, onLogout }: DashboardScreenProps) {
                                     strokeDashoffset="-477.52"
                                     transform="rotate(-90 100 100)"
                                 />
+
                             </svg>
                         </div>
 

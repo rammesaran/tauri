@@ -60,11 +60,11 @@
 }
 
 .notification-btn, .profile-btn {
-    background: none;
+    background: transparent;
     border: none;
     color: white;
     cursor: pointer;
-    padding: 8px;
+    padding: 0;
 }
 
 .notification-btn svg {
@@ -75,7 +75,7 @@
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    border: 2px solid white;
+    border: 2px solid transparent;
     object-fit: cover;
 }
 
@@ -88,22 +88,27 @@
     z-index: 1;
 }
 
-/* Greeting Section */
+/* Greeting Section - LEFT ALIGNED */
 .greeting-section {
-    margin: 24px 0;
+    padding: 24px 0;
+    text-align: left;
 }
 
 .greeting-title {
-    font-size: 28px;
+    font-size: 40px;
     font-weight: 700;
     margin: 0 0 8px 0;
     color: white;
+    letter-spacing: -0.5px;
+    text-align: left;
 }
 
 .greeting-subtitle {
-    font-size: 14px;
+    font-size: 16px;
     color: rgba(255, 255, 255, 0.8);
     margin: 0;
+    font-weight: 400;
+    text-align: left;
 }
 
 /* Meeting Card */
@@ -162,10 +167,10 @@
 }
 
 .join-btn {
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.3);
     color: white;
     padding: 10px 20px;
     border-radius: 12px;
@@ -176,13 +181,13 @@
     align-items: center;
     gap: 6px;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .join-btn:hover {
-    background: rgba(255, 255, 255, 0.25);
+    background: rgba(0, 0, 0, 0.5);
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
 }
 
 /* Overview Section */
@@ -661,7 +666,7 @@
     }
 
     .greeting-title {
-        font-size: 24px;
+        font-size: 32px;
     }
 
     .section-title {
