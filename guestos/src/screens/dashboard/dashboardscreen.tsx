@@ -5,7 +5,7 @@ import mockData from "./mockData.json";
 interface DashboardScreenProps {
     userName?: string;
     onLogout: () => void;
-    onNavigate?: (screen: "dashboard" | "vision" | "todo" | "addtodo" | "profit") => void;
+    onNavigate?: (screen: "dashboard" | "vision" | "todo" | "addtodo" | "profit" | "scorecard") => void;
     dashboardData?: typeof mockData;
 }
 
@@ -25,6 +25,12 @@ function DashboardScreen({ userName, onLogout, onNavigate, dashboardData = mockD
     const handleOverviewClick = () => {
         if (onNavigate) {
             onNavigate("profit");
+        }
+    };
+
+    const handleReportClick = () => {
+        if (onNavigate) {
+            onNavigate("scorecard");
         }
     };
 
@@ -105,7 +111,7 @@ function DashboardScreen({ userName, onLogout, onNavigate, dashboardData = mockD
                 <section className="overview-section" onClick={handleOverviewClick} style={{ cursor: 'pointer' }}>
                     <div className="section-header">
                         <h2 className="section-title">Overview</h2>
-                        <button className="report-btn" onClick={(e) => e.stopPropagation()}>📊 Report</button>
+                        <button className="report-btn" onClick={(e) => { e.stopPropagation(); handleReportClick(); }}>📊 Report</button>
                     </div>
                     <div className="progress-bars">
                         <div className="progress-item">

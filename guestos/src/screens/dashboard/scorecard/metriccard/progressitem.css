@@ -1,0 +1,127 @@
+/* Progress Item Container */
+.progress-item-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.progress-item-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.progress-item-icon {
+    width: 36px;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.progress-item-bar-wrapper {
+    flex: 1;
+}
+
+.progress-item-bar {
+    height: 32px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-item-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #00E5D4 0%, #7ED957 100%);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 12px;
+    transition: width 0.5s ease;
+    position: relative;
+}
+
+.progress-item-percentage {
+    font-size: 12px;
+    font-weight: 600;
+    color: white;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 3px 8px;
+    border-radius: 10px;
+}
+
+.progress-item-flag-btn {
+    width: 36px;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    flex-shrink: 0;
+}
+
+.progress-item-flag-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.progress-item-flag-btn svg {
+    color: white;
+}
+
+.progress-item-title {
+    font-size: 14px;
+    color: white;
+    font-weight: 500;
+    padding-left: 48px;
+}
+
+.progress-item-dots {
+    display: flex;
+    gap: 12px;
+    padding-left: 48px;
+}
+
+.progress-dot {
+    width: 6px;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+}
+
+/* Responsive */
+@media (max-width: 375px) {
+    .progress-item-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 16px;
+    }
+
+    .progress-item-bar {
+        height: 28px;
+    }
+
+    .progress-item-flag-btn {
+        width: 32px;
+        height: 32px;
+    }
+
+    .progress-item-title {
+        padding-left: 44px;
+        font-size: 13px;
+    }
+
+    .progress-item-dots {
+        padding-left: 44px;
+        gap: 10px;
+    }
+}

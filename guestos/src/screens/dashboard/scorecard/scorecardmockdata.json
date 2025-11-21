@@ -1,0 +1,60 @@
+{
+  "scorecard": {
+    "title": "Your Scorecard",
+    "subtitle": "Your scorecard based on performance as on today",
+    "metrics": [
+      {
+        "id": 1,
+        "value": "75%",
+        "label": "Guest Satisfaction",
+        "trend": "up",
+        "trendValue": "15%",
+        "icon": "👤"
+      },
+      {
+        "id": 2,
+        "value": "90%",
+        "label": "Guest Occupancy",
+        "trend": "up",
+        "trendValue": "05%",
+        "icon": "🏠"
+      },
+      {
+        "id": 3,
+        "value": "4.1",
+        "label": "Staff Engagement",
+        "trend": "down",
+        "trendValue": "15%",
+        "icon": "👥"
+      }
+    ],
+    "revpar": {
+      "label": "Rev/PAR",
+      "amount": 390.00,
+      "currency": "$",
+      "amountLabel": "Amount in $",
+      "progressPercentage": 65
+    },
+    "q2Rocks": {
+      "title": "Q2 Rocks",
+      "showDropdown": true,
+      "viewDetailsLink": "View details",
+      "items": [
+        {
+          "id": 1,
+          "title": "New Staff Training",
+          "percentage": 85,
+          "icon": "☀️",
+          "hasFlag": true
+        },
+        {
+          "id": 2,
+          "title": "Ethical Training",
+          "percentage": 50,
+          "icon": "☀️",
+          "hasFlag": true
+        }
+      ]
+    }
+  }
+}
