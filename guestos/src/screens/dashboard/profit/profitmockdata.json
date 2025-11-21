@@ -1,0 +1,50 @@
+{
+  "profitDashboard": {
+    "title": "Profit Dashboard",
+    "month": "Oct 2025",
+    "chartData": {
+      "profit": {
+        "label": "Profit",
+        "percentage": 90,
+        "color": "#00E5D4"
+      },
+      "expenses": {
+        "label": "Expenses",
+        "percentage": 40,
+        "color": "#FFA500"
+      },
+      "taxes": {
+        "label": "Taxes",
+        "percentage": 30,
+        "color": "#D946EF"
+      }
+    }
+  },
+  "profitTarget": {
+    "title": "Profit Target",
+    "targetPercentage": 30,
+    "currentPercentage": 27,
+    "status": "On Track",
+    "progressSteps": [0, 20, 40, 60, 80, 100]
+  },
+  "unitEconomics": {
+    "title": "Unit Economics",
+    "description": "Room, service, and activity analytics help to understand the contribution margin of various offerings."
+  },
+  "purchaseApprovals": [
+    {
+      "id": 1,
+      "title": "Office Supplies",
+      "availableFunds": 3600.00,
+      "requestedAmount": 180.00,
+      "remainingFunds": 3420.00
+    },
+    {
+      "id": 2,
+      "title": "Kitchen Supplies",
+      "availableFunds": 3600.00,
+      "requestedAmount": 1280.00,
+      "remainingFunds": 2320.00
+    }
+  ]
+}

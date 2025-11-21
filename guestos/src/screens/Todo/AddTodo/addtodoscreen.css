@@ -1,0 +1,438 @@
+/* Add Todo Screen Container */
+.addtodo-screen-container {
+    min-height: 100vh;
+    background: linear-gradient(180deg, #3A6B84 0%, #1E475E 50%, #0D2635 100%);
+    color: white;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+    padding-bottom: 120px;
+    overflow-x: hidden;
+    position: relative;
+}
+
+.addtodo-screen-container::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.02) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Header */
+.addtodo-screen-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    padding-top: 60px;
+    position: relative;
+    z-index: 1;
+}
+
+.addtodo-back-btn {
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s ease;
+}
+
+.addtodo-back-btn:hover {
+    opacity: 0.8;
+}
+
+.addtodo-back-btn svg {
+    display: block;
+}
+
+.addtodo-header-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: white;
+    letter-spacing: 0.5px;
+}
+
+.addtodo-header-spacer {
+    width: 40px;
+}
+
+/* Main Content */
+.addtodo-screen-main {
+    padding: 0 20px;
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+/* Page Title Section */
+.addtodo-title-section {
+    padding: 24px 0;
+    text-align: left;
+}
+
+.addtodo-page-title {
+    font-size: 36px;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+    color: white;
+    letter-spacing: -0.5px;
+}
+
+.addtodo-page-subtitle {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+/* Form Card */
+.addtodo-form-card {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 24px;
+    padding: 24px;
+    margin: 20px 0;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 
+        0 8px 32px 0 rgba(31, 38, 135, 0.37),
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
+}
+
+/* Form Groups */
+.addtodo-form-group {
+    margin-bottom: 20px;
+}
+
+.addtodo-form-group:last-child {
+    margin-bottom: 0;
+}
+
+.addtodo-form-label {
+    display: block;
+    font-size: 15px;
+    color: white;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.addtodo-optional {
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 400;
+}
+
+/* Form Inputs */
+.addtodo-form-input {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    padding: 14px 16px;
+    font-size: 15px;
+    color: white;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.addtodo-form-input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.addtodo-form-input:focus {
+    outline: none;
+    background: rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.addtodo-form-textarea {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    padding: 14px 16px;
+    font-size: 15px;
+    color: white;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    resize: vertical;
+    min-height: 120px;
+    box-sizing: border-box;
+}
+
+.addtodo-form-textarea::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.addtodo-form-textarea:focus {
+    outline: none;
+    background: rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Input with Icon */
+.addtodo-input-with-icon {
+    position: relative;
+}
+
+.addtodo-input-with-icon .addtodo-form-input {
+    padding-right: 48px;
+}
+
+.addtodo-input-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s ease;
+}
+
+.addtodo-input-icon:hover {
+    color: white;
+}
+
+.addtodo-input-icon svg {
+    display: block;
+}
+
+/* Select Wrapper */
+.addtodo-select-wrapper {
+    position: relative;
+}
+
+.addtodo-form-select {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    padding: 14px 40px 14px 16px;
+    font-size: 15px;
+    color: white;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    box-sizing: border-box;
+}
+
+.addtodo-form-select:focus {
+    outline: none;
+    background: rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.addtodo-form-select option {
+    background: #1E475E;
+    color: white;
+}
+
+.addtodo-select-icon {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* File Upload */
+.addtodo-file-upload {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: rgba(0, 0, 0, 0.2);
+    border: 2px dashed rgba(255, 255, 255, 0.25);
+    border-radius: 12px;
+    padding: 32px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.addtodo-file-upload:hover {
+    background: rgba(0, 0, 0, 0.25);
+    border-color: rgba(255, 255, 255, 0.35);
+}
+
+.addtodo-file-upload svg {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.addtodo-file-upload-text {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+}
+
+.addtodo-file-input {
+    display: none;
+}
+
+/* Submit Button */
+.addtodo-submit-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #0D4A6B 0%, #0A3854 100%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 16px 24px;
+    border-radius: 16px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 24px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.addtodo-submit-btn:hover {
+    background: linear-gradient(135deg, #0F5580 0%, #0C4260 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+}
+
+.addtodo-submit-btn:active {
+    transform: translateY(0);
+}
+
+.addtodo-submit-btn svg {
+    display: block;
+}
+
+/* Bottom Navigation */
+.addtodo-bottom-nav {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 60px);
+    max-width: 500px;
+    background: rgba(20, 40, 60, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 12px 20px;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    z-index: 100;
+}
+
+.addtodo-nav-btn {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    padding: 10px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    border-radius: 20px;
+    min-width: 60px;
+}
+
+.addtodo-nav-btn::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0);
+    transition: all 0.3s ease;
+}
+
+.addtodo-nav-btn:hover:not(.active) {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.addtodo-nav-btn.active {
+    color: white;
+}
+
+.addtodo-nav-btn.active::before {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px);
+    box-shadow: 
+        0 2px 8px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+}
+
+.addtodo-nav-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+.addtodo-nav-icon svg {
+    display: block;
+}
+
+.addtodo-nav-btn.active .addtodo-nav-icon {
+    transform: scale(1.1);
+}
+
+.addtodo-nav-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    transition: opacity 0.3s ease;
+    white-space: nowrap;
+}
+
+/* Responsive Design */
+@media (max-width: 375px) {
+    .addtodo-screen-main {
+        padding: 0 16px;
+    }
+
+    .addtodo-page-title {
+        font-size: 32px;
+    }
+
+    .addtodo-form-card {
+        padding: 20px;
+    }
+}
+
+@media (min-width: 600px) {
+    .addtodo-screen-container {
+        background: linear-gradient(180deg, #2C5F7C 0%, #1E4560 100%);
+    }
+
+    .addtodo-screen-main {
+        padding: 0 40px;
+    }
+}

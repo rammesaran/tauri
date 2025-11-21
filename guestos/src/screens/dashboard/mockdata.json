@@ -1,0 +1,72 @@
+{
+  "user": {
+    "name": "John Doe",
+    "profileImage": "https://i.pravatar.cc/150?img=33"
+  },
+  "upcomingMeeting": {
+    "title": "Weekly 1-on-1",
+    "subtitle": "Leadership team meeting",
+    "timeUntil": "10 Min",
+    "hostImage": "https://i.pravatar.cc/150?img=12"
+  },
+  "overview": {
+    "rocks": {
+      "label": "Rocks",
+      "percentage": 75
+    },
+    "fires": {
+      "label": "Fires",
+      "percentage": 90
+    },
+    "todo": {
+      "label": "To-Do",
+      "percentage": 45
+    }
+  },
+  "todoStats": {
+    "completed": {
+      "label": "Completed",
+      "percentage": 60,
+      "color": "#7ED957"
+    },
+    "inProgress": {
+      "label": "In Progress",
+      "percentage": 35,
+      "color": "#FFA500"
+    },
+    "yetToStart": {
+      "label": "Yet to Start",
+      "percentage": 5,
+      "color": "#00BCD4"
+    }
+  },
+  "pendingTodos": [
+    {
+      "id": 1,
+      "title": "ABD Assessm...",
+      "dueDate": "Sep 30"
+    },
+    {
+      "id": 2,
+      "title": "ABD Assessm...",
+      "dueDate": "Sep 30"
+    },
+    {
+      "id": 3,
+      "title": "ABD Assessm...",
+      "dueDate": "Sep 30"
+    }
+  ],
+  "metrics": {
+    "fire": {
+      "title": "Fire",
+      "description": "Identify and organize pressing issues to resolve them with ease.",
+      "percentage": 47.5
+    },
+    "rocks": {
+      "title": "Rocks",
+      "description": "Set and track quarterly goals to help your team consistently hit their targets.",
+      "percentage": 47.5
+    }
+  }
+}

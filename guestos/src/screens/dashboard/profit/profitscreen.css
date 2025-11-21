@@ -1,0 +1,695 @@
+/* Profit Screen Container */
+.profit-screen-container {
+    min-height: 100vh;
+    background: linear-gradient(180deg, #3A6B84 0%, #1E475E 50%, #0D2635 100%);
+    color: white;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+    padding-bottom: 120px;
+    overflow-x: hidden;
+    position: relative;
+}
+
+.profit-screen-container::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.02) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Header */
+.profit-screen-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    padding-top: 60px;
+    position: relative;
+    z-index: 1;
+}
+
+.profit-back-btn {
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s ease;
+}
+
+.profit-back-btn:hover {
+    opacity: 0.8;
+}
+
+.profit-back-btn svg {
+    display: block;
+}
+
+.profit-header-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: white;
+    letter-spacing: 0.5px;
+}
+
+.profit-notification-btn {
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profit-notification-btn svg {
+    display: block;
+}
+
+/* Main Content */
+.profit-screen-main {
+    padding: 0 20px;
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+/* Page Title Section */
+.profit-title-section {
+    padding: 24px 0;
+    text-align: left;
+}
+
+.profit-page-title {
+    font-size: 36px;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+    color: white;
+    letter-spacing: -0.5px;
+}
+
+.profit-page-subtitle {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+/* Profit Dashboard Card */
+.profit-dashboard-card {
+    background: linear-gradient(135deg, rgba(58, 138, 164, 0.3) 0%, rgba(30, 71, 94, 0.3) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 24px;
+    padding: 24px;
+    margin: 20px 0;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 
+        0 8px 32px 0 rgba(31, 38, 135, 0.37),
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
+}
+
+.profit-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.profit-card-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+    color: white;
+}
+
+.profit-month-selector {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 8px 12px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.profit-month-selector:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.profit-month-text {
+    font-size: 14px;
+    font-weight: 500;
+    color: white;
+}
+
+.profit-month-selector svg {
+    color: white;
+}
+
+/* Profit Chart Content */
+.profit-chart-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.profit-donut-chart {
+    width: 240px;
+    height: 240px;
+    margin: 0 auto;
+}
+
+.profit-donut-svg {
+    width: 100%;
+    height: 100%;
+}
+
+.profit-chart-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.profit-stat-item {
+    display: flex;
+    align-items: center;
+}
+
+.profit-stat-text {
+    font-size: 14px;
+    color: white;
+    font-weight: 500;
+}
+
+.profit-legend {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.profit-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.profit-legend-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+
+.profit-legend-text {
+    font-size: 14px;
+    color: white;
+    font-weight: 500;
+}
+
+/* Profit Target Card */
+.profit-target-card {
+    background: linear-gradient(135deg, rgba(58, 138, 164, 0.25) 0%, rgba(30, 71, 94, 0.25) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 20px;
+    margin: 20px 0;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 
+        0 8px 32px 0 rgba(31, 38, 135, 0.37),
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
+}
+
+.target-header {
+    margin-bottom: 16px;
+}
+
+.target-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+    color: white;
+}
+
+.target-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.target-info-item {
+    display: flex;
+    align-items: center;
+}
+
+.target-label {
+    font-size: 14px;
+    color: white;
+    font-weight: 500;
+}
+
+.target-status {
+    font-size: 14px;
+    color: white;
+    font-weight: 500;
+}
+
+.target-progress-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.target-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.target-icon svg {
+    color: white;
+}
+
+.target-progress-bar {
+    flex: 1;
+    height: 36px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 18px;
+    overflow: hidden;
+    position: relative;
+}
+
+.target-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #FFA500 0%, #7ED957 50%, #00E5D4 100%);
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 12px;
+    transition: width 0.5s ease;
+    position: relative;
+}
+
+.target-progress-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: white;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 4px 10px;
+    border-radius: 12px;
+}
+
+.target-flag-btn {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    flex-shrink: 0;
+}
+
+.target-flag-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.target-flag-btn svg {
+    color: white;
+}
+
+.target-steps {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 12px;
+    margin-top: 8px;
+}
+
+.target-step {
+    width: 8px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+}
+
+/* Unit Economics Card */
+.unit-economics-card {
+    background: linear-gradient(135deg, rgba(58, 138, 164, 0.25) 0%, rgba(30, 71, 94, 0.25) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 20px;
+    margin: 20px 0;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 
+        0 8px 32px 0 rgba(31, 38, 135, 0.37),
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.economics-icon-wrapper {
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.economics-icon-wrapper svg {
+    color: white;
+}
+
+.economics-content {
+    flex: 1;
+}
+
+.economics-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+    color: white;
+}
+
+.economics-description {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+    line-height: 1.5;
+}
+
+.economics-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.economics-action-btn {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.plus-btn {
+    background: linear-gradient(135deg, #FF6B35 0%, #FF8C00 100%);
+    color: white;
+}
+
+.plus-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(255, 107, 53, 0.5);
+}
+
+.minus-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.minus-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.economics-action-btn svg {
+    display: block;
+}
+
+/* Purchase Approvals Section */
+.purchase-approvals-section {
+    margin: 24px 0;
+}
+
+.approvals-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.approvals-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+    color: white;
+}
+
+.view-all-link {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.approval-card {
+    background: linear-gradient(135deg, rgba(58, 138, 164, 0.25) 0%, rgba(30, 71, 94, 0.25) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 
+        0 8px 32px 0 rgba(31, 38, 135, 0.37),
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
+}
+
+.approval-details {
+    margin-bottom: 16px;
+}
+
+.approval-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+}
+
+.approval-row:not(:last-child) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.approval-label {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.approval-item-name {
+    font-size: 15px;
+    color: white;
+    font-weight: 500;
+}
+
+.approval-amount {
+    font-size: 15px;
+    color: white;
+    font-weight: 600;
+}
+
+.approval-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.approval-btn {
+    flex: 1;
+    padding: 12px 20px;
+    border-radius: 14px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.reject-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.reject-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+.approve-btn {
+    background: linear-gradient(135deg, rgba(70, 50, 40, 0.8) 0%, rgba(50, 35, 30, 0.8) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.approve-btn:hover {
+    background: linear-gradient(135deg, rgba(80, 60, 50, 0.9) 0%, rgba(60, 45, 40, 0.9) 100%);
+    transform: translateY(-2px);
+}
+
+.approval-btn svg {
+    display: block;
+}
+
+/* Bottom Navigation */
+.profit-bottom-nav {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 60px);
+    max-width: 500px;
+    background: rgba(20, 40, 60, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 12px 20px;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    z-index: 100;
+}
+
+.profit-nav-btn {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    padding: 10px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    border-radius: 20px;
+    min-width: 60px;
+}
+
+.profit-nav-btn::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0);
+    transition: all 0.3s ease;
+}
+
+.profit-nav-btn:hover:not(.active) {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.profit-nav-btn.active {
+    color: white;
+}
+
+.profit-nav-btn.active::before {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px);
+    box-shadow: 
+        0 2px 8px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+}
+
+.profit-nav-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+.profit-nav-icon svg {
+    display: block;
+}
+
+.profit-nav-btn.active .profit-nav-icon {
+    transform: scale(1.1);
+}
+
+.profit-nav-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    transition: opacity 0.3s ease;
+    white-space: nowrap;
+}
+
+/* Responsive Design */
+@media (max-width: 375px) {
+    .profit-screen-main {
+        padding: 0 16px;
+    }
+
+    .profit-page-title {
+        font-size: 32px;
+    }
+
+    .profit-dashboard-card,
+    .profit-target-card,
+    .unit-economics-card,
+    .approval-card {
+        padding: 18px;
+    }
+
+    .profit-donut-chart {
+        width: 180px;
+        height: 180px;
+    }
+}
+
+@media (min-width: 600px) {
+    .profit-screen-container {
+        background: linear-gradient(180deg, #2C5F7C 0%, #1E4560 100%);
+    }
+
+    .profit-screen-main {
+        padding: 0 40px;
+    }
+
+    .profit-donut-chart {
+        width: 250px;
+        height: 250px;
+    }
+}

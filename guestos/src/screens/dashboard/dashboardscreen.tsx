@@ -1,13 +1,15 @@
 import { useState } from "react";
 import "./dashboardscreen.css";
+import mockData from "./mockData.json";
 
 interface DashboardScreenProps {
-    userName: string;
+    userName?: string;
     onLogout: () => void;
-    onNavigate?: (screen: "dashboard" | "vision") => void;
+    onNavigate?: (screen: "dashboard" | "vision" | "todo" | "addtodo" | "profit") => void;
+    dashboardData?: typeof mockData;
 }
 
-function DashboardScreen({ userName, onLogout, onNavigate }: DashboardScreenProps) {
+function DashboardScreen({ userName, onLogout, onNavigate, dashboardData = mockData }: DashboardScreenProps) {
     const [activeNav, setActiveNav] = useState("home");
 
     const handleNavClick = (nav: string) => {
@@ -15,7 +17,37 @@ function DashboardScreen({ userName, onLogout, onNavigate }: DashboardScreenProp
         if (nav === "view" && onNavigate) {
             onNavigate("vision");
         }
+        if (nav === "todo" && onNavigate) {
+            onNavigate("todo");
+        }
     };
+
+    const handleOverviewClick = () => {
+        if (onNavigate) {
+            onNavigate("profit");
+        }
+    };
+
+    // Use passed userName or fallback to mockData
+    const displayName = userName || dashboardData.user.name;
+
+    // Calculate pie chart segments
+    const calculatePieSegment = (percentage: number, startPercentage: number) => {
+        const circumference = 502.65;
+        const dashArray = (percentage / 100) * circumference;
+        const dashOffset = -(startPercentage / 100) * circumference;
+        return { dashArray, dashOffset };
+    };
+
+    const completedSegment = calculatePieSegment(dashboardData.todoStats.completed.percentage, 0);
+    const inProgressSegment = calculatePieSegment(
+        dashboardData.todoStats.inProgress.percentage,
+        dashboardData.todoStats.completed.percentage
+    );
+    const yetToStartSegment = calculatePieSegment(
+        dashboardData.todoStats.yetToStart.percentage,
+        dashboardData.todoStats.completed.percentage + dashboardData.todoStats.inProgress.percentage
+    );
 
     return (
         <div className="dashboard-container">
@@ -35,7 +67,7 @@ function DashboardScreen({ userName, onLogout, onNavigate }: DashboardScreenProp
                         </svg>
                     </button>
                     <button className="profile-btn" aria-label="Profile">
-                        <img src="https://i.pravatar.cc/150?img=33" alt="Profile" className="profile-img" />
+                        <img src={dashboardData.user.profileImage} alt="Profile" className="profile-img" />
                     </button>
                 </div>
             </header>
@@ -44,20 +76,24 @@ function DashboardScreen({ userName, onLogout, onNavigate }: DashboardScreenProp
             <main className="dashboard-main">
                 {/* Greeting Section */}
                 <section className="greeting-section">
-                    <h1 className="greeting-title">Hello {userName}!</h1>
+                    <h1 className="greeting-title">Hello {displayName}!</h1>
                     <p className="greeting-subtitle">This is your current To-Dos, Rock & Fires</p>
                 </section>
 
                 {/* Upcoming Meeting Card */}
                 <section className="meeting-card">
                     <div className="meeting-header">
-                        <span className="meeting-label">Upcoming Meeting in 10 Min</span>
+                        <span className="meeting-label">Upcoming Meeting in {dashboardData.upcomingMeeting.timeUntil}</span>
                     </div>
                     <div className="meeting-content">
-                        <img src="https://i.pravatar.cc/150?img=12" alt="Meeting host" className="meeting-avatar" />
+                        <img
+                            src={dashboardData.upcomingMeeting.hostImage}
+                            alt="Meeting host"
+                            className="meeting-avatar"
+                        />
                         <div className="meeting-details">
-                            <h3 className="meeting-title">Weekly 1-on-1</h3>
-                            <p className="meeting-subtitle">Leadership team meeting</p>
+                            <h3 className="meeting-title">{dashboardData.upcomingMeeting.title}</h3>
+                            <p className="meeting-subtitle">{dashboardData.upcomingMeeting.subtitle}</p>
                         </div>
                         <button className="join-btn">
                             🎥 Join
@@ -66,28 +102,37 @@ function DashboardScreen({ userName, onLogout, onNavigate }: DashboardScreenProp
                 </section>
 
                 {/* Overview Section */}
-                <section className="overview-section">
+                <section className="overview-section" onClick={handleOverviewClick} style={{ cursor: 'pointer' }}>
                     <div className="section-header">
                         <h2 className="section-title">Overview</h2>
-                        <button className="report-btn">📊 Report</button>
+                        <button className="report-btn" onClick={(e) => e.stopPropagation()}>📊 Report</button>
                     </div>
                     <div className="progress-bars">
                         <div className="progress-item">
-                            <label className="progress-label">Rocks</label>
+                            <label className="progress-label">{dashboardData.overview.rocks.label}</label>
                             <div className="progress-bar">
-                                <div className="progress-fill rocks-fill" style={{ width: '75%' }}></div>
+                                <div
+                                    className="progress-fill rocks-fill"
+                                    style={{ width: `${dashboardData.overview.rocks.percentage}%` }}
+                                ></div>
                             </div>
                         </div>
                         <div className="progress-item">
-                            <label className="progress-label">Fires</label>
+                            <label className="progress-label">{dashboardData.overview.fires.label}</label>
                             <div className="progress-bar">
-                                <div className="progress-fill fires-fill" style={{ width: '90%' }}></div>
+                                <div
+                                    className="progress-fill fires-fill"
+                                    style={{ width: `${dashboardData.overview.fires.percentage}%` }}
+                                ></div>
                             </div>
                         </div>
                         <div className="progress-item">
-                            <label className="progress-label">To-Do</label>
+                            <label className="progress-label">{dashboardData.overview.todo.label}</label>
                             <div className="progress-bar">
-                                <div className="progress-fill todo-fill" style={{ width: '45%' }}></div>
+                                <div
+                                    className="progress-fill todo-fill"
+                                    style={{ width: `${dashboardData.overview.todo.percentage}%` }}
+                                ></div>
                             </div>
                         </div>
                     </div>
@@ -97,68 +142,75 @@ function DashboardScreen({ userName, onLogout, onNavigate }: DashboardScreenProp
                 <section className="todo-section">
                     <div className="section-header">
                         <h2 className="section-title">To-Do</h2>
-                        <button className="view-all-btn">👁️ View All To-Do</button>
+                        <button className="view-all-btn" onClick={() => handleNavClick('todo')}>👁️ View All To-Do</button>
                     </div>
 
                     <div className="todo-chart-container">
                         <div className="pie-chart">
                             <svg viewBox="0 0 200 200" className="pie-svg">
-                                {/* Completed - 60% */}
+                                {/* Completed */}
                                 <circle
                                     cx="100"
                                     cy="100"
                                     r="80"
                                     fill="none"
-                                    stroke="#7ED957"
+                                    stroke={dashboardData.todoStats.completed.color}
                                     strokeWidth="40"
-                                    strokeDasharray="301.59 502.65"
+                                    strokeDasharray={`${completedSegment.dashArray} 502.65`}
                                     transform="rotate(-90 100 100)"
                                 />
-                                {/* In Progress - 35% */}
+                                {/* In Progress */}
                                 <circle
                                     cx="100"
                                     cy="100"
                                     r="80"
                                     fill="none"
-                                    stroke="#FFA500"
+                                    stroke={dashboardData.todoStats.inProgress.color}
                                     strokeWidth="40"
-                                    strokeDasharray="175.93 502.65"
-                                    strokeDashoffset="-301.59"
+                                    strokeDasharray={`${inProgressSegment.dashArray} 502.65`}
+                                    strokeDashoffset={inProgressSegment.dashOffset}
                                     transform="rotate(-90 100 100)"
                                 />
-                                {/* Yet to Start - 5% */}
+                                {/* Yet to Start */}
                                 <circle
                                     cx="100"
                                     cy="100"
                                     r="80"
                                     fill="none"
-                                    stroke="#00BCD4"
+                                    stroke={dashboardData.todoStats.yetToStart.color}
                                     strokeWidth="40"
-                                    strokeDasharray="25.13 502.65"
-                                    strokeDashoffset="-477.52"
+                                    strokeDasharray={`${yetToStartSegment.dashArray} 502.65`}
+                                    strokeDashoffset={yetToStartSegment.dashOffset}
                                     transform="rotate(-90 100 100)"
                                 />
-
                             </svg>
                         </div>
 
                         <div className="chart-legend">
                             <div className="legend-item">
-                                <span className="legend-dot completed"></span>
-                                <span className="legend-text">Completed</span>
-                                <span className="legend-percentage">60%</span>
+                                <span
+                                    className="legend-dot completed"
+                                    style={{ backgroundColor: dashboardData.todoStats.completed.color }}
+                                ></span>
+                                <span className="legend-text">{dashboardData.todoStats.completed.label}</span>
+                                <span className="legend-percentage">{dashboardData.todoStats.completed.percentage}%</span>
                             </div>
                             <div className="legend-item">
-                                <span className="legend-dot progress"></span>
-                                <span className="legend-text">In Progress</span>
-                                <span className="legend-percentage">35%</span>
+                                <span
+                                    className="legend-dot progress"
+                                    style={{ backgroundColor: dashboardData.todoStats.inProgress.color }}
+                                ></span>
+                                <span className="legend-text">{dashboardData.todoStats.inProgress.label}</span>
+                                <span className="legend-percentage">{dashboardData.todoStats.inProgress.percentage}%</span>
                             </div>
                             <div className="legend-item">
-                                <span className="legend-dot yet-to-start"></span>
-                                <span className="legend-text">Yet to Start</span>
-                                <span className="legend-percentage">5%</span>
+                                <span
+                                    className="legend-dot yet-to-start"
+                                    style={{ backgroundColor: dashboardData.todoStats.yetToStart.color }}
+                                ></span>
+                                <span className="legend-text">{dashboardData.todoStats.yetToStart.label}</span>
+                                <span className="legend-percentage">{dashboardData.todoStats.yetToStart.percentage}%</span>
                             </div>
-
                         </div>
                     </div>
 
@@ -170,41 +222,19 @@ function DashboardScreen({ userName, onLogout, onNavigate }: DashboardScreenProp
                         </div>
 
                         <div className="todo-list">
-                            <div className="todo-item">
-                                <div className="todo-info">
-                                    <span className="todo-item-title">Title</span>
-                                    <span className="todo-item-subtitle">ABD Assessm...</span>
+                            {dashboardData.pendingTodos.map((todo) => (
+                                <div key={todo.id} className="todo-item">
+                                    <div className="todo-info">
+                                        <span className="todo-item-title">Title</span>
+                                        <span className="todo-item-subtitle">{todo.title}</span>
+                                    </div>
+                                    <div className="todo-meta">
+                                        <span className="todo-due">Due by</span>
+                                        <span className="todo-date">{todo.dueDate}</span>
+                                    </div>
+                                    <button className="todo-arrow">→</button>
                                 </div>
-                                <div className="todo-meta">
-                                    <span className="todo-due">Due by</span>
-                                    <span className="todo-date">Sep 30</span>
-                                </div>
-                                <button className="todo-arrow">→</button>
-                            </div>
-
-                            <div className="todo-item">
-                                <div className="todo-info">
-                                    <span className="todo-item-title">Title</span>
-                                    <span className="todo-item-subtitle">ABD Assessm...</span>
-                                </div>
-                                <div className="todo-meta">
-                                    <span className="todo-due">Due by</span>
-                                    <span className="todo-date">Sep 30</span>
-                                </div>
-                                <button className="todo-arrow">→</button>
-                            </div>
-
-                            <div className="todo-item">
-                                <div className="todo-info">
-                                    <span className="todo-item-title">Title</span>
-                                    <span className="todo-item-subtitle">ABD Assessm...</span>
-                                </div>
-                                <div className="todo-meta">
-                                    <span className="todo-due">Due by</span>
-                                    <span className="todo-date">Sep 30</span>
-                                </div>
-                                <button className="todo-arrow">→</button>
-                            </div>
+                            ))}
                         </div>
                     </div>
                 </section>
@@ -213,10 +243,10 @@ function DashboardScreen({ userName, onLogout, onNavigate }: DashboardScreenProp
                 <section className="metric-card fire-card">
                     <div className="metric-header">
                         <div className="metric-info">
-                            <h3 className="metric-title">Fire</h3>
-                            <p className="metric-subtitle">Identify and organize pressing issues to resolve them with ease.</p>
+                            <h3 className="metric-title">{dashboardData.metrics.fire.title}</h3>
+                            <p className="metric-subtitle">{dashboardData.metrics.fire.description}</p>
                         </div>
-                        <div className="metric-percentage">47.5%</div>
+                        <div className="metric-percentage">{dashboardData.metrics.fire.percentage}%</div>
                     </div>
                 </section>
 
@@ -224,10 +254,10 @@ function DashboardScreen({ userName, onLogout, onNavigate }: DashboardScreenProp
                 <section className="metric-card rocks-card">
                     <div className="metric-header">
                         <div className="metric-info">
-                            <h3 className="metric-title">Rocks</h3>
-                            <p className="metric-subtitle">Set and track quarterly goals to help your team consistently hit their targets.</p>
+                            <h3 className="metric-title">{dashboardData.metrics.rocks.title}</h3>
+                            <p className="metric-subtitle">{dashboardData.metrics.rocks.description}</p>
                         </div>
-                        <div className="metric-percentage">47.5%</div>
+                        <div className="metric-percentage">{dashboardData.metrics.rocks.percentage}%</div>
                     </div>
                 </section>
             </main>
@@ -272,7 +302,7 @@ function DashboardScreen({ userName, onLogout, onNavigate }: DashboardScreenProp
                 </button>
                 <button
                     className={`nav-btn ${activeNav === 'menu' ? 'active' : ''}`}
-                    onClick={() => setActiveNav('menu')}
+                    onClick={() => handleNavClick('todo')}
                 >
                     <span className="nav-icon">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -284,6 +314,7 @@ function DashboardScreen({ userName, onLogout, onNavigate }: DashboardScreenProp
                             <line x1="3" y1="18" x2="3.01" y2="18" />
                         </svg>
                     </span>
+                    {activeNav === 'menu' && <span className="nav-label">To-Do's</span>}
                 </button>
                 <button
                     className={`nav-btn ${activeNav === 'more' ? 'active' : ''}`}
