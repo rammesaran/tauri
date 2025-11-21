@@ -5,7 +5,7 @@ import mockData from "./mockData.json";
 interface DashboardScreenProps {
     userName?: string;
     onLogout: () => void;
-    onNavigate?: (screen: "dashboard" | "vision" | "todo" | "addtodo" | "profit" | "scorecard") => void;
+    onNavigate?: (screen: "dashboard" | "vision" | "todo" | "addtodo" | "profit" | "scorecard" | "meeting" | "geyser") => void;
     dashboardData?: typeof mockData;
 }
 
@@ -20,6 +20,11 @@ function DashboardScreen({ userName, onLogout, onNavigate, dashboardData = mockD
         if (nav === "todo" && onNavigate) {
             onNavigate("todo");
         }
+
+        if (nav === "geyser" && onNavigate) {
+            console.log("navvvv");
+            onNavigate("geyser");
+        }
     };
 
     const handleOverviewClick = () => {
@@ -31,6 +36,12 @@ function DashboardScreen({ userName, onLogout, onNavigate, dashboardData = mockD
     const handleReportClick = () => {
         if (onNavigate) {
             onNavigate("scorecard");
+        }
+    };
+
+    const handleMeetingClick = () => {
+        if (onNavigate) {
+            onNavigate("meeting");
         }
     };
 
@@ -87,7 +98,7 @@ function DashboardScreen({ userName, onLogout, onNavigate, dashboardData = mockD
                 </section>
 
                 {/* Upcoming Meeting Card */}
-                <section className="meeting-card">
+                <section className="meeting-card" onClick={handleMeetingClick} style={{ cursor: 'pointer' }}>
                     <div className="meeting-header">
                         <span className="meeting-label">Upcoming Meeting in {dashboardData.upcomingMeeting.timeUntil}</span>
                     </div>
@@ -101,7 +112,7 @@ function DashboardScreen({ userName, onLogout, onNavigate, dashboardData = mockD
                             <h3 className="meeting-title">{dashboardData.upcomingMeeting.title}</h3>
                             <p className="meeting-subtitle">{dashboardData.upcomingMeeting.subtitle}</p>
                         </div>
-                        <button className="join-btn">
+                        <button className="join-btn" onClick={(e) => e.stopPropagation()}>
                             🎥 Join
                         </button>
                     </div>
@@ -294,8 +305,8 @@ function DashboardScreen({ userName, onLogout, onNavigate, dashboardData = mockD
                     </span>
                 </button>
                 <button
-                    className={`nav-btn ${activeNav === 'info' ? 'active' : ''}`}
-                    onClick={() => setActiveNav('info')}
+                    className={`nav-btn ${activeNav === 'geyser' ? 'active' : ''}`}
+                    onClick={() => handleNavClick('geyser')}
                 >
                     <span className="nav-icon">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

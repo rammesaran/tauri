@@ -1,0 +1,66 @@
+{
+  "meeting": {
+    "title": "Meeting",
+    "subtitle": "Improve alignment and transparency across your organization.",
+    "upcomingMeeting": {
+      "timeUntil": "10 Min",
+      "title": "Weekly 1-on-1",
+      "description": "Leadership team meeting",
+      "hostImage": "https://i.pravatar.cc/150?img=12",
+      "controls": [
+        {
+          "id": 1,
+          "icon": "headphones",
+          "label": "Audio"
+        },
+        {
+          "id": 2,
+          "icon": "microphone",
+          "label": "Mic"
+        },
+        {
+          "id": 3,
+          "icon": "bell",
+          "label": "Notifications"
+        },
+        {
+          "id": 4,
+          "icon": "phone",
+          "label": "Call"
+        },
+        {
+          "id": 5,
+          "icon": "settings",
+          "label": "Settings"
+        }
+      ]
+    },
+    "menuItems": [
+      {
+        "id": 1,
+        "icon": "calendar",
+        "label": "Schedule Meeting",
+        "route": "schedule"
+      },
+      {
+        "id": 2,
+        "icon": "agenda",
+        "label": "Agenda",
+        "route": "agenda"
+      },
+      {
+        "id": 3,
+        "icon": "video",
+        "label": "Start Meeting",
+        "route": "start"
+      },
+      {
+        "id": 4,
+        "icon": "history",
+        "label": "Meeting History",
+        "route": "history",
+        "hasAddButton": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,593 @@
+/* Geyser Screen Container */
+.geyser-screen-container {
+    min-height: 100vh;
+    background: linear-gradient(180deg, #3A6B84 0%, #1E475E 50%, #0D2635 100%);
+    color: white;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+    padding-bottom: 120px;
+    overflow-x: hidden;
+    position: relative;
+}
+
+.geyser-screen-container::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.02) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Header */
+.geyser-screen-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    padding-top: 60px;
+    position: relative;
+    z-index: 1;
+}
+
+.geyser-back-btn {
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s ease;
+}
+
+.geyser-back-btn:hover {
+    opacity: 0.8;
+}
+
+.geyser-back-btn svg {
+    display: block;
+}
+
+.geyser-header-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: white;
+    letter-spacing: 0.5px;
+}
+
+.geyser-notification-btn {
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.geyser-notification-btn svg {
+    display: block;
+}
+
+/* Main Content */
+.geyser-screen-main {
+    padding: 0 20px;
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+/* Page Title Section */
+.geyser-title-section {
+    padding: 24px 0;
+    text-align: left;
+}
+
+.geyser-page-title {
+    font-size: 32px;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+    color: white;
+    letter-spacing: -0.5px;
+}
+
+.geyser-page-subtitle {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+/* Employee Card */
+.employee-card {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 20px 0;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.employee-avatar {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    display: block;
+}
+
+.employee-info-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+    padding: 24px 20px;
+}
+
+.employee-name {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 0 4px 0;
+    color: white;
+}
+
+.employee-role {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0 0 8px 0;
+}
+
+.employee-shift {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: white;
+    background: rgba(0, 188, 212, 0.2);
+    padding: 6px 12px;
+    border-radius: 8px;
+    width: fit-content;
+}
+
+.employee-shift svg {
+    flex-shrink: 0;
+}
+
+/* Time Tracker Card */
+.time-tracker-card {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 24px;
+    margin: 20px 0;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 
+        0 8px 32px 0 rgba(31, 38, 135, 0.37),
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
+}
+
+.time-tracker-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 20px 0;
+    color: white;
+}
+
+.time-tracker-display {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.time-tracker-circle {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(0, 229, 212, 0.2) 0%, rgba(0, 188, 212, 0.1) 100%);
+    border: 8px solid rgba(0, 229, 212, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 30px rgba(0, 229, 212, 0.3);
+}
+
+.time-tracker-time {
+    font-size: 40px;
+    font-weight: 700;
+    color: white;
+    line-height: 1;
+}
+
+.time-tracker-label {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: 8px;
+}
+
+.time-tracker-shift-info {
+    text-align: center;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 16px 0;
+}
+
+.time-tracker-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.check-out-btn,
+.check-in-btn {
+    flex: 1;
+    padding: 14px 20px;
+    border-radius: 14px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.check-out-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.check-in-btn {
+    background: rgba(0, 0, 0, 0.3);
+    color: white;
+}
+
+.check-out-btn:hover:not(:disabled),
+.check-in-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.check-out-btn:disabled,
+.check-in-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.check-out-btn svg,
+.check-in-btn svg {
+    display: block;
+}
+
+/* Hours Locked Card */
+.hours-locked-card {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 24px;
+    margin: 20px 0;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 
+        0 8px 32px 0 rgba(31, 38, 135, 0.37),
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
+}
+
+.hours-locked-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.hours-locked-label {
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+}
+
+.hours-locked-date {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.hours-locked-date svg {
+    color: white;
+}
+
+.hours-locked-value {
+    font-size: 48px;
+    font-weight: 700;
+    color: white;
+    line-height: 1;
+    margin-bottom: 8px;
+}
+
+.hours-locked-max {
+    font-size: 24px;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 400;
+}
+
+.hours-locked-chart {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 8px;
+    height: 120px;
+    margin-top: 20px;
+}
+
+.hours-bar-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    height: 100%;
+}
+
+.hours-bar-container {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.hours-bar {
+    width: 100%;
+    border-radius: 6px;
+    transition: height 0.5s ease;
+    min-height: 8px;
+}
+
+.hours-bar-label {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 500;
+}
+
+/* Stats Section */
+.stats-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 20px 0;
+}
+
+/* Weekly Schedule Card */
+.weekly-schedule-card {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 24px;
+    margin: 20px 0;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 
+        0 8px 32px 0 rgba(31, 38, 135, 0.37),
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
+}
+
+.weekly-schedule-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.weekly-schedule-date {
+    font-size: 14px;
+    color: white;
+    font-weight: 500;
+}
+
+.weekly-schedule-header svg {
+    color: white;
+}
+
+.weekly-schedule-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.schedule-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 0;
+}
+
+/* Predictive Insights Card */
+.predictive-insights-card {
+    background: rgba(0, 229, 212, 0.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 229, 212, 0.3);
+    border-radius: 20px;
+    padding: 20px;
+    margin: 20px 0;
+    display: flex;
+    gap: 16px;
+    box-shadow: 0 4px 20px rgba(0, 229, 212, 0.2);
+}
+
+.predictive-insights-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: white;
+}
+
+.predictive-insights-icon svg {
+    display: block;
+}
+
+.predictive-insights-content {
+    flex: 1;
+}
+
+.predictive-insights-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+    color: white;
+}
+
+.predictive-insights-message {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* Bottom Navigation - continued in next message due to length */
+.geyser-bottom-nav {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 60px);
+    max-width: 500px;
+    background: rgba(20, 40, 60, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 12px 20px;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    z-index: 100;
+}
+
+.geyser-nav-btn {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    padding: 10px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    border-radius: 20px;
+    min-width: 60px;
+}
+
+.geyser-nav-btn::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0);
+    transition: all 0.3s ease;
+}
+
+.geyser-nav-btn:hover:not(.active) {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.geyser-nav-btn.active {
+    color: white;
+}
+
+.geyser-nav-btn.active::before {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px);
+    box-shadow: 
+        0 2px 8px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+}
+
+.geyser-nav-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+.geyser-nav-icon svg {
+    display: block;
+}
+
+.geyser-nav-btn.active .geyser-nav-icon {
+    transform: scale(1.1);
+}
+
+.geyser-nav-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    transition: opacity 0.3s ease;
+    white-space: nowrap;
+}
+
+/* Responsive Design */
+@media (max-width: 375px) {
+    .geyser-screen-main {
+        padding: 0 16px;
+    }
+
+    .geyser-page-title {
+        font-size: 28px;
+    }
+
+    .employee-avatar {
+        height: 240px;
+    }
+
+    .time-tracker-circle {
+        width: 160px;
+        height: 160px;
+    }
+
+    .time-tracker-time {
+        font-size: 36px;
+    }
+
+    .hours-locked-value {
+        font-size: 42px;
+    }
+
+    .hours-locked-chart {
+        height: 100px;
+    }
+}
+
+@media (min-width: 600px) {
+    .geyser-screen-container {
+        background: linear-gradient(180deg, #2C5F7C 0%, #1E4560 100%);
+    }
+
+    .geyser-screen-main {
+        padding: 0 40px;
+    }
+}

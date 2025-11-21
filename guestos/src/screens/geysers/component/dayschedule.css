@@ -1,0 +1,71 @@
+/* Day Schedule */
+.day-schedule {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px 0;
+}
+
+.day-schedule-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.day-schedule-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.day-schedule-day {
+    font-size: 15px;
+    color: white;
+    font-weight: 500;
+}
+
+.day-schedule-time {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.day-schedule-status-text {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.day-schedule-status {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.1);
+    padding: 4px 10px;
+    border-radius: 8px;
+}
+
+.day-schedule-progress-bar {
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.day-schedule-progress-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.5s ease;
+}
+
+/* Responsive */
+@media (max-width: 375px) {
+    .day-schedule {
+        padding: 10px 0;
+    }
+
+    .day-schedule-day {
+        font-size: 14px;
+    }
+
+    .day-schedule-time {
+        font-size: 12px;
+    }
+}

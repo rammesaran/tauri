@@ -1,0 +1,107 @@
+{
+  "geyser": {
+    "title": "Geyser",
+    "subtitle": "Employee time and attendance tracking",
+    "employee": {
+      "name": "Jessica Nov",
+      "role": "Front Desk Clerk",
+      "avatar": "https://i.pravatar.cc/300?img=47",
+      "shiftTime": "8:30am - 5:30pm"
+    },
+    "timeTracker": {
+      "title": "Time Tracker",
+      "workTime": "00:00",
+      "label": "Work Time",
+      "shiftTime": "8:30am - 5:30pm",
+      "isCheckedIn": false
+    },
+    "hoursLocked": {
+      "label": "Hours Locked",
+      "dateRange": "Sep 28th - Oct 3rd",
+      "totalHours": 36,
+      "maxHours": 45,
+      "weeklyData": [
+        { "day": "S", "hours": 5, "color": "#00E5D4" },
+        { "day": "M", "hours": 7, "color": "#00E5D4" },
+        { "day": "T", "hours": 6, "color": "#FFA500" },
+        { "day": "W", "hours": 8, "color": "#7ED957" },
+        { "day": "T", "hours": 5, "color": "#00E5D4" },
+        { "day": "F", "hours": 5, "color": "#FF6B6B" }
+      ]
+    },
+    "stats": [
+      {
+        "id": 1,
+        "icon": "clock",
+        "label": "Total Hours Worked",
+        "value": "140.00 hrs",
+        "subtext": "This Month"
+      },
+      {
+        "id": 2,
+        "icon": "target",
+        "label": "Remaining Hours",
+        "value": "15.5 hrs",
+        "subtext": "To complete week"
+      },
+      {
+        "id": 3,
+        "icon": "trending",
+        "label": "This Week's Productivity",
+        "value": "92%",
+        "subtext": "+4% from last week"
+      }
+    ],
+    "weeklySchedule": {
+      "dateRange": "14th Oct - 20th Oct 2024",
+      "days": [
+        {
+          "day": "Sunday",
+          "time": "9:30am - 5:30pm",
+          "status": "complete",
+          "progress": 100
+        },
+        {
+          "day": "Monday",
+          "time": "9:30am - 4:30pm",
+          "status": "complete",
+          "progress": 100
+        },
+        {
+          "day": "Tuesday",
+          "time": "9:30am - 5:30pm",
+          "status": "complete",
+          "progress": 100
+        },
+        {
+          "day": "Wednesday",
+          "time": "9:30am - 4:00pm",
+          "status": "complete",
+          "progress": 100
+        },
+        {
+          "day": "Thursday",
+          "time": "9:30am - 5:30pm",
+          "status": "complete",
+          "progress": 100
+        },
+        {
+          "day": "Friday",
+          "time": "9:30am - 5:30pm",
+          "status": "complete",
+          "progress": 100
+        },
+        {
+          "day": "Saturday",
+          "time": "",
+          "status": "off",
+          "progress": 0
+        }
+      ]
+    },
+    "predictiveInsights": {
+      "title": "Predictive Insights",
+      "message": "Our platform offers insights Real-time attendance tracking, Predictive using these tools are expected to boost productivity and morale."
+    }
+  }
+}
