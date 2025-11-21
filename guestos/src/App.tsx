@@ -4,15 +4,16 @@ import LoginScreen from "./screens/login/loginscreen";
 import DashboardScreen from "./screens/dashboard/dashboardscreen";
 import VisionScreen from "./screens/vision/visionscreen";
 import TodoScreen from "./screens/Todo/todoscreen";
+import MeetingScreen from "./screens/dashboard/meeting/meetingscreen";
 import ScorecardScreen from "./screens/dashboard/scorecard/scorecardscreen";
 import ProfitScreen from "./screens/dashboard/profit/profitscreen";
 import AddTodoScreen from "./screens/Todo/AddTodo/addtodoscreen";
-
+import GeyserScreen from "./screens/geysers/geyserscreen";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userName, setUserName] = useState("");
-  const [currentScreen, setCurrentScreen] = useState<"dashboard" | "vision" | "todo" | "addtodo" | "profit" | "scorecard">("dashboard");
+  const [currentScreen, setCurrentScreen] = useState<"dashboard" | "vision" | "todo" | "addtodo" | "profit" | "scorecard" | "meeting" | "geyser">("dashboard");
 
   // This would be called after successful login
   const handleLoginSuccess = (username: string) => {
@@ -26,12 +27,20 @@ function App() {
     setCurrentScreen("dashboard");
   };
 
-  const handleNavigate = (screen: "dashboard" | "vision" | "todo" | "addtodo" | "profit" | "scorecard") => {
+  const handleNavigate = (screen: "dashboard" | "vision" | "todo" | "addtodo" | "profit" | "scorecard" | "meeting" | "geyser") => {
     setCurrentScreen(screen);
   };
 
   if (!isAuthenticated) {
     return <LoginScreen onLoginSuccess={handleLoginSuccess} />;
+  }
+
+  if (currentScreen === "geyser") {
+    return <GeyserScreen onNavigate={handleNavigate} />;
+  }
+
+  if (currentScreen === "meeting") {
+    return <MeetingScreen onNavigate={handleNavigate} />;
   }
 
   if (currentScreen === "scorecard") {
