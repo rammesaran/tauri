@@ -1,0 +1,279 @@
+/* MeetingsList Component Styles */
+.meetings-list-component {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.meetings-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 12px;
+}
+
+.meetings-list-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: white;
+    margin: 0;
+}
+
+.create-meeting-btn {
+    background: rgba(76, 175, 80, 0.2);
+    border: 1px solid rgba(76, 175, 80, 0.3);
+    color: #7ED957;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.create-meeting-btn:hover {
+    background: rgba(76, 175, 80, 0.3);
+}
+
+/* Filter Tabs */
+.meetings-filter-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+}
+
+.meetings-filter-tabs::-webkit-scrollbar {
+    height: 4px;
+}
+
+.meetings-filter-tabs::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.meetings-filter-tabs::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+}
+
+.filter-tab {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.6);
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.filter-tab:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.filter-tab.active {
+    background: rgba(76, 175, 80, 0.2);
+    border-color: rgba(76, 175, 80, 0.3);
+    color: #7ED957;
+}
+
+/* Meetings List */
+.meetings-list-items {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 4px;
+}
+
+.meetings-list-items::-webkit-scrollbar {
+    width: 6px;
+}
+
+.meetings-list-items::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 3px;
+}
+
+.meetings-list-items::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+}
+
+/* Meeting Item */
+.meeting-item {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.meeting-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(-4px);
+}
+
+/* Meeting Header */
+.meeting-item-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.meeting-icon-wrapper {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.7);
+    flex-shrink: 0;
+}
+
+.meeting-datetime {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.meeting-date {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 600;
+}
+
+.meeting-time {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* Meeting Content */
+.meeting-item-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.meeting-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    flex-shrink: 0;
+}
+
+.meeting-details {
+    flex: 1;
+    min-width: 0;
+}
+
+.meeting-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+    margin: 0 0 4px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.meeting-type {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0;
+}
+
+/* Meeting Footer */
+.meeting-item-footer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.meeting-action-btn {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.7);
+    padding: 6px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.meeting-action-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+}
+
+.meeting-duration {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.5);
+    padding: 4px 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+}
+
+.meeting-status {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 12px;
+    margin-left: auto;
+}
+
+.meeting-status.scheduled {
+    background: rgba(76, 175, 80, 0.15);
+    color: #7ED957;
+}
+
+.meeting-status.completed {
+    background: rgba(33, 150, 243, 0.15);
+    color: #42A5F5;
+}
+
+.meeting-status.cancelled {
+    background: rgba(244, 67, 54, 0.15);
+    color: #EF5350;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .meetings-list-component {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .create-meeting-btn {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+    
+    .meeting-item {
+        padding: 14px;
+    }
+}

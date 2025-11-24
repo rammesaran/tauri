@@ -1,7 +1,6 @@
 import { useState } from "react";
 import "./App.css";
 import LoginScreen from "./screens/login/loginscreen";
-import DashboardScreen from "./screens/dashboard/dashboardscreen";
 import VisionScreen from "./screens/vision/visionscreen";
 import TodoScreen from "./screens/Todo/todoscreen";
 import MeetingScreen from "./screens/dashboard/meeting/meetingscreen";
@@ -9,6 +8,7 @@ import ScorecardScreen from "./screens/dashboard/scorecard/scorecardscreen";
 import ProfitScreen from "./screens/dashboard/profit/profitscreen";
 import AddTodoScreen from "./screens/Todo/AddTodo/addtodoscreen";
 import GeyserScreen from "./screens/geysers/geyserscreen";
+import ResponsiveDashboard from "./screens/responsivedashboard/responsivedashboard";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -63,7 +63,14 @@ function App() {
     return <VisionScreen userName={userName} onNavigate={handleNavigate} />;
   }
 
-  return <DashboardScreen userName={userName} onLogout={handleLogout} onNavigate={handleNavigate} />;
+  // Use ResponsiveDashboard instead of DashboardScreen
+  return (
+    <ResponsiveDashboard
+      userName={userName}
+      onLogout={handleLogout}
+      onNavigate={handleNavigate}
+    />
+  );
 }
 
 export default App;

@@ -1,0 +1,134 @@
+/* MetricCard Component Styles */
+.metric-card-component {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 16px;
+    padding: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.metric-card-component::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, currentColor, transparent);
+    opacity: 0.5;
+}
+
+.metric-card-component:hover {
+    background: rgba(255, 255, 255, 0.12);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Card Type Specific Colors */
+.rocks-card-component {
+    color: #FFA500;
+}
+
+.todos-card-component {
+    color: #4CAF50;
+}
+
+.fires-card-component {
+    color: #00BCD4;
+}
+
+/* Header */
+.metric-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+}
+
+.metric-card-title-section {
+    flex: 1;
+}
+
+.metric-card-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+}
+
+.metric-card-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: currentColor;
+}
+
+/* Value */
+.metric-card-value {
+    font-size: 48px;
+    font-weight: 700;
+    color: white;
+    margin: 12px 0;
+    line-height: 1;
+}
+
+/* Footer */
+.metric-card-footer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.metric-card-change {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.metric-card-change.positive {
+    background: rgba(76, 175, 80, 0.15);
+    color: #4CAF50;
+}
+
+.metric-card-change.negative {
+    background: rgba(244, 67, 54, 0.15);
+    color: #F44336;
+}
+
+.change-icon {
+    font-size: 14px;
+}
+
+.change-value {
+    font-size: 13px;
+}
+
+.metric-card-label {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .metric-card-value {
+        font-size: 40px;
+    }
+    
+    .metric-card-component {
+        padding: 20px;
+    }
+}

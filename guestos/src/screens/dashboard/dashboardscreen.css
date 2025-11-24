@@ -1,5 +1,6 @@
-/* Dashboard Container */
+/* Mobile Dashboard - Show only on mobile devices (<768px) */
 .dashboard-container {
+    display: block;
     min-height: 100vh;
     background: linear-gradient(180deg, #3A6B84 0%, #1E475E 50%, #0D2635 100%);
     color: white;
@@ -7,6 +8,13 @@
     padding-bottom: 100px;
     overflow-x: hidden;
     position: relative;
+}
+
+/* Hide mobile dashboard on tablets and desktops */
+@media (min-width: 768px) {
+    .dashboard-container {
+        display: none;
+    }
 }
 
 .dashboard-container::before {
@@ -674,7 +682,7 @@
     }
 }
 
-@media (min-width: 600px) {
+@media (min-width: 600px) and (max-width: 767px) {
     .dashboard-container {
         background: linear-gradient(180deg, #2C5F7C 0%, #1E4560 100%);
     }
