@@ -9,39 +9,35 @@ interface OverviewChartProps {
 }
 
 function OverviewChart({ selectedView, selectedPeriod, onViewChange, onPeriodChange }: OverviewChartProps) {
-    // Generate mock data for the chart
+    // Mock data generation
     const chartData = useMemo(() => {
-        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'];
-        const weeks = Array.from({ length: 31 }, (_, i) => `${i + 1}/`);
-
-        const labels = selectedPeriod === 'Monthly' ? months : weeks;
-
-        return labels.map((label, index) => ({
-            label,
-            taskAssigned: Math.floor(Math.random() * 100) + 50,
-            overdue: Math.floor(Math.random() * 80) + 20,
-            completed: Math.floor(Math.random() * 120) + 80,
+        return Array.from({ length: 31 }, (_, i) => ({
+            completed: Math.floor(Math.random() * 100) + 50,
+            overdue: Math.floor(Math.random() * 70) + 30,
+            taskAssigned: Math.floor(Math.random() * 60) + 40,
         }));
     }, [selectedPeriod]);
 
-    const maxValue = Math.max(
-        ...chartData.flatMap(d => [d.taskAssigned, d.overdue, d.completed])
-    );
+    // Date labels
+    const dateLabels = [
+        '1/ Jan', '2/ Jan', '3/ Jan', '4/ Jan', '5/ Feb', '6/ Feb', '7/ Feb', '8/ Feb',
+        '9/ Mar', '10/ Mar', '11/ Mar', '12/ Mar', '13/ Apr', '14/ Apr', '15/ Apr', '16/ Apr',
+        '17/ May', '18/ May', '19/ May', '20/ May', '21/ Jun', '22/ Jun', '23/ Jun', '24/ Jun',
+        '25/ Jul', '26/ Jul', '27/ Jul', '28/ Jul', '29/ Aug', '30/ Aug', '31/ Aug'
+    ];
 
     return (
         <div className="overview-chart-component">
             <div className="overview-chart-header">
                 <h2 className="overview-chart-title">Overview</h2>
                 <div className="overview-chart-controls">
-                    <select
-                        className="chart-select"
-                        value={selectedView}
-                        onChange={(e) => onViewChange(e.target.value)}
-                    >
-                        <option>Rocks</option>
-                        <option>To-Dos</option>
-                        <option>Fires</option>
-                    </select>
+                    <button className="chart-download-btn" aria-label="Download">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                            <polyline points="7 10 12 15 17 10" />
+                            <line x1="12" y1="15" x2="12" y2="3" />
+                        </svg>
+                    </button>
                     <select
                         className="chart-select"
                         value={selectedPeriod}
@@ -51,13 +47,6 @@ function OverviewChart({ selectedView, selectedPeriod, onViewChange, onPeriodCha
                         <option>Monthly</option>
                         <option>Weekly</option>
                     </select>
-                    <button className="chart-download-btn" aria-label="Download">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                            <polyline points="7 10 12 15 17 10" />
-                            <line x1="12" y1="15" x2="12" y2="3" />
-                        </svg>
-                    </button>
                 </div>
             </div>
 
@@ -75,42 +64,48 @@ function OverviewChart({ selectedView, selectedPeriod, onViewChange, onPeriodCha
                 <div className="chart-area">
                     <div className="chart-bars-wrapper">
                         {chartData.map((data, index) => {
-                            const completedHeight = (data.completed / maxValue) * 100;
-                            const overdueHeight = (data.overdue / maxValue) * 100;
-                            const assignedHeight = (data.taskAssigned / maxValue) * 100;
+                            // Calculate heights as percentage (scale to 200)
+                            const completedPercent = (data.completed / 200) * 100;
+                            const overduePercent = (data.overdue / 200) * 100;
+                            const assignedPercent = (data.taskAssigned / 200) * 100;
 
                             return (
                                 <div key={index} className="chart-bar-group">
+                                    {/* Positive bars above zero */}
                                     <div className="chart-bars">
                                         <div
                                             className="chart-bar completed-bar"
-                                            style={{ height: `${completedHeight}%` }}
+                                            style={{ height: `${completedPercent}%` }}
                                             title={`Completed: ${data.completed}`}
-                                        ></div>
+                                        />
+                                        <div
+                                            className="chart-bar taskassigned-bar"
+                                            style={{ height: `${assignedPercent}%` }}
+                                            title={`Task Assigned: ${data.taskAssigned}`}
+                                        />
                                         <div
                                             className="chart-bar overdue-bar"
-                                            style={{ height: `${overdueHeight}%` }}
+                                            style={{ height: `${overduePercent}%` }}
                                             title={`Overdue: ${data.overdue}`}
-                                        ></div>
-                                        <div
-                                            className="chart-bar assigned-bar"
-                                            style={{ height: `${assignedHeight}%` }}
-                                            title={`Task Assigned: ${data.taskAssigned}`}
-                                        ></div>
+                                        />
                                     </div>
-                                    <div
-                                        className="chart-bar-negative overdue-bar"
-                                        style={{ height: `${overdueHeight * 0.6}%` }}
-                                    ></div>
+                                    {/* Negative bars below zero */}
+                                    <div className="chart-bars-negative">
+                                        <div
+                                            className="chart-bar-negative overdue-bar-negative"
+                                            style={{ height: `${overduePercent * 0.6}%` }}
+                                            title={`Overdue (below): ${data.overdue}`}
+                                        />
+                                    </div>
                                 </div>
                             );
                         })}
                     </div>
 
                     <div className="chart-x-axis">
-                        {chartData.map((data, index) => (
+                        {dateLabels.map((label, index) => (
                             <span key={index} className="x-axis-label">
-                                {data.label}
+                                {label}
                             </span>
                         ))}
                     </div>
@@ -119,16 +114,16 @@ function OverviewChart({ selectedView, selectedPeriod, onViewChange, onPeriodCha
 
             <div className="chart-legend">
                 <div className="legend-item-chart">
-                    <span className="legend-dot-chart completed"></span>
-                    <span className="legend-text-chart">Completed</span>
+                    <span className="legend-dot-chart taskassigned"></span>
+                    <span className="legend-text-chart">Task Assigned</span>
                 </div>
                 <div className="legend-item-chart">
                     <span className="legend-dot-chart overdue"></span>
                     <span className="legend-text-chart">Overdue</span>
                 </div>
                 <div className="legend-item-chart">
-                    <span className="legend-dot-chart assigned"></span>
-                    <span className="legend-text-chart">Task Assigned</span>
+                    <span className="legend-dot-chart completed"></span>
+                    <span className="legend-text-chart">Completed</span>
                 </div>
             </div>
         </div>

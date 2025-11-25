@@ -1,0 +1,200 @@
+/* Staff Engagement Card */
+.engagement-card {
+  background: rgba(70, 130, 170, 0.3);
+  border-radius: 16px;
+  padding: 24px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.engagement-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.engagement-title,
+.satisfaction-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+}
+
+.btn-view-all {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.7);
+  border: none;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+  transition: color 0.2s ease;
+}
+
+.btn-view-all:hover {
+  color: #ffffff;
+}
+
+.average-score {
+  text-align: center;
+  padding: 16px 0;
+}
+
+.score-display {
+  font-size: 48px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1;
+}
+
+.score-label {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 8px 0 4px 0;
+}
+
+.score-change {
+  font-size: 13px;
+  color: #4CAF50;
+  font-weight: 500;
+}
+
+.departments-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.section-subtitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0 0 8px 0;
+}
+
+.department-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.department-name {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.8);
+  min-width: 70px;
+}
+
+.department-bar {
+  flex: 1;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.department-bar-fill {
+  height: 100%;
+  border-radius: 12px;
+  transition: width 0.6s ease;
+}
+
+/* Guest Satisfaction Card */
+.satisfaction-card {
+  background: rgba(70, 130, 170, 0.3);
+  border-radius: 16px;
+  padding: 24px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.satisfaction-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.satisfaction-gauge {
+  position: relative;
+  width: 100%;
+  max-width: 240px;
+  margin: 0 auto;
+}
+
+.gauge-svg {
+  width: 100%;
+  height: auto;
+}
+
+.gauge-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.gauge-emoji {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.gauge-label {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 4px;
+}
+
+.gauge-score {
+  font-size: 28px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 4px;
+}
+
+.gauge-change {
+  font-size: 11px;
+  color: #4CAF50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.gauge-markers {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+
+.marker {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.satisfaction-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.breakdown-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.breakdown-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}

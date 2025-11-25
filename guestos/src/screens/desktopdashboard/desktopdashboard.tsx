@@ -5,6 +5,10 @@ import OverviewChart from "./components/OverviewChart";
 import FiresChart from "./components/FiresChart";
 import TodoList from "./components/TodoList";
 import MeetingsList from "./components/MeetingsList";
+import VisionPage from "../desktopvision/visionpage";
+import PeoplePage from "../desktoppeople/peoplepage";
+import DataPage from "../desktopdata/datapage";
+
 
 interface DesktopDashboardProps {
     userName?: string;
@@ -12,10 +16,11 @@ interface DesktopDashboardProps {
     onNavigate?: (screen: string) => void;
 }
 
-function DesktopDashboard({ }: DesktopDashboardProps) {
+function DesktopDashboard({ userName = "User" }: DesktopDashboardProps) {
     const [selectedTeam, setSelectedTeam] = useState("Leadership");
     const [selectedView, setSelectedView] = useState("Rocks");
     const [selectedPeriod, setSelectedPeriod] = useState("Quarterly");
+    const [currentPage, setCurrentPage] = useState<"dashboard" | "vision" | "people" | "data">("dashboard");
 
     // Mock data for the dashboard
     const metrics = {
@@ -109,16 +114,22 @@ function DesktopDashboard({ }: DesktopDashboardProps) {
             }
         ];
 
+    const handleNavigation = (page: "dashboard" | "vision" | "people" | "data") => {
+        setCurrentPage(page);
+    };
+
     return (
         <div className="desktop-dashboard">
             {/* Header */}
             <header className="desktop-header">
                 <div className="header-left">
-                    <h1 className="logo">
-                        <span className="logo-text">GUEST</span>
-                        <span className="logo-dash">-</span>
-                        <span className="logo-os">OS</span>
-                    </h1>
+                    <div className="logo-box">
+                        <div className="logo-box-content">
+                            <span className="logo-text">GUEST</span>
+                            <span className="logo-dash">-</span>
+                            <span className="logo-os">OS</span>
+                        </div>
+                    </div>
                     <nav className="main-nav">
                         <button className="nav-item">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -126,7 +137,10 @@ function DesktopDashboard({ }: DesktopDashboardProps) {
                             </svg>
                             Home
                         </button>
-                        <button className="nav-item active">
+                        <button
+                            className={`nav-item ${currentPage === "dashboard" ? "active" : ""}`}
+                            onClick={() => handleNavigation("dashboard")}
+                        >
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                 <rect x="3" y="3" width="7" height="7" />
                                 <rect x="14" y="3" width="7" height="7" />
@@ -135,14 +149,20 @@ function DesktopDashboard({ }: DesktopDashboardProps) {
                             </svg>
                             Dashboard
                         </button>
-                        <button className="nav-item">
+                        <button
+                            className={`nav-item ${currentPage === "vision" ? "active" : ""}`}
+                            onClick={() => handleNavigation("vision")}
+                        >
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
                                 <circle cx="12" cy="12" r="3" />
                             </svg>
                             Vision
                         </button>
-                        <button className="nav-item">
+                        <button
+                            className={`nav-item ${currentPage === "people" ? "active" : ""}`}
+                            onClick={() => handleNavigation("people")}
+                        >
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
                                 <circle cx="9" cy="7" r="4" />
@@ -151,7 +171,10 @@ function DesktopDashboard({ }: DesktopDashboardProps) {
                             </svg>
                             People
                         </button>
-                        <button className="nav-item">
+                        <button
+                            className={`nav-item ${currentPage === "data" ? "active" : ""}`}
+                            onClick={() => handleNavigation("data")}
+                        >
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                 <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
                                 <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
@@ -207,76 +230,92 @@ function DesktopDashboard({ }: DesktopDashboardProps) {
                 </div>
             </header>
 
-            {/* Main Content */}
-            <main className="desktop-main">
-                {/* Dashboard Title and Team Selector */}
-                <div className="dashboard-header-section">
-                    <div>
-                        <h2 className="dashboard-title">Dashboard</h2>
-                        <p className="dashboard-subtitle">A personalized workspace to view tasks, data, goals and more.</p>
-                    </div>
-                    <div className="team-selector">
-                        <label>Team :</label>
-                        <select value={selectedTeam} onChange={(e) => setSelectedTeam(e.target.value)}>
-                            <option>Leadership</option>
-                            <option>Marketing</option>
-                            <option>Sales</option>
-                            <option>Operations</option>
-                        </select>
-                    </div>
+            {/* Main Content - Conditional Rendering */}
+            {currentPage === "vision" ? (
+                <div className="full-page-content">
+                    <VisionPage userName="Glenn" />
                 </div>
-
-                {/* Metrics Cards */}
-                <div className="metrics-grid">
-                    <MetricCard
-                        title="Rocks"
-                        value={metrics.rocks.value}
-                        change={metrics.rocks.change}
-                        label={metrics.rocks.label}
-                        type="rocks"
-                    />
-                    <MetricCard
-                        title="To-Dos"
-                        value={metrics.todos.value}
-                        change={metrics.todos.change}
-                        label={metrics.todos.label}
-                        type="todos"
-                    />
-                    <MetricCard
-                        title="Fires"
-                        value={metrics.fires.value}
-                        change={metrics.fires.change}
-                        label={metrics.fires.label}
-                        type="fires"
-                        isNegative
-                    />
+            ) : currentPage === "people" ? (
+                <div className="full-page-content">
+                    <PeoplePage userName="Glenn" />
                 </div>
-
-                {/* Overview Chart */}
-                <div className="chart-section">
-                    <OverviewChart
-                        selectedView={selectedView}
-                        selectedPeriod={selectedPeriod}
-                        onViewChange={setSelectedView}
-                        onPeriodChange={setSelectedPeriod}
-                    />
+            ) : currentPage === "data" ? (
+                <div className="full-page-content">
+                    <DataPage userName="Glenn" />
                 </div>
+            ) : (
+                <>
+                    <main className="desktop-main">
+                        {/* Dashboard Title and Team Selector */}
+                        <div className="dashboard-header-section">
+                            <div>
+                                <h2 className="dashboard-title">Dashboard</h2>
+                                <p className="dashboard-subtitle">A personalized workspace to view tasks, data, goals and more.</p>
+                            </div>
+                            <div className="team-selector">
+                                <label>Team :</label>
+                                <select value={selectedTeam} onChange={(e) => setSelectedTeam(e.target.value)}>
+                                    <option>Leadership</option>
+                                    <option>Marketing</option>
+                                    <option>Sales</option>
+                                    <option>Operations</option>
+                                </select>
+                            </div>
+                        </div>
 
-                {/* Bottom Section */}
-                <div className="bottom-grid">
-                    <div className="fires-section">
-                        <FiresChart />
-                    </div>
-                    <div className="todos-section">
-                        <TodoList todos={todos} />
-                    </div>
-                </div>
-            </main>
+                        {/* Metrics Cards */}
+                        <div className="metrics-grid">
+                            <MetricCard
+                                title="Rocks"
+                                value={metrics.rocks.value}
+                                change={metrics.rocks.change}
+                                label={metrics.rocks.label}
+                                type="rocks"
+                            />
+                            <MetricCard
+                                title="To-Dos"
+                                value={metrics.todos.value}
+                                change={metrics.todos.change}
+                                label={metrics.todos.label}
+                                type="todos"
+                            />
+                            <MetricCard
+                                title="Fires"
+                                value={metrics.fires.value}
+                                change={metrics.fires.change}
+                                label={metrics.fires.label}
+                                type="fires"
+                                isNegative
+                            />
+                        </div>
 
-            {/* Meetings Sidebar */}
-            <aside className="meetings-sidebar">
-                <MeetingsList meetings={meetings} />
-            </aside>
+                        {/* Overview Chart */}
+                        <div className="chart-section">
+                            <OverviewChart
+                                selectedView={selectedView}
+                                selectedPeriod={selectedPeriod}
+                                onViewChange={setSelectedView}
+                                onPeriodChange={setSelectedPeriod}
+                            />
+                        </div>
+
+                        {/* Bottom Section */}
+                        <div className="bottom-grid">
+                            <div className="fires-section">
+                                <FiresChart />
+                            </div>
+                            <div className="todos-section">
+                                <TodoList todos={todos} />
+                            </div>
+                        </div>
+                    </main>
+
+                    {/* Meetings Sidebar */}
+                    <aside className="meetings-sidebar">
+                        <MeetingsList meetings={meetings} />
+                    </aside>
+                </>
+            )}
         </div>
     );
 }

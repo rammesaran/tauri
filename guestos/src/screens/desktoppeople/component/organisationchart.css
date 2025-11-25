@@ -1,0 +1,212 @@
+.organization-chart-card {
+  background: rgba(70, 130, 170, 0.3);
+  border-radius: 16px;
+  padding: 32px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow-x: auto;
+}
+
+.org-chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.org-chart-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+}
+
+.btn-view-full-chart {
+  background: rgba(139, 92, 64, 0.8);
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid rgba(139, 92, 64, 0.4);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.btn-view-full-chart:hover {
+  background: rgba(139, 92, 64, 1);
+  border-color: rgba(139, 92, 64, 0.6);
+}
+
+.org-chart-structure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 1000px;
+  padding: 20px;
+}
+
+.org-level {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  position: relative;
+  width: 100%;
+}
+
+.org-level-ceo {
+  margin-bottom: 20px;
+}
+
+.org-level-managers {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.org-level-employees {
+  margin-top: 20px;
+}
+
+.org-branch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.org-person-node {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 240px;
+  max-width: 280px;
+  transition: all 0.2s ease;
+}
+
+.org-person-node:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.org-person-node.current-user {
+  background: rgba(74, 144, 226, 0.15);
+  border-color: rgba(74, 144, 226, 0.4);
+}
+
+.ceo-node {
+  background: rgba(255, 215, 0, 0.1);
+  border-color: rgba(255, 215, 0, 0.3);
+}
+
+.manager-node {
+  background: rgba(144, 238, 144, 0.1);
+  border-color: rgba(144, 238, 144, 0.3);
+}
+
+.org-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
+}
+
+.org-person-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.org-person-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0 0 4px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.org-person-role {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0 0 6px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.org-person-level {
+  display: inline-block;
+  background: rgba(255, 215, 0, 0.15);
+  color: #FFD700;
+  padding: 2px 8px;
+  border-radius: 8px;
+  font-size: 10px;
+  font-weight: 600;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.you-badge {
+  background: rgba(74, 144, 226, 0.2);
+  color: #4A90E2;
+  border-color: rgba(74, 144, 226, 0.4);
+}
+
+/* Connector Lines */
+.org-connector {
+  background: rgba(255, 255, 255, 0.2);
+  position: relative;
+}
+
+.org-connector-vertical {
+  width: 2px;
+  height: 40px;
+  margin: 0 auto;
+}
+
+.org-connector-vertical-short {
+  width: 2px;
+  height: 20px;
+  margin: 0 auto;
+}
+
+.org-connector-horizontal {
+  position: absolute;
+  top: -20px;
+  left: 25%;
+  right: 25%;
+  height: 2px;
+  width: 50%;
+}
+
+.org-connector-horizontal-wide {
+  position: absolute;
+  top: -20px;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  width: 80%;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .org-chart-structure {
+    min-width: 800px;
+  }
+
+  .org-person-node {
+    min-width: 200px;
+    max-width: 220px;
+  }
+}

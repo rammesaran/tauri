@@ -1,0 +1,88 @@
+.occupancy-card {
+  background: rgba(70, 130, 170, 0.3);
+  border-radius: 16px;
+  padding: 24px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.occupancy-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 20px 0;
+}
+
+.occupancy-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.occupancy-metric {
+  border-radius: 16px;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: all 0.2s ease;
+}
+
+.occupancy-metric:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.metric-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.metric-percentage {
+  font-size: 32px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.metric-trend {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.metric-trend.up {
+  color: #4CAF50;
+}
+
+.metric-trend.down {
+  color: #FF6B6B;
+}
+
+.metric-values {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.metric-value {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.value-number {
+  font-size: 24px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.value-label {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 500;
+}
+
+@media (max-width: 1024px) {
+  .occupancy-metrics {
+    grid-template-columns: 1fr;
+  }
+}

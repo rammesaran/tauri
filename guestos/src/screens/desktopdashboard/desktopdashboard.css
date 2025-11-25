@@ -1,17 +1,18 @@
-/* Desktop Dashboard - Show only on tablets and desktops (≥768px) */
+/* Desktop Dashboard - Default view */
 .desktop-dashboard {
-    display: none;
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    grid-template-rows: auto 1fr;
+    min-height: 100vh;
+    background: linear-gradient(180deg, #1e3a52 0%, #0f2537 100%);
+    color: white;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
 }
 
-@media (min-width: 768px) {
+/* Hide desktop dashboard only on mobile screens */
+@media (max-width: 767px) {
     .desktop-dashboard {
-        display: grid;
-        grid-template-columns: 1fr 350px;
-        grid-template-rows: auto 1fr;
-        min-height: 100vh;
-        background: linear-gradient(180deg, #1e3a52 0%, #0f2537 100%);
-        color: white;
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+        display: none;
     }
 }
 
@@ -30,42 +31,47 @@
 .header-left {
     display: flex;
     align-items: center;
-    gap: 48px;
+    gap: 24px;
 }
 
-.logo {
+/* Boxed Logo */
+.logo-box {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-box-content {
     font-size: 24px;
     font-weight: 700;
-    margin: 0;
     display: flex;
     align-items: center;
     gap: 2px;
-}
-
-.logo-text {
     color: white;
 }
 
-.logo-dash {
-    color: white;
-}
-
+.logo-text,
+.logo-dash,
 .logo-os {
     color: white;
 }
 
 .main-nav {
     display: flex;
-    gap: 4px;
+    gap: 8px;
     align-items: center;
 }
 
 .nav-item {
-    background: transparent;
-    border: none;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     color: rgba(255, 255, 255, 0.7);
     padding: 10px 16px;
-    border-radius: 8px;
+    border-radius: 25px;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -76,13 +82,15 @@
 }
 
 .nav-item:hover {
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.12);
     color: white;
+    border-color: rgba(255, 255, 255, 0.25);
 }
 
 .nav-item.active {
-    background: rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.15);
     color: white;
+    border-color: rgba(255, 255, 255, 0.3);
 }
 
 .header-right {
@@ -92,11 +100,11 @@
 }
 
 .icon-btn {
-    background: transparent;
-    border: none;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     color: rgba(255, 255, 255, 0.8);
     padding: 10px;
-    border-radius: 8px;
+    border-radius: 12px;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -105,8 +113,9 @@
 }
 
 .icon-btn:hover {
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.12);
     color: white;
+    border-color: rgba(255, 255, 255, 0.25);
 }
 
 .create-btn {
@@ -114,6 +123,7 @@
     padding: 10px 16px;
     font-size: 14px;
     font-weight: 500;
+    border-radius: 25px;
 }
 
 .create-btn:hover {
@@ -121,11 +131,11 @@
 }
 
 .profile-btn {
-    width: 36px;
-    height: 36px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.15);
-    border: none;
+    border: 2px solid rgba(255, 255, 255, 0.2);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -135,6 +145,7 @@
 
 .profile-btn:hover {
     background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
 }
 
 .profile-initials {
@@ -226,6 +237,31 @@
     overflow-y: auto;
 }
 
+/* ============================================ */
+/* VISION PAGE FULL-SCREEN FIX - ADD THIS */
+/* ============================================ */
+
+.full-page-content {
+    position: fixed;
+    top: 73px; /* Height of header - adjust if your header is different */
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow-y: auto;
+    background: linear-gradient(135deg, #1e3a5f 0%, #2d5a7b 50%, #1e3a5f 100%);
+    z-index: 999;
+}
+
+.vision-page {
+    padding: 32px 48px 48px 48px;
+    min-height: 100%;
+    width: 100%;
+}
+
+/* ============================================ */
+/* END VISION PAGE FIX */
+/* ============================================ */
+
 /* Responsive adjustments for tablets */
 @media (min-width: 768px) and (max-width: 1024px) {
     .desktop-dashboard {
@@ -273,22 +309,26 @@
 
 /* Scrollbar styling */
 .desktop-main::-webkit-scrollbar,
-.meetings-sidebar::-webkit-scrollbar {
+.meetings-sidebar::-webkit-scrollbar,
+.full-page-content::-webkit-scrollbar {
     width: 8px;
 }
 
 .desktop-main::-webkit-scrollbar-track,
-.meetings-sidebar::-webkit-scrollbar-track {
+.meetings-sidebar::-webkit-scrollbar-track,
+.full-page-content::-webkit-scrollbar-track {
     background: rgba(255, 255, 255, 0.05);
 }
 
 .desktop-main::-webkit-scrollbar-thumb,
-.meetings-sidebar::-webkit-scrollbar-thumb {
+.meetings-sidebar::-webkit-scrollbar-thumb,
+.full-page-content::-webkit-scrollbar-thumb {
     background: rgba(255, 255, 255, 0.2);
     border-radius: 4px;
 }
 
 .desktop-main::-webkit-scrollbar-thumb:hover,
-.meetings-sidebar::-webkit-scrollbar-thumb:hover {
+.meetings-sidebar::-webkit-scrollbar-thumb:hover,
+.full-page-content::-webkit-scrollbar-thumb:hover {
     background: rgba(255, 255, 255, 0.3);
 }

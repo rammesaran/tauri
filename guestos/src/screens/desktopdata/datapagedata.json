@@ -1,0 +1,134 @@
+{
+  "pageTitle": "Your Scorecard",
+  "pageSubtitle": "Your scorecard based on performance as on today",
+  "occupancy": {
+    "title": "Occupancy",
+    "metrics": [
+      {
+        "id": 1,
+        "percentage": 5,
+        "label": "5%",
+        "trend": "up",
+        "primary": 42,
+        "secondary": 17,
+        "primaryLabel": "Booked",
+        "secondaryLabel": "Check-in",
+        "color": "#4CAF50"
+      },
+      {
+        "id": 2,
+        "percentage": 6,
+        "label": "6%",
+        "trend": "up",
+        "primary": 34,
+        "secondary": 8,
+        "primaryLabel": "Success",
+        "secondaryLabel": "Extended",
+        "color": "#FF6B9D"
+      },
+      {
+        "id": 3,
+        "percentage": 3,
+        "label": "3%",
+        "trend": "down",
+        "primary": 6,
+        "secondary": 2,
+        "primaryLabel": "Refund",
+        "secondaryLabel": "Canceled",
+        "color": "#FFD700"
+      }
+    ]
+  },
+  "staffEngagement": {
+    "title": "Staff Engagement",
+    "averageScore": 84,
+    "change": "+4.1% vs. Last quarter",
+    "departments": [
+      { "name": "Staff - 1", "score": 88, "color": "#FFA500" },
+      { "name": "Staff - 2", "score": 85, "color": "#FFA500" },
+      { "name": "Staff - 3", "score": 90, "color": "#FFA500" }
+    ]
+  },
+  "guestSatisfaction": {
+    "title": "Guest Satisfaction",
+    "score": 84.96,
+    "change": "Up by 1.5%",
+    "emoji": "😊",
+    "breakdown": [
+      { "label": "Standard Room", "color": "#90EE90" },
+      { "label": "Deluxe Room", "color": "#87CEEB" },
+      { "label": "Family Room", "color": "#FFA500" }
+    ]
+  },
+  "overview": {
+    "title": "Overview",
+    "categories": [
+      { "name": "Tours & Travels", "color": "#FF6B9D", "value": 35 },
+      { "name": "Hotel", "color": "#FFA500", "value": 28 },
+      { "name": "Restaurants", "color": "#FFD700", "value": 22 },
+      { "name": "SPA", "color": "#90EE90", "value": 10 },
+      { "name": "Others", "color": "#87CEEB", "value": 5 }
+    ],
+    "dataPoints": [
+      { "x": 0, "tours": 5, "hotel": 3, "restaurants": 2, "spa": 1, "others": 0.5 },
+      { "x": 1, "tours": 6, "hotel": 4, "restaurants": 3, "spa": 1.5, "others": 0.8 },
+      { "x": 2, "tours": 8, "hotel": 6, "restaurants": 4, "spa": 2, "others": 1, "annotation": "Up by 15%" },
+      { "x": 3, "tours": 10, "hotel": 7, "restaurants": 5, "spa": 2.5, "others": 1.2 },
+      { "x": 4, "tours": 12, "hotel": 8, "restaurants": 6, "spa": 3, "others": 1.5 },
+      { "x": 5, "tours": 14, "hotel": 9, "restaurants": 7, "spa": 3.5, "others": 1.8 },
+      { "x": 6, "tours": 16, "hotel": 10, "restaurants": 8, "spa": 4, "others": 2 },
+      { "x": 7, "tours": 17, "hotel": 11, "restaurants": 9, "spa": 4.2, "others": 2.2 },
+      { "x": 8, "tours": 18, "hotel": 11.5, "restaurants": 9.5, "spa": 4.5, "others": 2.3 },
+      { "x": 9, "tours": 19, "hotel": 12, "restaurants": 10, "spa": 4.8, "others": 2.5 },
+      { "x": 10, "tours": 20, "hotel": 12.5, "restaurants": 10.5, "spa": 5, "others": 2.8 }
+    ]
+  },
+  "revPar": {
+    "title": "Rev/PAR",
+    "dateRange": "Sep 29th - Oct 3rd",
+    "amount": 490,
+    "change": "Revenue up by 1.5%",
+    "data": [
+      { "category": "Tours & Travels", "income": 44, "expense": 32 },
+      { "category": "Hotel", "income": 67, "expense": 45 },
+      { "category": "Restaurants", "income": 95, "expense": 78 },
+      { "category": "SPA", "income": 88, "expense": 72 },
+      { "category": "Others", "income": 56, "expense": 38 }
+    ]
+  },
+  "recentTransactions": {
+    "title": "Recent Transactions",
+    "transactions": [
+      { "id": 1, "type": "Available Funds", "amount": 3600.00 },
+      { "id": 2, "type": "Office Funds", "amount": 180.00 },
+      { "id": 3, "type": "Remaining Funds", "amount": 3420.00 },
+      { "id": 4, "type": "Available Funds", "amount": 3600.00 },
+      { "id": 5, "type": "Office Funds", "amount": 180.00 },
+      { "id": 6, "type": "Remaining Funds", "amount": 3420.00 },
+      { "id": 7, "type": "Available Funds", "amount": 3600.00 },
+      { "id": 8, "type": "Office Funds", "amount": 180.00 },
+      { "id": 9, "type": "Remaining Funds", "amount": 3420.00 },
+      { "id": 10, "type": "Available Funds", "amount": 3600.00 },
+      { "id": 11, "type": "Office Funds", "amount": 180.00 },
+      { "id": 12, "type": "Remaining Funds", "amount": 3420.00 },
+      { "id": 13, "type": "Available Funds", "amount": 3600.00 },
+      { "id": 14, "type": "Office Funds", "amount": 180.00 },
+      { "id": 15, "type": "Remaining Funds", "amount": 3420.00 },
+      { "id": 16, "type": "Available Funds", "amount": 3600.00 },
+      { "id": 17, "type": "Office Funds", "amount": 180.00 },
+      { "id": 18, "type": "Remaining Funds", "amount": 3420.00 }
+    ]
+  },
+  "salesReport": {
+    "title": "Sales Report",
+    "data": [
+      { "label": "Product A", "value": 65, "color": "#FF1493" },
+      { "label": "Product B", "value": 45, "color": "#87CEEB" },
+      { "label": "Product C", "value": 30, "color": "#FF1493" }
+    ]
+  },
+  "predictiveInsights": {
+    "title": "Predictive Insights",
+    "content": "\"The hospitality industry is shifting toward blended, continuous learning ecosystems that combine digital, ethical, and experiential training. Digital tools enhance agility, ethical programs build trust and compliance, while experiential learning strengthens empathy and service excellence.\n\nThis integrated model fosters skilled, engaged, and value-driven teams. By 2027, organizations investing across these three fronts are expected to outperform peers by 15-20% in guest satisfaction, compliance, and employee engagement, redefining learning as a catalyst for sustained hospitality success.\""
+  }
+}
