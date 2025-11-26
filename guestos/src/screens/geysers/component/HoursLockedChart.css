@@ -1,0 +1,20 @@
+.hours-chart-container {
+    margin-top: 20px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.hours-chart-container svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* Add smooth transitions for bar changes */
+.chart-bar-animated {
+    transition: y 0.5s ease-out, height 0.5s ease-out;
+}
+
+.chart-dot-animated {
+    transition: fill 0.3s ease;
+}

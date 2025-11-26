@@ -1,4 +1,3 @@
-import React from "react";
 
 interface OverviewData {
     rocks: { label: string; percentage: number };

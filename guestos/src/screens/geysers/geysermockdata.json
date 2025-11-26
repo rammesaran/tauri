@@ -58,8 +58,8 @@
         {
           "day": "Sunday",
           "time": "9:30am - 5:30pm",
-          "status": "complete",
-          "progress": 100
+          "status": "pending",
+          "progress": 50
         },
         {
           "day": "Monday",
@@ -70,8 +70,8 @@
         {
           "day": "Tuesday",
           "time": "9:30am - 5:30pm",
-          "status": "complete",
-          "progress": 100
+          "status": "pending",
+          "progress": 30
         },
         {
           "day": "Wednesday",
@@ -82,8 +82,8 @@
         {
           "day": "Thursday",
           "time": "9:30am - 5:30pm",
-          "status": "complete",
-          "progress": 100
+          "status": "pending",
+          "progress": 40
         },
         {
           "day": "Friday",

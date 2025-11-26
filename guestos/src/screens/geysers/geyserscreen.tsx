@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./geyscreen.css";
 
 import mockData from "./geyserMockData.json";
 import StatCard from "./component/statcard";
 import DaySchedule from "./component/dayschedule";
+import HoursLockedChart from "./component/HoursLockedChart";
 
 interface GeyserScreenProps {
     onNavigate?: (screen: "dashboard" | "vision" | "todo" | "addtodo" | "profit" | "scorecard" | "meeting" | "geyser") => void;
@@ -13,6 +14,20 @@ interface GeyserScreenProps {
 function GeyserScreen({ onNavigate, geyserData = mockData }: GeyserScreenProps) {
     const [activeNav, setActiveNav] = useState("geyser");
     const [isCheckedIn, setIsCheckedIn] = useState(geyserData.geyser.timeTracker.isCheckedIn);
+    // Add state for weekly data
+    const [weeklyData, setWeeklyData] = useState(geyserData.geyser.hoursLocked.weeklyData);
+
+    // Randomize hours on component mount (every navigation)
+    useEffect(() => {
+        const randomized = geyserData.geyser.hoursLocked.weeklyData.map(day => ({
+            ...day,
+            hours: Math.floor(Math.random() * geyserData.geyser.hoursLocked.maxHours)
+        }));
+        setWeeklyData(randomized);
+    }, []);
+    const totalHours = weeklyData.reduce((sum, day) => sum + day.hours, 0);
+
+
 
     const handleBack = () => {
         if (onNavigate) {
@@ -43,7 +58,6 @@ function GeyserScreen({ onNavigate, geyserData = mockData }: GeyserScreenProps) 
         console.log("Checked out");
     };
 
-    const maxHours = geyserData.geyser.hoursLocked.maxHours;
 
     return (
         <div className="geyser-screen-container">
@@ -73,20 +87,22 @@ function GeyserScreen({ onNavigate, geyserData = mockData }: GeyserScreenProps) 
 
                 {/* Employee Card */}
                 <section className="employee-card">
-                    <img
-                        src={geyserData.geyser.employee.avatar}
-                        alt={geyserData.geyser.employee.name}
-                        className="employee-avatar"
-                    />
-                    <div className="employee-info-overlay">
+                    <div className="employee-image-wrapper">
+                        <img
+                            src={geyserData.geyser.employee.avatar}
+                            alt={geyserData.geyser.employee.name}
+                            className="employee-avatar"
+                        />
+                    </div>
+                    <div className="employee-info-section">
                         <h3 className="employee-name">{geyserData.geyser.employee.name}</h3>
                         <p className="employee-role">{geyserData.geyser.employee.role}</p>
                         <div className="employee-shift">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                 <circle cx="12" cy="12" r="10" />
                                 <polyline points="12 6 12 12 16 14" />
                             </svg>
-                            <span>Shift Time: {geyserData.geyser.employee.shiftTime}</span>
+                            <span>Shift Time : {geyserData.geyser.employee.shiftTime}</span>
                         </div>
                     </div>
                 </section>
@@ -130,6 +146,7 @@ function GeyserScreen({ onNavigate, geyserData = mockData }: GeyserScreenProps) 
                 </section>
 
                 {/* Hours Locked Card */}
+
                 <section className="hours-locked-card">
                     <div className="hours-locked-header">
                         <span className="hours-locked-label">{geyserData.geyser.hoursLocked.label}</span>
@@ -141,25 +158,39 @@ function GeyserScreen({ onNavigate, geyserData = mockData }: GeyserScreenProps) 
                         </div>
                     </div>
                     <div className="hours-locked-value">
-                        {geyserData.geyser.hoursLocked.totalHours}
+                        {totalHours}
                         <span className="hours-locked-max">/{geyserData.geyser.hoursLocked.maxHours} Hrs</span>
                     </div>
-                    <div className="hours-locked-chart">
-                        {geyserData.geyser.hoursLocked.weeklyData.map((day, index) => (
-                            <div key={index} className="hours-bar-wrapper">
-                                <div className="hours-bar-container">
-                                    <div
-                                        className="hours-bar"
-                                        style={{
-                                            height: `${(day.hours / maxHours) * 100}%`,
-                                            backgroundColor: day.color,
-                                        }}
-                                    ></div>
+
+
+                    {/* Use the new chart component */}
+                    <HoursLockedChart
+                        data={weeklyData}
+                        maxHours={geyserData.geyser.hoursLocked.maxHours}
+                    />
+
+                    {/* Controls to test dynamic updates */}
+                    {/* <div className="chart-controls">
+                        <button className="randomize-btn" onClick={randomizeHours}>
+                            🎲 Randomize Hours
+                        </button>
+
+                        <div className="day-inputs">
+                            {weeklyData.map((day, index) => (
+                                <div key={index} className="day-input-group">
+                                    <label>{day.day}</label>
+                                    <input
+                                        type="range"
+                                        min="0"
+                                        max={geyserData.geyser.hoursLocked.maxHours}
+                                        value={day.hours}
+                                        onChange={(e) => updateDayHours(index, parseInt(e.target.value))}
+                                    />
+                                    <span>{day.hours}h</span>
                                 </div>
-                                <span className="hours-bar-label">{day.day}</span>
-                            </div>
-                        ))}
-                    </div>
+                            ))}
+                        </div>
+                    </div> */}
                 </section>
 
                 {/* Stats Cards */}
@@ -174,6 +205,8 @@ function GeyserScreen({ onNavigate, geyserData = mockData }: GeyserScreenProps) 
                         />
                     ))}
                 </section>
+
+
 
                 {/* Weekly Schedule Card */}
                 <section className="weekly-schedule-card">
@@ -284,7 +317,7 @@ function GeyserScreen({ onNavigate, geyserData = mockData }: GeyserScreenProps) 
                     </span>
                 </button>
             </nav>
-        </div>
+        </div >
     );
 }
 
