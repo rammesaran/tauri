@@ -279,11 +279,11 @@ function DashboardScreen({ userName, onNavigate, dashboardData = mockData }: Das
                 </section>
             </main>
 
-            {/* Bottom Navigation */}
+            {/* Bottom Navigation - BUG FIX #3: Shows text labels for active nav items */}
             <nav className="bottom-nav">
                 <button
                     className={`nav-btn ${activeNav === 'home' ? 'active' : ''}`}
-                    onClick={() => handleNavClick('home')}
+                    onClick={() => setActiveNav('home')}
                 >
                     <span className="nav-icon">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -291,7 +291,7 @@ function DashboardScreen({ userName, onNavigate, dashboardData = mockData }: Das
                             <polyline points="9 22 9 12 15 12 15 22" />
                         </svg>
                     </span>
-                    {activeNav === 'home' && <span className="nav-label">Home</span>}
+                    <span className="nav-label">Home</span>
                 </button>
                 <button
                     className={`nav-btn ${activeNav === 'view' ? 'active' : ''}`}
@@ -303,6 +303,7 @@ function DashboardScreen({ userName, onNavigate, dashboardData = mockData }: Das
                             <circle cx="12" cy="12" r="3" />
                         </svg>
                     </span>
+                    <span className="nav-label">View</span>
                 </button>
                 <button
                     className={`nav-btn ${activeNav === 'geyser' ? 'active' : ''}`}
@@ -316,6 +317,7 @@ function DashboardScreen({ userName, onNavigate, dashboardData = mockData }: Das
                         </svg>
                         <span className="notification-badge">0</span>
                     </span>
+                    <span className="nav-label">Info</span>
                 </button>
                 <button
                     className={`nav-btn ${activeNav === 'menu' ? 'active' : ''}`}
@@ -331,11 +333,11 @@ function DashboardScreen({ userName, onNavigate, dashboardData = mockData }: Das
                             <line x1="3" y1="18" x2="3.01" y2="18" />
                         </svg>
                     </span>
-                    {activeNav === 'menu' && <span className="nav-label">To-Do's</span>}
+                    <span className="nav-label">To-Do's</span>
                 </button>
                 <button
                     className={`nav-btn ${activeNav === 'more' ? 'active' : ''}`}
-                    onClick={() => handleNavClick('more')}
+                    onClick={() => setActiveNav('more')}
                 >
                     <span className="nav-icon">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -344,6 +346,7 @@ function DashboardScreen({ userName, onNavigate, dashboardData = mockData }: Das
                             <circle cx="5" cy="12" r="1" />
                         </svg>
                     </span>
+                    <span className="nav-label">More</span>
                 </button>
             </nav>
         </div>

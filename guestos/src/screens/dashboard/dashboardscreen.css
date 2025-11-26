@@ -198,14 +198,13 @@
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
 }
 
-/* Overview Section */
 .overview-section {
     background: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-radius: 20px;
-    padding: 20px;
-    margin: 20px 0;
+    padding: 18px 20px;
+    margin: 16px 0;
     border: 1px solid rgba(255, 255, 255, 0.18);
     box-shadow: 
         0 8px 32px 0 rgba(31, 38, 135, 0.37),
@@ -220,7 +219,7 @@
 }
 
 .section-title {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 600;
     margin: 0;
     color: white;
@@ -240,7 +239,7 @@
 .progress-bars {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 20px;
 }
 
 .progress-item {
@@ -256,9 +255,9 @@
 }
 
 .progress-bar {
-    height: 8px;
+    height: 10px;
     background: rgba(255, 255, 255, 0.2);
-    border-radius: 4px;
+    border-radius: 6px;
     overflow: hidden;
 }
 
@@ -501,7 +500,7 @@
     justify-content: center;
 }
 
-/* Metric Cards */
+/* BUG FIX #2: Metric Cards - Fixed percentage circle positioning */
 .metric-card {
     background: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(20px);
@@ -518,7 +517,8 @@
 .metric-header {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
+    gap: 16px;
 }
 
 .metric-info {
@@ -552,6 +552,7 @@
     align-items: center;
     justify-content: center;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    flex-shrink: 0;
 }
 
 .fire-card .metric-percentage {
@@ -564,7 +565,7 @@
     box-shadow: 0 0 20px rgba(255, 165, 0, 0.3);
 }
 
-/* Bottom Navigation */
+/* BUG FIX #3: Bottom Navigation - Show text labels for active nav items */
 .bottom-nav {
     position: fixed;
     bottom: 20px;
@@ -578,7 +579,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding: 12px 20px;
+    padding: 12px 8px;
     box-shadow: 
         0 8px 32px rgba(0, 0, 0, 0.5),
         0 0 0 1px rgba(255, 255, 255, 0.1);
@@ -591,24 +592,25 @@
     border: none;
     color: rgba(255, 255, 255, 0.6);
     cursor: pointer;
-    padding: 10px 16px;
+    padding: 10px 14px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    gap: 4px;
+    gap: 8px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
-    border-radius: 20px;
-    min-width: 60px;
+    border-radius: 22px;
+    min-width: auto;
 }
 
 .nav-btn::before {
     content: '';
     position: absolute;
-    inset: -2px;
-    border-radius: 20px;
+    inset: 0;
+    border-radius: 22px;
     background: rgba(255, 255, 255, 0);
     transition: all 0.3s ease;
+    z-index: -1;
 }
 
 .nav-btn:hover:not(.active) {
@@ -617,10 +619,11 @@
 
 .nav-btn.active {
     color: white;
+    padding: 10px 18px;
 }
 
 .nav-btn.active::before {
-    background: rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(10px);
     box-shadow: 
         0 2px 8px rgba(0, 0, 0, 0.2),
@@ -633,6 +636,7 @@
     align-items: center;
     justify-content: center;
     transition: transform 0.3s ease;
+    flex-shrink: 0;
 }
 
 .nav-icon svg {
@@ -640,15 +644,19 @@
 }
 
 .nav-btn.active .nav-icon {
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 .nav-label {
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 600;
     letter-spacing: 0.02em;
-    transition: opacity 0.3s ease;
     white-space: nowrap;
+    display: none;
+}
+
+.nav-btn.active .nav-label {
+    display: block;
 }
 
 .notification-badge {
@@ -678,7 +686,19 @@
     }
 
     .section-title {
-        font-size: 16px;
+        font-size: 18px;
+    }
+    
+    .nav-btn {
+        padding: 8px 10px;
+    }
+    
+    .nav-btn.active {
+        padding: 8px 14px;
+    }
+    
+    .nav-label {
+        font-size: 11px;
     }
 }
 
