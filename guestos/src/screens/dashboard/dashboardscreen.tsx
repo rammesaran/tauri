@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./dashboardscreen.css";
 import mockData from "./mockData.json";
+import OverviewCard from "./overiviewcard";
 
 interface DashboardScreenProps {
     userName?: string;
@@ -119,41 +120,11 @@ function DashboardScreen({ userName, onNavigate, dashboardData = mockData }: Das
                 </section>
 
                 {/* Overview Section */}
-                <section className="overview-section" onClick={handleOverviewClick} style={{ cursor: 'pointer' }}>
-                    <div className="section-header">
-                        <h2 className="section-title">Overview</h2>
-                        <button className="report-btn" onClick={(e) => { e.stopPropagation(); handleReportClick(); }}>📊 Report</button>
-                    </div>
-                    <div className="progress-bars">
-                        <div className="progress-item">
-                            <label className="progress-label">{dashboardData.overview.rocks.label}</label>
-                            <div className="progress-bar">
-                                <div
-                                    className="progress-fill rocks-fill"
-                                    style={{ width: `${dashboardData.overview.rocks.percentage}%` }}
-                                ></div>
-                            </div>
-                        </div>
-                        <div className="progress-item">
-                            <label className="progress-label">{dashboardData.overview.fires.label}</label>
-                            <div className="progress-bar">
-                                <div
-                                    className="progress-fill fires-fill"
-                                    style={{ width: `${dashboardData.overview.fires.percentage}%` }}
-                                ></div>
-                            </div>
-                        </div>
-                        <div className="progress-item">
-                            <label className="progress-label">{dashboardData.overview.todo.label}</label>
-                            <div className="progress-bar">
-                                <div
-                                    className="progress-fill todo-fill"
-                                    style={{ width: `${dashboardData.overview.todo.percentage}%` }}
-                                ></div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+                <OverviewCard
+                    data={dashboardData.overview}
+                    onCardClick={handleOverviewClick}
+                    onReportClick={handleReportClick}
+                />
 
                 {/* To-Do Section */}
                 <section className="todo-section">

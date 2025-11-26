@@ -3,7 +3,7 @@ import "./todoscreen.css";
 import mockData from "./todoMockData.json";
 
 interface TodoScreenProps {
-    onNavigate?: (screen: "dashboard" | "vision" | "todo" | "addtodo") => void;
+    onNavigate?: (screen: "dashboard" | "vision" | "todo" | "addtodo" | "profit" | "scorecard" | "meeting" | "geyser") => void;
     todoData?: typeof mockData;
 }
 
@@ -12,8 +12,13 @@ function TodoScreen({ onNavigate, todoData = mockData }: TodoScreenProps) {
 
     const handleNavClick = (nav: string) => {
         setActiveNav(nav);
-        if (nav === "home" && onNavigate) {
-            onNavigate("dashboard");
+
+        if (nav === "home") {
+            onNavigate?.("dashboard");
+        } else if (nav === "view") {
+            onNavigate?.("vision");
+        } else if (nav === "info") {
+            onNavigate?.("geyser");
         }
     };
 

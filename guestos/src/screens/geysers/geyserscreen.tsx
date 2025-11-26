@@ -22,8 +22,14 @@ function GeyserScreen({ onNavigate, geyserData = mockData }: GeyserScreenProps) 
 
     const handleNavClick = (nav: string) => {
         setActiveNav(nav);
-        if (nav === "home" && onNavigate) {
+        if (!onNavigate) return;
+
+        if (nav === "home") {
             onNavigate("dashboard");
+        } else if (nav === "view") {
+            onNavigate("vision");
+        } else if (nav === "menu") {
+            onNavigate("todo");
         }
     };
 

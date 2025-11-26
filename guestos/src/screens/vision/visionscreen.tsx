@@ -3,7 +3,7 @@ import "./visionscreen.css";
 
 interface VisionScreenProps {
     userName: string;
-    onNavigate?: (screen: "dashboard" | "vision") => void;
+    onNavigate?: (screen: "dashboard" | "vision" | "geyser") => void;
 }
 
 function VisionScreen({ onNavigate }: VisionScreenProps) {
@@ -13,8 +13,12 @@ function VisionScreen({ onNavigate }: VisionScreenProps) {
 
     const handleNavClick = (nav: string) => {
         setActiveNav(nav);
-        if (nav === "home" && onNavigate) {
-            onNavigate("dashboard");
+        if (onNavigate) {
+            if (nav === "home") {
+                onNavigate("dashboard");
+            } else if (nav === "geyser") {
+                onNavigate("geyser");
+            }
         }
     };
 
