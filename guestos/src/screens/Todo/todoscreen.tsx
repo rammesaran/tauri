@@ -228,7 +228,7 @@ function TodoScreen({ onNavigate, todoData = mockData }: TodoScreenProps) {
                 </button>
                 <button
                     className={`todo-nav-btn ${activeNav === 'view' ? 'active' : ''}`}
-                    onClick={() => setActiveNav('view')}
+                    onClick={() => handleNavClick('view')}
                 >
                     <span className="todo-nav-icon">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -239,7 +239,7 @@ function TodoScreen({ onNavigate, todoData = mockData }: TodoScreenProps) {
                 </button>
                 <button
                     className={`todo-nav-btn ${activeNav === 'info' ? 'active' : ''}`}
-                    onClick={() => setActiveNav('info')}
+                    onClick={() => handleNavClick('info')}
                 >
                     <span className="todo-nav-icon">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -251,7 +251,7 @@ function TodoScreen({ onNavigate, todoData = mockData }: TodoScreenProps) {
                 </button>
                 <button
                     className={`todo-nav-btn ${activeNav === 'todo' ? 'active' : ''}`}
-                    onClick={() => setActiveNav('todo')}
+                    onClick={() => handleNavClick('todo')}
                 >
                     <span className="todo-nav-icon">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -267,7 +267,7 @@ function TodoScreen({ onNavigate, todoData = mockData }: TodoScreenProps) {
                 </button>
                 <button
                     className={`todo-nav-btn ${activeNav === 'more' ? 'active' : ''}`}
-                    onClick={() => setActiveNav('more')}
+                    onClick={() => handleNavClick('more')}
                 >
                     <span className="todo-nav-icon">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

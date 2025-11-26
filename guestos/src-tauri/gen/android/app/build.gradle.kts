@@ -27,16 +27,10 @@ android {
     }
     signingConfigs {
     create("release") {
-        val keystorePropertiesFile = rootProject.file("keystore.properties")
-        if (keystorePropertiesFile.exists()) {
-            val keystoreProperties = Properties()
-            keystoreProperties.load(FileInputStream(keystorePropertiesFile))
-            
-            keyAlias = keystoreProperties["keyAlias"] as? String
-            keyPassword = keystoreProperties["password"] as? String
-            storeFile = keystoreProperties["storeFile"]?.let { file(it as String) }
-            storePassword = keystoreProperties["password"] as? String
-        }
+        storeFile = file("/Users/bharathwaj/guestos-release-key.keystore")
+            storePassword = "123456"
+            keyAlias = "guestos"
+            keyPassword = "123456"
     }
 }
     buildTypes {
@@ -52,7 +46,7 @@ android {
             }
         }
         getByName("release") {
-             //signingConfig = signingConfigs.getByName("release")
+             signingConfig = signingConfigs.getByName("release")
             isMinifyEnabled = true
             proguardFiles(
                 *fileTree(".") { include("**/*.pro") }

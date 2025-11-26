@@ -137,7 +137,7 @@ function MeetingScreen({ onNavigate, meetingData = mockData }: MeetingScreenProp
                 </button>
                 <button
                     className={`meeting-nav-btn ${activeNav === "view" ? "active" : ""}`}
-                    onClick={() => setActiveNav("view")}
+                    onClick={() => handleNavClick("view")}
                 >
                     <span className="meeting-nav-icon">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -148,7 +148,7 @@ function MeetingScreen({ onNavigate, meetingData = mockData }: MeetingScreenProp
                 </button>
                 <button
                     className={`meeting-nav-btn ${activeNav === "info" ? "active" : ""}`}
-                    onClick={() => setActiveNav("info")}
+                    onClick={() => handleNavClick("info")}
                 >
                     <span className="meeting-nav-icon">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -160,7 +160,7 @@ function MeetingScreen({ onNavigate, meetingData = mockData }: MeetingScreenProp
                 </button>
                 <button
                     className={`meeting-nav-btn ${activeNav === "menu" ? "active" : ""}`}
-                    onClick={() => setActiveNav("menu")}
+                    onClick={() => handleNavClick("menu")}
                 >
                     <span className="meeting-nav-icon">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

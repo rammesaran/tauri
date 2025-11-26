@@ -1,4 +1,13 @@
 import { useMemo } from "react";
+import {
+    BarChart,
+    Bar,
+    XAxis,
+    YAxis,
+    CartesianGrid,
+    Tooltip,
+    ResponsiveContainer,
+} from "recharts";
 import "./overviewchart.css";
 
 interface OverviewChartProps {
@@ -8,23 +17,68 @@ interface OverviewChartProps {
     onPeriodChange: (period: string) => void;
 }
 
-function OverviewChart({ selectedPeriod, onPeriodChange }: OverviewChartProps) {
-    // Mock data generation
+function OverviewChart({
+    selectedPeriod,
+    onPeriodChange,
+}: OverviewChartProps) {
+    // Mock data generation with proper date labels
     const chartData = useMemo(() => {
-        return Array.from({ length: 31 }, (_,) => ({
-            completed: Math.floor(Math.random() * 100) + 50,
-            overdue: Math.floor(Math.random() * 70) + 30,
-            taskAssigned: Math.floor(Math.random() * 60) + 40,
+        const dates = [
+            "1/ Jan", "2/ Jan", "3/ Jan", "4/ Jan", "5/ Feb",
+            "6/ Feb", "7/ Feb", "8/ Feb", "9/ Mar", "10/ Mar",
+            "11/ Mar", "12/ Mar", "13/ Apr", "14/ Apr", "15/ Apr"
+        ];
+
+        return dates.map((date) => ({
+            date,
+            completed: Math.floor(Math.random() * 100) + 80,
+            overdue: Math.floor(Math.random() * 80) + 60,
+            taskAssigned: Math.floor(Math.random() * 70) + 50,
+            completedNegative: -(Math.floor(Math.random() * 60) + 40),
+            overdueNegative: -(Math.floor(Math.random() * 70) + 50),
+            taskAssignedNegative: -(Math.floor(Math.random() * 50) + 30),
         }));
     }, [selectedPeriod]);
 
-    // Date labels
-    const dateLabels = [
-        '1/ Jan', '2/ Jan', '3/ Jan', '4/ Jan', '5/ Feb', '6/ Feb', '7/ Feb', '8/ Feb',
-        '9/ Mar', '10/ Mar', '11/ Mar', '12/ Mar', '13/ Apr', '14/ Apr', '15/ Apr', '16/ Apr',
-        '17/ May', '18/ May', '19/ May', '20/ May', '21/ Jun', '22/ Jun', '23/ Jun', '24/ Jun',
-        '25/ Jul', '26/ Jul', '27/ Jul', '28/ Jul', '29/ Aug', '30/ Aug', '31/ Aug'
-    ];
+    const CustomTooltip = ({ active, payload }: any) => {
+        if (active && payload && payload.length) {
+            const data = payload[0].payload;
+            return (
+                <div className="custom-tooltip">
+                    <p className="tooltip-date">{data.date}</p>
+                    <p className="tooltip-item completed">
+                        Completed: {data.completed}
+                    </p>
+                    <p className="tooltip-item overdue">
+                        Overdue: {data.overdue}
+                    </p>
+                    <p className="tooltip-item taskassigned">
+                        Task Assigned: {data.taskAssigned}
+                    </p>
+                </div>
+            );
+        }
+        return null;
+    };
+
+    const renderLegend = () => {
+        return (
+            <div className="chart-legend">
+                <div className="legend-item-chart">
+                    <span className="legend-dot-chart taskassigned"></span>
+                    <span className="legend-text-chart">Task Assigned</span>
+                </div>
+                <div className="legend-item-chart">
+                    <span className="legend-dot-chart overdue"></span>
+                    <span className="legend-text-chart">Overdue</span>
+                </div>
+                <div className="legend-item-chart">
+                    <span className="legend-dot-chart completed"></span>
+                    <span className="legend-text-chart">Completed</span>
+                </div>
+            </div>
+        );
+    };
 
     return (
         <div className="overview-chart-component">
@@ -32,7 +86,14 @@ function OverviewChart({ selectedPeriod, onPeriodChange }: OverviewChartProps) {
                 <h2 className="overview-chart-title">Overview</h2>
                 <div className="overview-chart-controls">
                     <button className="chart-download-btn" aria-label="Download">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <svg
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                        >
                             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
                             <polyline points="7 10 12 15 17 10" />
                             <line x1="12" y1="15" x2="12" y2="3" />
@@ -50,82 +111,99 @@ function OverviewChart({ selectedPeriod, onPeriodChange }: OverviewChartProps) {
                 </div>
             </div>
 
-            <div className="chart-container">
-                <div className="chart-y-axis">
-                    <span>200</span>
-                    <span>100</span>
-                    <span>50</span>
-                    <span>0</span>
-                    <span>-50</span>
-                    <span>-100</span>
-                    <span>-200</span>
-                </div>
+            <div className="recharts-container">
+                <ResponsiveContainer width="100%" height={500}>
+                    <BarChart
+                        data={chartData}
+                        margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+                        barGap={3}
+                        barCategoryGap="20%"
+                    >
+                        <CartesianGrid
+                            strokeDasharray="0"
+                            stroke="rgba(255, 255, 255, 0.15)"
+                            vertical={false}
+                        />
+                        <XAxis
+                            dataKey="date"
+                            stroke="rgba(255, 255, 255, 0.6)"
+                            tick={{ fill: "rgba(255, 255, 255, 0.65)", fontSize: 12 }}
+                            angle={0}
+                            textAnchor="middle"
+                            height={50}
+                            interval={0}
+                        />
+                        <YAxis
+                            stroke="rgba(255, 255, 255, 0.6)"
+                            tick={{ fill: "rgba(255, 255, 255, 0.7)", fontSize: 14 }}
+                            domain={[-200, 200]}
+                            ticks={[200, 100, 50, 0, -50, -100, -200]}
+                        />
+                        <Tooltip content={<CustomTooltip />} cursor={{ fill: "rgba(255, 255, 255, 0.05)" }} />
 
-                <div className="chart-area">
-                    <div className="chart-bars-wrapper">
-                        {chartData.map((data, index) => {
-                            // Calculate heights as percentage (scale to 200)
-                            const completedPercent = (data.completed / 200) * 100;
-                            const overduePercent = (data.overdue / 200) * 100;
-                            const assignedPercent = (data.taskAssigned / 200) * 100;
+                        {/* Positive Bars */}
+                        <Bar
+                            dataKey="completed"
+                            fill="url(#completedGradient)"
+                            radius={[6, 6, 0, 0]}
+                            barSize={20}
+                        />
+                        <Bar
+                            dataKey="overdue"
+                            fill="url(#overdueGradient)"
+                            radius={[6, 6, 0, 0]}
+                            barSize={20}
+                        />
+                        <Bar
+                            dataKey="taskAssigned"
+                            fill="url(#taskAssignedGradient)"
+                            radius={[6, 6, 0, 0]}
+                            barSize={20}
+                        />
 
-                            return (
-                                <div key={index} className="chart-bar-group">
-                                    {/* Positive bars above zero */}
-                                    <div className="chart-bars">
-                                        <div
-                                            className="chart-bar completed-bar"
-                                            style={{ height: `${completedPercent}%` }}
-                                            title={`Completed: ${data.completed}`}
-                                        />
-                                        <div
-                                            className="chart-bar taskassigned-bar"
-                                            style={{ height: `${assignedPercent}%` }}
-                                            title={`Task Assigned: ${data.taskAssigned}`}
-                                        />
-                                        <div
-                                            className="chart-bar overdue-bar"
-                                            style={{ height: `${overduePercent}%` }}
-                                            title={`Overdue: ${data.overdue}`}
-                                        />
-                                    </div>
-                                    {/* Negative bars below zero */}
-                                    <div className="chart-bars-negative">
-                                        <div
-                                            className="chart-bar-negative overdue-bar-negative"
-                                            style={{ height: `${overduePercent * 0.6}%` }}
-                                            title={`Overdue (below): ${data.overdue}`}
-                                        />
-                                    </div>
-                                </div>
-                            );
-                        })}
-                    </div>
+                        {/* Negative Bars */}
+                        <Bar
+                            dataKey="completedNegative"
+                            fill="url(#completedGradient)"
+                            radius={[0, 0, 6, 6]}
+                            barSize={20}
+                            fillOpacity={0.4}
+                        />
+                        <Bar
+                            dataKey="overdueNegative"
+                            fill="url(#overdueGradient)"
+                            radius={[0, 0, 6, 6]}
+                            barSize={20}
+                            fillOpacity={0.4}
+                        />
+                        <Bar
+                            dataKey="taskAssignedNegative"
+                            fill="url(#taskAssignedGradient)"
+                            radius={[0, 0, 6, 6]}
+                            barSize={20}
+                            fillOpacity={0.4}
+                        />
 
-                    <div className="chart-x-axis">
-                        {dateLabels.map((label, index) => (
-                            <span key={index} className="x-axis-label">
-                                {label}
-                            </span>
-                        ))}
-                    </div>
-                </div>
+                        {/* Gradient Definitions */}
+                        <defs>
+                            <linearGradient id="completedGradient" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stopColor="#7ED957" />
+                                <stop offset="100%" stopColor="#6BC948" />
+                            </linearGradient>
+                            <linearGradient id="overdueGradient" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stopColor="#5DC1D8" />
+                                <stop offset="100%" stopColor="#4DB8CF" />
+                            </linearGradient>
+                            <linearGradient id="taskAssignedGradient" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stopColor="#FFB74D" />
+                                <stop offset="100%" stopColor="#FFA726" />
+                            </linearGradient>
+                        </defs>
+                    </BarChart>
+                </ResponsiveContainer>
             </div>
 
-            <div className="chart-legend">
-                <div className="legend-item-chart">
-                    <span className="legend-dot-chart taskassigned"></span>
-                    <span className="legend-text-chart">Task Assigned</span>
-                </div>
-                <div className="legend-item-chart">
-                    <span className="legend-dot-chart overdue"></span>
-                    <span className="legend-text-chart">Overdue</span>
-                </div>
-                <div className="legend-item-chart">
-                    <span className="legend-dot-chart completed"></span>
-                    <span className="legend-text-chart">Completed</span>
-                </div>
-            </div>
+            {renderLegend()}
         </div>
     );
 }

@@ -283,7 +283,7 @@ function DashboardScreen({ userName, onNavigate, dashboardData = mockData }: Das
             <nav className="bottom-nav">
                 <button
                     className={`nav-btn ${activeNav === 'home' ? 'active' : ''}`}
-                    onClick={() => setActiveNav('home')}
+                    onClick={() => handleNavClick('home')}
                 >
                     <span className="nav-icon">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -335,7 +335,7 @@ function DashboardScreen({ userName, onNavigate, dashboardData = mockData }: Das
                 </button>
                 <button
                     className={`nav-btn ${activeNav === 'more' ? 'active' : ''}`}
-                    onClick={() => setActiveNav('more')}
+                    onClick={() => handleNavClick('more')}
                 >
                     <span className="nav-icon">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

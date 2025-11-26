@@ -233,8 +233,8 @@ function VisionScreen({ onNavigate }: VisionScreenProps) {
                     {activeNav === 'view' && <span className="nav-label">Vision</span>}
                 </button>
                 <button
-                    className={`nav-btn ${activeNav === 'info' ? 'active' : ''}`}
-                    onClick={() => handleNavClick('info')}
+                    className={`nav-btn ${activeNav === 'geyser' ? 'active' : ''}`}
+                    onClick={() => handleNavClick('geyser')}
                 >
                     <span className="nav-icon">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

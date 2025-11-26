@@ -228,7 +228,7 @@ function GeyserScreen({ onNavigate, geyserData = mockData }: GeyserScreenProps) 
                 </button>
                 <button
                     className={`geyser-nav-btn ${activeNav === "view" ? "active" : ""}`}
-                    onClick={() => setActiveNav("view")}
+                    onClick={() => handleNavClick("view")}
                 >
                     <span className="geyser-nav-icon">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -239,7 +239,7 @@ function GeyserScreen({ onNavigate, geyserData = mockData }: GeyserScreenProps) 
                 </button>
                 <button
                     className={`geyser-nav-btn ${activeNav === "geyser" ? "active" : ""}`}
-                    onClick={() => setActiveNav("geyser")}
+                    onClick={() => handleNavClick("geyser")}
                 >
                     <span className="geyser-nav-icon">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -252,7 +252,7 @@ function GeyserScreen({ onNavigate, geyserData = mockData }: GeyserScreenProps) 
                 </button>
                 <button
                     className={`geyser-nav-btn ${activeNav === "menu" ? "active" : ""}`}
-                    onClick={() => setActiveNav("menu")}
+                    onClick={() => handleNavClick("menu")}
                 >
                     <span className="geyser-nav-icon">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
