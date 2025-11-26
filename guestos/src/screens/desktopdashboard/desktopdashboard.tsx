@@ -5,10 +5,10 @@ import OverviewChart from "./components/OverviewChart";
 import FiresChart from "./components/FiresChart";
 import TodoList from "./components/TodoList";
 import MeetingsList from "./components/MeetingsList";
-import VisionPage from "../desktopvision/visionpage";
-import PeoplePage from "../desktoppeople/peoplepage";
+import ProfitPage from "../desktopprofit/component/profitpage";
 import DataPage from "../desktopdata/datapage";
-
+import PeoplePage from "../desktoppeople/peoplepage";
+import VisionPage from "../desktopvision/visionpage";
 
 interface DesktopDashboardProps {
     userName?: string;
@@ -16,11 +16,11 @@ interface DesktopDashboardProps {
     onNavigate?: (screen: string) => void;
 }
 
-function DesktopDashboard({ userName = "User" }: DesktopDashboardProps) {
+function DesktopDashboard({ }: DesktopDashboardProps) {
     const [selectedTeam, setSelectedTeam] = useState("Leadership");
     const [selectedView, setSelectedView] = useState("Rocks");
     const [selectedPeriod, setSelectedPeriod] = useState("Quarterly");
-    const [currentPage, setCurrentPage] = useState<"dashboard" | "vision" | "people" | "data">("dashboard");
+    const [currentPage, setCurrentPage] = useState<"dashboard" | "vision" | "people" | "data" | "profit">("dashboard");
 
     // Mock data for the dashboard
     const metrics = {
@@ -114,7 +114,7 @@ function DesktopDashboard({ userName = "User" }: DesktopDashboardProps) {
             }
         ];
 
-    const handleNavigation = (page: "dashboard" | "vision" | "people" | "data") => {
+    const handleNavigation = (page: "dashboard" | "vision" | "people" | "data" | "profit") => {
         setCurrentPage(page);
     };
 
@@ -188,7 +188,10 @@ function DesktopDashboard({ userName = "User" }: DesktopDashboardProps) {
                             </svg>
                             Process
                         </button>
-                        <button className="nav-item">
+                        <button
+                            className={`nav-item ${currentPage === "profit" ? "active" : ""}`}
+                            onClick={() => handleNavigation("profit")}
+                        >
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                 <line x1="12" y1="1" x2="12" y2="23" />
                                 <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
@@ -242,6 +245,10 @@ function DesktopDashboard({ userName = "User" }: DesktopDashboardProps) {
             ) : currentPage === "data" ? (
                 <div className="full-page-content">
                     <DataPage userName="Glenn" />
+                </div>
+            ) : currentPage === "profit" ? (
+                <div className="full-page-content">
+                    <ProfitPage userName="Glenn" />
                 </div>
             ) : (
                 <>

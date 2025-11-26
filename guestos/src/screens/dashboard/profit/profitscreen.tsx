@@ -261,7 +261,7 @@ function ProfitScreen({ onNavigate, profitData = mockData }: ProfitScreenProps) 
                         </button>
                     </div>
                     <div className="target-steps">
-                        {profitData.profitTarget.progressSteps.map((step, index) => (
+                        {profitData.profitTarget.progressSteps.map((index) => (
                             <div key={index} className="target-step"></div>
                         ))}
                     </div>

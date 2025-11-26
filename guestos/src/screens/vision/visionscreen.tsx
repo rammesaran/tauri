@@ -6,7 +6,7 @@ interface VisionScreenProps {
     onNavigate?: (screen: "dashboard" | "vision") => void;
 }
 
-function VisionScreen({ userName, onNavigate }: VisionScreenProps) {
+function VisionScreen({ onNavigate }: VisionScreenProps) {
     const [activeTab, setActiveTab] = useState<"vision" | "mission" | "core-values">("vision");
     const [activeRocksTab, setActiveRocksTab] = useState<"current" | "last3" | "last5">("current");
     const [activeNav, setActiveNav] = useState("view");

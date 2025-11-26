@@ -9,7 +9,7 @@ interface DashboardScreenProps {
     dashboardData?: typeof mockData;
 }
 
-function DashboardScreen({ userName, onLogout, onNavigate, dashboardData = mockData }: DashboardScreenProps) {
+function DashboardScreen({ userName, onNavigate, dashboardData = mockData }: DashboardScreenProps) {
     const [activeNav, setActiveNav] = useState("home");
 
     const handleNavClick = (nav: string) => {

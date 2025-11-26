@@ -8,7 +8,7 @@ interface MetricCardProps {
     icon?: string;
 }
 
-function MetricCard({ value, label, trend, trendValue, icon }: MetricCardProps) {
+function MetricCard({ value, label, trend, trendValue, }: MetricCardProps) {
     return (
         <div className="metric-card-container">
             <div className="metric-value">{value}</div>

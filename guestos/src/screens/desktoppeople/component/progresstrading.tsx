@@ -11,7 +11,7 @@ interface ProgressCardProps {
 
 export const ProgressCard: React.FC<ProgressCardProps> = ({
     title,
-    grade,
+
     percentage,
     label
 }) => {

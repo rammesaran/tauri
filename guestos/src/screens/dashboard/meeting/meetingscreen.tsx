@@ -101,7 +101,7 @@ function MeetingScreen({ onNavigate, meetingData = mockData }: MeetingScreenProp
 
                 {/* Menu Items */}
                 <section className="meeting-menu-section">
-                    {meetingData.meeting.menuItems.map((item, index) => (
+                    {meetingData.meeting.menuItems.map((item) => (
                         <div key={item.id} className="meeting-menu-item-wrapper">
                             <MeetingMenuItem
                                 icon={item.icon as any}

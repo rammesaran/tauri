@@ -8,10 +8,10 @@ interface OverviewChartProps {
     onPeriodChange: (period: string) => void;
 }
 
-function OverviewChart({ selectedView, selectedPeriod, onViewChange, onPeriodChange }: OverviewChartProps) {
+function OverviewChart({ selectedPeriod, onPeriodChange }: OverviewChartProps) {
     // Mock data generation
     const chartData = useMemo(() => {
-        return Array.from({ length: 31 }, (_, i) => ({
+        return Array.from({ length: 31 }, (_,) => ({
             completed: Math.floor(Math.random() * 100) + 50,
             overdue: Math.floor(Math.random() * 70) + 30,
             taskAssigned: Math.floor(Math.random() * 60) + 40,
