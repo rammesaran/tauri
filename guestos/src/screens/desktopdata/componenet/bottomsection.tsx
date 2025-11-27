@@ -2,39 +2,28 @@ import React from 'react';
 import './bottomsection.css';
 
 // Recent Transactions
-interface Transaction {
+interface TransactionRow {
     id: number;
-    type: string;
-    amount: number;
+    availableFunds: number;
+    officeFunds: number;
+    remainingFunds: number;
 }
 
 interface TransactionsProps {
     title?: string;
-    transactions?: Transaction[];
+    transactions?: TransactionRow[];
     onViewAll?: () => void;
 }
 
 export const RecentTransactions: React.FC<TransactionsProps> = ({
     title = "Recent Transactions",
     transactions = [
-        { id: 1, type: "Available Funds", amount: 3600.00 },
-        { id: 2, type: "Office Funds", amount: 180.00 },
-        { id: 3, type: "Remaining Funds", amount: 3420.00 },
-        { id: 4, type: "Available Funds", amount: 3600.00 },
-        { id: 5, type: "Office Funds", amount: 180.00 },
-        { id: 6, type: "Remaining Funds", amount: 3420.00 },
-        { id: 7, type: "Available Funds", amount: 3600.00 },
-        { id: 8, type: "Office Funds", amount: 180.00 },
-        { id: 9, type: "Remaining Funds", amount: 3420.00 },
-        { id: 10, type: "Available Funds", amount: 3600.00 },
-        { id: 11, type: "Office Funds", amount: 180.00 },
-        { id: 12, type: "Remaining Funds", amount: 3420.00 },
-        { id: 13, type: "Available Funds", amount: 3600.00 },
-        { id: 14, type: "Office Funds", amount: 180.00 },
-        { id: 15, type: "Remaining Funds", amount: 3420.00 },
-        { id: 16, type: "Available Funds", amount: 3600.00 },
-        { id: 17, type: "Office Funds", amount: 180.00 },
-        { id: 18, type: "Remaining Funds", amount: 3420.00 },
+        { id: 1, availableFunds: 3600.00, officeFunds: 180.00, remainingFunds: 3420.00 },
+        { id: 2, availableFunds: 3600.00, officeFunds: 180.00, remainingFunds: 3420.00 },
+        { id: 3, availableFunds: 3600.00, officeFunds: 180.00, remainingFunds: 3420.00 },
+        { id: 4, availableFunds: 3600.00, officeFunds: 180.00, remainingFunds: 3420.00 },
+        { id: 5, availableFunds: 3600.00, officeFunds: 180.00, remainingFunds: 3420.00 },
+        { id: 6, availableFunds: 3600.00, officeFunds: 180.00, remainingFunds: 3420.00 },
     ],
     onViewAll
 }) => {
@@ -45,11 +34,21 @@ export const RecentTransactions: React.FC<TransactionsProps> = ({
                 <button className="btn-view-all" onClick={onViewAll}>View All</button>
             </div>
 
-            <div className="transactions-grid">
-                {transactions.map((transaction) => (
-                    <div key={transaction.id} className="transaction-item">
-                        <div className="transaction-type">{transaction.type}</div>
-                        <div className="transaction-amount">${transaction.amount.toFixed(2)}</div>
+            <div className="transactions-list">
+                {transactions.map((row) => (
+                    <div key={row.id} className="transaction-row">
+                        <div className="transaction-cell">
+                            <div className="transaction-type">Available Funds</div>
+                            <div className="transaction-amount">${row.availableFunds.toFixed(2)}</div>
+                        </div>
+                        <div className="transaction-cell">
+                            <div className="transaction-type">Office Funds</div>
+                            <div className="transaction-amount">${row.officeFunds.toFixed(2)}</div>
+                        </div>
+                        <div className="transaction-cell">
+                            <div className="transaction-type">Remaining Funds</div>
+                            <div className="transaction-amount">${row.remainingFunds.toFixed(2)}</div>
+                        </div>
                     </div>
                 ))}
             </div>
