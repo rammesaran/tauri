@@ -1,13 +1,14 @@
 /* Dashboard Metrics Row - All 3 cards in single row */
 .dashboard-metrics-row {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
     gap: 20px;
     width: 100%;
 }
 
 .metrics-card-wrapper {
-    min-width: 0; /* Allow cards to shrink */
+    min-width: 0;
+    overflow: visible;
 }
 
 /* Equal height for all cards */

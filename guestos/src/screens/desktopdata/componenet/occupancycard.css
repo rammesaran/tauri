@@ -1,34 +1,45 @@
-/* Occupancy Card - Exact Match */
+/* Occupancy Card - Optimized Spacing */
 .occupancy-card-container {
     background: rgba(70, 130, 170, 0.25);
     border-radius: 20px;
-    padding: 24px;
+    padding: 20px;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.08);
+    overflow: visible;
+    width: 100%;
+    box-sizing: border-box;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 .occupancy-card-title {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 700;
     color: #ffffff;
-    margin: 0 0 20px 0;
+    margin: 0 0 14px 0;
 }
 
 /* Row of 3 colored cards */
 .occupancy-cards-row {
     display: flex;
-    gap: 16px;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    margin: auto 0;
 }
 
 /* Individual colored card */
 .occupancy-color-card {
-    flex: 1;
+    flex: 0 1 120px;
+    min-width: 90px;
+    max-width: 140px;
     border-radius: 16px;
-    padding: 20px 16px 16px;
+    padding: 14px 10px 12px;
     display: flex;
     flex-direction: column;
-    aspect-ratio: 1 / 1.1;
-    max-height: 220px;
 }
 
 /* Color variants */
@@ -51,12 +62,13 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding-bottom: 10px;
 }
 
 .occupancy-trend-arrow {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 500;
-    margin-bottom: 4px;
+    margin-bottom: 2px;
 }
 
 .occupancy-color-card.green .occupancy-trend-arrow { color: #1B6B4D; }
@@ -64,7 +76,7 @@
 .occupancy-color-card.yellow .occupancy-trend-arrow { color: #6B6020; }
 
 .occupancy-percent-text {
-    font-size: 42px;
+    font-size: 32px;
     font-weight: 700;
     line-height: 1;
 }
@@ -76,25 +88,25 @@
 /* Bottom stats row */
 .occupancy-stats-row {
     display: flex;
-    gap: 8px;
+    gap: 6px;
 }
 
 .occupancy-stat-box {
     flex: 1;
+    min-width: 0;
     background: rgba(255, 255, 255, 0.4);
     border: 1px solid rgba(255, 255, 255, 0.5);
-    border-radius: 10px;
-    padding: 10px 8px;
+    border-radius: 8px;
+    padding: 8px 4px 6px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2px;
 }
 
 .occupancy-stat-number {
-    font-size: 24px;
+    font-size: 18px;
     font-weight: 700;
-    line-height: 1.1;
+    line-height: 1.2;
 }
 
 .occupancy-color-card.green .occupancy-stat-number { color: #1B6B4D; }
@@ -102,70 +114,86 @@
 .occupancy-color-card.yellow .occupancy-stat-number { color: #6B6020; }
 
 .occupancy-stat-label {
-    font-size: 11px;
+    font-size: 9px;
     font-weight: 600;
     text-align: center;
+    line-height: 1.2;
+    margin-top: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
 }
 
 .occupancy-color-card.green .occupancy-stat-label { color: #1B6B4D; }
 .occupancy-color-card.pink .occupancy-stat-label { color: #8C4A5E; }
 .occupancy-color-card.yellow .occupancy-stat-label { color: #6B6020; }
 
-/* Responsive */
-@media (max-width: 1200px) {
+/* Responsive - larger screens */
+@media (min-width: 1300px) {
+    .occupancy-card-container {
+        padding: 24px;
+    }
+    
+    .occupancy-cards-row {
+        gap: 16px;
+    }
+    
     .occupancy-color-card {
-        padding: 16px 12px 12px;
-        max-height: 200px;
+        flex: 0 1 150px;
+        max-width: 160px;
+        padding: 18px 14px 14px;
     }
     
     .occupancy-percent-text {
-        font-size: 36px;
+        font-size: 38px;
     }
     
     .occupancy-stat-number {
-        font-size: 20px;
+        font-size: 22px;
     }
     
     .occupancy-stat-label {
-        font-size: 10px;
-    }
-}
-
-@media (max-width: 900px) {
-    .occupancy-cards-row {
-        gap: 12px;
-    }
-    
-    .occupancy-color-card {
-        padding: 14px 10px 10px;
-        max-height: 180px;
-    }
-    
-    .occupancy-percent-text {
-        font-size: 32px;
-    }
-    
-    .occupancy-stat-number {
-        font-size: 18px;
+        font-size: 11px;
     }
     
     .occupancy-stat-box {
-        padding: 8px 6px;
+        padding: 10px 6px 8px;
     }
 }
 
+/* Responsive - medium screens */
+@media (max-width: 1100px) {
+    .occupancy-color-card {
+        flex: 0 1 100px;
+        min-width: 80px;
+        max-width: 120px;
+    }
+    
+    .occupancy-percent-text {
+        font-size: 28px;
+    }
+    
+    .occupancy-stat-number {
+        font-size: 16px;
+    }
+    
+    .occupancy-stat-label {
+        font-size: 8px;
+    }
+}
+
+/* Responsive - smaller screens */
 @media (max-width: 500px) {
     .occupancy-cards-row {
         flex-direction: column;
-        gap: 12px;
+        gap: 10px;
     }
     
     .occupancy-color-card {
-        aspect-ratio: auto;
-        max-height: none;
         flex-direction: row;
         align-items: center;
-        padding: 16px;
+        padding: 14px;
     }
     
     .occupancy-percent-area {
@@ -173,6 +201,7 @@
         flex-direction: row;
         gap: 8px;
         margin-right: 16px;
+        padding-bottom: 0;
     }
     
     .occupancy-trend-arrow {
@@ -181,5 +210,10 @@
     
     .occupancy-stats-row {
         flex: 1;
+    }
+    
+    .occupancy-stat-label {
+        font-size: 10px;
+        white-space: normal;
     }
 }
