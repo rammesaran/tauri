@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import './datapage.css';
 
 import { ChartsRow, OverviewAreaChart, RevPARChart } from './componenet/datachart';
-import { PredictiveInsights, RecentTransactions, SalesReport } from './componenet/bottomsection';
+import { BottomSectionRow, PredictiveInsights, RecentTransactions, SalesReport } from './componenet/bottomsection';
 import DashboardMetricsRow from './componenet/dashboardmetric';
 
 
@@ -161,9 +161,8 @@ function DataPage({ userName = "Glenn" }: DataPageProps) {
 
             {/* Bottom Row - Transactions, Sales, Insights */}
             <div className="data-bottom-grid">
-                <RecentTransactions {...dataPageData.recentTransactions} />
-                <SalesReport {...dataPageData.salesReport} />
-                <PredictiveInsights {...dataPageData.predictiveInsights} />
+                <BottomSectionRow />
+
             </div>
         </div>
     );
