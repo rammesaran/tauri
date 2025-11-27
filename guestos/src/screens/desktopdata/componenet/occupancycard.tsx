@@ -3,48 +3,86 @@ import './occupancycard.css';
 
 interface OccupancyMetric {
     id: number;
-    percentage: number;
-    label: string;
+    percentage: string;
     trend: 'up' | 'down';
-    primary: number;
-    secondary: number;
-    primaryLabel: string;
-    secondaryLabel: string;
-    color: string;
+    leftValue: number;
+    leftLabel: string;
+    rightValue: number;
+    rightLabel: string;
+    color: 'green' | 'pink' | 'yellow';
 }
 
 interface OccupancyCardProps {
-    title: string;
-    metrics: OccupancyMetric[];
+    title?: string;
+    metrics?: OccupancyMetric[];
 }
 
-const OccupancyCard: React.FC<OccupancyCardProps> = ({ title, metrics }) => {
-    return (
-        <div className="occupancy-card">
-            <h3 className="occupancy-title">{title}</h3>
+const OccupancyCard: React.FC<OccupancyCardProps> = ({
+    title = "Occupancy",
+    metrics
+}) => {
+    const defaultMetrics: OccupancyMetric[] = [
+        {
+            id: 1,
+            percentage: "5%",
+            trend: 'up',
+            leftValue: 42,
+            leftLabel: "Booked",
+            rightValue: 17,
+            rightLabel: "Check-In",
+            color: 'green'
+        },
+        {
+            id: 2,
+            percentage: "6%",
+            trend: 'up',
+            leftValue: 34,
+            leftLabel: "Success",
+            rightValue: 8,
+            rightLabel: "Extended",
+            color: 'pink'
+        },
+        {
+            id: 3,
+            percentage: "3%",
+            trend: 'down',
+            leftValue: 6,
+            leftLabel: "Refund",
+            rightValue: 2,
+            rightLabel: "Cancelled",
+            color: 'yellow'
+        }
+    ];
 
-            <div className="occupancy-metrics">
-                {metrics.map((metric) => (
+    const data = metrics || defaultMetrics;
+
+    return (
+        <div className="occupancy-card-container">
+            <h3 className="occupancy-card-title">{title}</h3>
+
+            <div className="occupancy-cards-row">
+                {data.map((metric) => (
                     <div
                         key={metric.id}
-                        className="occupancy-metric"
-                        style={{ backgroundColor: `${metric.color}33` }}
+                        className={`occupancy-color-card ${metric.color}`}
                     >
-                        <div className="metric-header">
-                            <span className="metric-percentage">{metric.label}</span>
-                            <span className={`metric-trend ${metric.trend}`}>
+                        {/* Arrow and Percentage */}
+                        <div className="occupancy-percent-area">
+                            <span className="occupancy-trend-arrow">
                                 {metric.trend === 'up' ? '↑' : '↓'}
                             </span>
+                            <span className="occupancy-percent-text">{metric.percentage}</span>
                         </div>
 
-                        <div className="metric-values">
-                            <div className="metric-value">
-                                <span className="value-number">{metric.primary}</span>
-                                <span className="value-label">{metric.primaryLabel}</span>
+                        {/* Two stat boxes at bottom */}
+                        <div className="occupancy-stats-row">
+                            <div className="occupancy-stat-box">
+                                <span className="occupancy-stat-number">{metric.leftValue}</span>
+                                <span className="occupancy-stat-label">{metric.leftLabel}</span>
                             </div>
-                            <div className="metric-value">
-                                <span className="value-number">{metric.secondary}</span>
-                                <span className="value-label">{metric.secondaryLabel}</span>
+                            <div className="occupancy-stat-box">
+                                <span className="occupancy-stat-number">{metric.rightValue}</span>
+                                <span className="occupancy-stat-label">{metric.rightLabel}</span>
                             </div>
                         </div>
                     </div>

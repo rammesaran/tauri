@@ -1,0 +1,38 @@
+/* Dashboard Metrics Row - All 3 cards in single row */
+.dashboard-metrics-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    width: 100%;
+}
+
+.metrics-card-wrapper {
+    min-width: 0; /* Allow cards to shrink */
+}
+
+/* Equal height for all cards */
+.metrics-card-wrapper > * {
+    height: 100%;
+}
+
+/* Responsive - 2 columns on medium screens */
+@media (max-width: 1200px) {
+    .dashboard-metrics-row {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .metrics-card-wrapper.occupancy {
+        grid-column: span 2;
+    }
+}
+
+/* Responsive - 1 column on small screens */
+@media (max-width: 768px) {
+    .dashboard-metrics-row {
+        grid-template-columns: 1fr;
+    }
+
+    .metrics-card-wrapper.occupancy {
+        grid-column: span 1;
+    }
+}

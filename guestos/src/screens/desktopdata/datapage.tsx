@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import './datapage.css';
-import OccupancyCard from './componenet/occupancycard';
-import { GuestSatisfactionCard, StaffEngagementCard } from './componenet/engagementcard';
+
 import { OverviewAreaChart, RevPARChart } from './componenet/datachart';
 import { PredictiveInsights, RecentTransactions, SalesReport } from './componenet/bottomsection';
+import DashboardMetricsRow from './componenet/dashboardmetric';
 
 
 interface DataPageData {
@@ -150,9 +150,8 @@ function DataPage({ userName = "Glenn" }: DataPageProps) {
 
             {/* Top Row - Occupancy, Staff, Guest */}
             <div className="data-top-grid">
-                <OccupancyCard {...dataPageData.occupancy} />
-                <StaffEngagementCard {...dataPageData.staffEngagement} />
-                <GuestSatisfactionCard {...dataPageData.guestSatisfaction} />
+                <DashboardMetricsRow />
+
             </div>
 
             {/* Middle Row - Overview and RevPAR */}

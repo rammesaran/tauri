@@ -9,18 +9,22 @@ interface Department {
 }
 
 interface StaffEngagementProps {
-    title: string;
-    averageScore: number;
-    change: string;
-    departments: Department[];
+    title?: string;
+    averageScore?: number;
+    change?: string;
+    departments?: Department[];
     onViewAll?: () => void;
 }
 
 export const StaffEngagementCard: React.FC<StaffEngagementProps> = ({
-    title,
-    averageScore,
-    change,
-    departments,
+    title = "Staff Engagement",
+    averageScore = 84,
+    change = "+4.1% vs. Last quarter",
+    departments = [
+        { name: "Staff - 1", score: 85, color: "#F5A623" },
+        { name: "Staff - 2", score: 92, color: "#4A90D9" },
+        { name: "Staff - 3", score: 78, color: "#50C878" }
+    ],
     onViewAll
 }) => {
     return (
@@ -30,58 +34,73 @@ export const StaffEngagementCard: React.FC<StaffEngagementProps> = ({
                 <button className="btn-view-all" onClick={onViewAll}>View All</button>
             </div>
 
-            <div className="average-score">
-                <div className="score-display">{averageScore}%</div>
-                <div className="score-label">Average Score</div>
-                <div className="score-change">{change}</div>
+            <div className="engagement-score-section">
+                <div className="big-score">{averageScore}%</div>
+                <div className="score-meta">
+                    <span className="score-label">Average Score</span>
+                    <span className="score-change">
+                        <span className="change-arrow">↑</span>
+                        {change}
+                    </span>
+                </div>
             </div>
 
             <div className="departments-section">
                 <h4 className="section-subtitle">Score by Department</h4>
-                {departments.map((dept, index) => (
-                    <div key={index} className="department-item">
-                        <span className="department-name">{dept.name}</span>
-                        <div className="department-bar">
-                            <div
-                                className="department-bar-fill"
-                                style={{
-                                    width: `${dept.score}%`,
-                                    backgroundColor: dept.color
-                                }}
-                            />
+                <div className="departments-list">
+                    {departments.map((dept, index) => (
+                        <div key={index} className="department-row">
+                            <span className="dept-name">{dept.name}</span>
+                            <div className="dept-bar-container">
+                                <div className="dept-bar-bg">
+                                    <div
+                                        className="dept-bar-fill"
+                                        style={{
+                                            width: `${dept.score}%`,
+                                            backgroundColor: dept.color
+                                        }}
+                                    />
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    ))}
+                </div>
             </div>
         </div>
     );
 };
 
 // Guest Satisfaction Card
-interface Breakdown {
+interface RoomType {
     label: string;
     color: string;
 }
 
 interface GuestSatisfactionProps {
-    title: string;
-    score: number;
-    change: string;
-    emoji: string;
-    breakdown: Breakdown[];
+    title?: string;
+    score?: number;
+    change?: string;
+    emoji?: string;
+    roomTypes?: RoomType[];
     onViewAll?: () => void;
 }
 
 export const GuestSatisfactionCard: React.FC<GuestSatisfactionProps> = ({
-    title,
-    score,
-    change,
-    emoji,
-    breakdown,
+    title = "Guest Satisfaction",
+    score = 84.96,
+    change = "Up by 15%",
+    emoji = "😃",
+    roomTypes = [
+        { label: "Standard Room", color: "#50C878" },
+        { label: "Deluxe Room", color: "#F5A623" },
+        { label: "Family Room", color: "#E8657A" }
+    ],
     onViewAll
 }) => {
-    const circumference = 2 * Math.PI * 80;
-    const offset = circumference - (score / 100) * circumference;
+    // Calculate the arc for semi-circle gauge
+    const radius = 70;
+    const circumference = Math.PI * radius; // Half circle
+    const progressOffset = circumference - (score / 100) * circumference;
 
     return (
         <div className="satisfaction-card">
@@ -90,67 +109,67 @@ export const GuestSatisfactionCard: React.FC<GuestSatisfactionProps> = ({
                 <button className="btn-view-all" onClick={onViewAll}>View All</button>
             </div>
 
-            <div className="satisfaction-gauge">
-                <svg className="gauge-svg" viewBox="0 0 200 200">
-                    {/* Background circle */}
-                    <circle
-                        cx="100"
-                        cy="100"
-                        r="80"
-                        fill="none"
-                        stroke="rgba(255, 255, 255, 0.1)"
-                        strokeWidth="20"
-                    />
-                    {/* Progress circle */}
-                    <circle
-                        cx="100"
-                        cy="100"
-                        r="80"
-                        fill="none"
-                        stroke="url(#gradient)"
-                        strokeWidth="20"
-                        strokeDasharray={circumference}
-                        strokeDashoffset={offset}
-                        strokeLinecap="round"
-                        transform="rotate(-90 100 100)"
-                    />
-                    <defs>
-                        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                            <stop offset="0%" stopColor="#90EE90" />
-                            <stop offset="50%" stopColor="#FFD700" />
-                            <stop offset="100%" stopColor="#FFA500" />
-                        </linearGradient>
-                    </defs>
-                </svg>
-
-                <div className="gauge-content">
-                    <div className="gauge-emoji">{emoji}</div>
-                    <div className="gauge-label">Average</div>
-                    <div className="gauge-score">{score}%</div>
-                    <div className="gauge-change">
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#4CAF50" strokeWidth="3">
-                            <polyline points="18 15 12 9 6 15" />
-                        </svg>
-                        {change}
-                    </div>
-                </div>
-
-                <div className="gauge-markers">
-                    <span className="marker marker-left">0</span>
-                    <span className="marker marker-right">100</span>
-                </div>
-            </div>
-
-            <div className="satisfaction-breakdown">
-                {breakdown.map((item, index) => (
-                    <div key={index} className="breakdown-item">
-                        <span
-                            className="breakdown-dot"
-                            style={{ backgroundColor: item.color }}
+            <div className="satisfaction-content">
+                {/* Gauge */}
+                <div className="gauge-wrapper">
+                    <svg className="gauge-svg" viewBox="0 0 160 100">
+                        <defs>
+                            <linearGradient id="gaugeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stopColor="#F5A623" />
+                                <stop offset="50%" stopColor="#A8E063" />
+                                <stop offset="100%" stopColor="#50C878" />
+                            </linearGradient>
+                        </defs>
+                        {/* Background arc */}
+                        <path
+                            d="M 10 90 A 70 70 0 0 1 150 90"
+                            fill="none"
+                            stroke="rgba(255, 255, 255, 0.15)"
+                            strokeWidth="12"
+                            strokeLinecap="round"
                         />
-                        <span className="breakdown-label">{item.label}</span>
+                        {/* Progress arc */}
+                        <path
+                            d="M 10 90 A 70 70 0 0 1 150 90"
+                            fill="none"
+                            stroke="url(#gaugeGradient)"
+                            strokeWidth="12"
+                            strokeLinecap="round"
+                            strokeDasharray={circumference}
+                            strokeDashoffset={progressOffset}
+                        />
+                    </svg>
+
+                    {/* Center content */}
+                    <div className="gauge-center">
+                        <div className="gauge-emoji">{emoji}</div>
+                        <div className="gauge-label">Average</div>
+                        <div className="gauge-score">{score}%</div>
+                        <div className="gauge-change">
+                            <span className="check-icon">✓</span>
+                            {change}
+                        </div>
                     </div>
-                ))}
+
+                    {/* Markers */}
+                    <div className="gauge-markers">
+                        <span className="marker-left">0</span>
+                        <span className="marker-right">100</span>
+                    </div>
+                </div>
+
+                {/* Room Types Legend */}
+                <div className="room-types-legend">
+                    {roomTypes.map((room, index) => (
+                        <div key={index} className="room-type-item">
+                            <span
+                                className="room-dot"
+                                style={{ backgroundColor: room.color }}
+                            />
+                            <span className="room-label">{room.label}</span>
+                        </div>
+                    ))}
+                </div>
             </div>
         </div>
     );

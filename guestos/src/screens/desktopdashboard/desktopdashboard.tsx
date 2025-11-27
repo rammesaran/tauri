@@ -144,9 +144,7 @@ function DesktopDashboard({ }: DesktopDashboardProps) {
             }
         ];
 
-    const handleNavigation = (page: "dashboard" | "vision" | "people" | "data" | "profit") => {
-        setCurrentPage(page);
-    };
+
 
     return (
         <div className="desktop-dashboard">

@@ -1,88 +1,185 @@
-.occupancy-card {
-  background: rgba(70, 130, 170, 0.3);
-  border-radius: 16px;
-  padding: 24px;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+/* Occupancy Card - Exact Match */
+.occupancy-card-container {
+    background: rgba(70, 130, 170, 0.25);
+    border-radius: 20px;
+    padding: 24px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.occupancy-title {
-  font-size: 20px;
-  font-weight: 700;
-  color: #ffffff;
-  margin: 0 0 20px 0;
+.occupancy-card-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 20px 0;
 }
 
-.occupancy-metrics {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+/* Row of 3 colored cards */
+.occupancy-cards-row {
+    display: flex;
+    gap: 16px;
 }
 
-.occupancy-metric {
-  border-radius: 16px;
-  padding: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  transition: all 0.2s ease;
+/* Individual colored card */
+.occupancy-color-card {
+    flex: 1;
+    border-radius: 16px;
+    padding: 20px 16px 16px;
+    display: flex;
+    flex-direction: column;
+    aspect-ratio: 1 / 1.1;
+    max-height: 220px;
 }
 
-.occupancy-metric:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+/* Color variants */
+.occupancy-color-card.green {
+    background: #5EC9A3;
 }
 
-.metric-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 16px;
+.occupancy-color-card.pink {
+    background: #E9A7B8;
 }
 
-.metric-percentage {
-  font-size: 32px;
-  font-weight: 700;
-  color: #ffffff;
+.occupancy-color-card.yellow {
+    background: #D9CF6E;
 }
 
-.metric-trend {
-  font-size: 24px;
-  font-weight: 700;
+/* Top area - arrow and percentage */
+.occupancy-percent-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-.metric-trend.up {
-  color: #4CAF50;
+.occupancy-trend-arrow {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 4px;
 }
 
-.metric-trend.down {
-  color: #FF6B6B;
+.occupancy-color-card.green .occupancy-trend-arrow { color: #1B6B4D; }
+.occupancy-color-card.pink .occupancy-trend-arrow { color: #8C4A5E; }
+.occupancy-color-card.yellow .occupancy-trend-arrow { color: #6B6020; }
+
+.occupancy-percent-text {
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 1;
 }
 
-.metric-values {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
+.occupancy-color-card.green .occupancy-percent-text { color: #1B6B4D; }
+.occupancy-color-card.pink .occupancy-percent-text { color: #8C4A5E; }
+.occupancy-color-card.yellow .occupancy-percent-text { color: #6B6020; }
+
+/* Bottom stats row */
+.occupancy-stats-row {
+    display: flex;
+    gap: 8px;
 }
 
-.metric-value {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+.occupancy-stat-box {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    padding: 10px 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
 }
 
-.value-number {
-  font-size: 24px;
-  font-weight: 700;
-  color: #ffffff;
+.occupancy-stat-number {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.1;
 }
 
-.value-label {
-  font-size: 11px;
-  color: rgba(255, 255, 255, 0.7);
-  font-weight: 500;
+.occupancy-color-card.green .occupancy-stat-number { color: #1B6B4D; }
+.occupancy-color-card.pink .occupancy-stat-number { color: #8C4A5E; }
+.occupancy-color-card.yellow .occupancy-stat-number { color: #6B6020; }
+
+.occupancy-stat-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-align: center;
 }
 
-@media (max-width: 1024px) {
-  .occupancy-metrics {
-    grid-template-columns: 1fr;
-  }
+.occupancy-color-card.green .occupancy-stat-label { color: #1B6B4D; }
+.occupancy-color-card.pink .occupancy-stat-label { color: #8C4A5E; }
+.occupancy-color-card.yellow .occupancy-stat-label { color: #6B6020; }
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .occupancy-color-card {
+        padding: 16px 12px 12px;
+        max-height: 200px;
+    }
+    
+    .occupancy-percent-text {
+        font-size: 36px;
+    }
+    
+    .occupancy-stat-number {
+        font-size: 20px;
+    }
+    
+    .occupancy-stat-label {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 900px) {
+    .occupancy-cards-row {
+        gap: 12px;
+    }
+    
+    .occupancy-color-card {
+        padding: 14px 10px 10px;
+        max-height: 180px;
+    }
+    
+    .occupancy-percent-text {
+        font-size: 32px;
+    }
+    
+    .occupancy-stat-number {
+        font-size: 18px;
+    }
+    
+    .occupancy-stat-box {
+        padding: 8px 6px;
+    }
+}
+
+@media (max-width: 500px) {
+    .occupancy-cards-row {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .occupancy-color-card {
+        aspect-ratio: auto;
+        max-height: none;
+        flex-direction: row;
+        align-items: center;
+        padding: 16px;
+    }
+    
+    .occupancy-percent-area {
+        flex: 0 0 auto;
+        flex-direction: row;
+        gap: 8px;
+        margin-right: 16px;
+    }
+    
+    .occupancy-trend-arrow {
+        margin-bottom: 0;
+    }
+    
+    .occupancy-stats-row {
+        flex: 1;
+    }
 }
