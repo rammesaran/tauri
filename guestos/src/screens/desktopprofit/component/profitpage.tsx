@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
 import './profitpage.css';
-import ProfitDashboard from '../profitdashboard';
-import { ProfitTarget, ProfitTips, UnitEconomics } from './profitcomponent';
 import { ApprovedList, PurchaseApprovals } from './appaprovalcomponent';
+import { ProfitSectionRow } from '../profitdashboard';
 
 
 interface ProfitPageData {
@@ -133,12 +132,7 @@ function ProfitPage({ userName = "Glenn" }: ProfitPageProps) {
 
             {/* Top Row - Dashboard, Economics, Tips */}
             <div className="profit-top-grid">
-                <ProfitDashboard {...profitData.profitDashboard} />
-                <UnitEconomics {...profitData.unitEconomics} />
-                <div className="profit-right-column">
-                    <ProfitTips {...profitData.profitTips} />
-                    <ProfitTarget {...profitData.profitTarget} />
-                </div>
+                <ProfitSectionRow />
             </div>
 
             {/* Bottom Row - Approvals and Approved */}
