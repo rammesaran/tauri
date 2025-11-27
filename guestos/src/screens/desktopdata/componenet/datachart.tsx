@@ -79,7 +79,7 @@ export const OverviewAreaChart: React.FC<OverviewChartProps> = ({
         return categoryOrder[index] || "";
     };
 
-    const handleMouseEnter = (index: number, event: React.MouseEvent) => {
+    const handleMouseEnter = (index: number) => {
         const categoryName = selectedCategory === "All Category"
             ? getCategoryFromIndex(index)
             : selectedCategory;
@@ -156,7 +156,7 @@ export const OverviewAreaChart: React.FC<OverviewChartProps> = ({
                                 fill={data.color}
                                 opacity={hoveredCategory && getCategoryFromIndex(index) !== hoveredCategory ? 0.5 : 0.9}
                                 style={{ cursor: 'pointer', transition: 'opacity 0.2s ease' }}
-                                onMouseEnter={(e) => handleMouseEnter(index, e)}
+                                onMouseEnter={() => handleMouseEnter(index,)}
                                 onMouseMove={handleMouseMove}
                                 onMouseLeave={handleMouseLeave}
                             />

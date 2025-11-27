@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import './datapage.css';
 
-import { ChartsRow, OverviewAreaChart, RevPARChart } from './componenet/datachart';
-import { BottomSectionRow, PredictiveInsights, RecentTransactions, SalesReport } from './componenet/bottomsection';
+
 import DashboardMetricsRow from './componenet/dashboardmetric';
+import { ChartsRow } from './componenet/datachart';
+import { BottomSectionRow } from './componenet/bottomsection';
 
 
 interface DataPageData {
