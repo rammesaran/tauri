@@ -58,8 +58,50 @@ export const OverviewAreaChart: React.FC<OverviewChartProps> = ({
     onViewAll
 }) => {
     const [selectedCategory, setSelectedCategory] = useState("All Category");
+    const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
+    const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
+    const [showTooltip, setShowTooltip] = useState(false);
+
+    // Percentage data for each category
+    const categoryPercentages: Record<string, number> = {
+        "Tours & Travels": 15,
+        "Hotel": 12,
+        "Restaurants": 18,
+        "SPA": 22,
+        "Others": 8,
+    };
 
     const chartData = categoryChartData[selectedCategory] || categoryChartData["All Category"];
+
+    // Get category name from index (for "All Category" view)
+    const getCategoryFromIndex = (index: number): string => {
+        const categoryOrder = ["Tours & Travels", "Hotel", "Restaurants", "SPA", "Others"];
+        return categoryOrder[index] || "";
+    };
+
+    const handleMouseEnter = (index: number, event: React.MouseEvent) => {
+        const categoryName = selectedCategory === "All Category"
+            ? getCategoryFromIndex(index)
+            : selectedCategory;
+        setHoveredCategory(categoryName);
+        setShowTooltip(true);
+    };
+
+    const handleMouseMove = (event: React.MouseEvent<SVGPathElement>) => {
+        const svg = event.currentTarget.closest('svg');
+        if (svg) {
+            const rect = svg.getBoundingClientRect();
+            setTooltipPosition({
+                x: event.clientX - rect.left,
+                y: event.clientY - rect.top - 40
+            });
+        }
+    };
+
+    const handleMouseLeave = () => {
+        setHoveredCategory(null);
+        setShowTooltip(false);
+    };
 
     return (
         <div className="overview-chart-card">
@@ -112,19 +154,42 @@ export const OverviewAreaChart: React.FC<OverviewChartProps> = ({
                                 key={index}
                                 d={data.path}
                                 fill={data.color}
-                                opacity="0.9"
+                                opacity={hoveredCategory && getCategoryFromIndex(index) !== hoveredCategory ? 0.5 : 0.9}
+                                style={{ cursor: 'pointer', transition: 'opacity 0.2s ease' }}
+                                onMouseEnter={(e) => handleMouseEnter(index, e)}
+                                onMouseMove={handleMouseMove}
+                                onMouseLeave={handleMouseLeave}
                             />
                         ))}
 
-                        {/* Annotation */}
-                        <g transform="translate(280, 180)">
-                            <rect x="-45" y="-18" width="90" height="28" fill="white" rx="6" />
-                            <text x="0" y="4" textAnchor="middle" fill="#333" fontSize="13" fontWeight="600">
-                                Up by 15%
-                            </text>
-                        </g>
-                        {/* Dotted line from annotation */}
-                        <line x1="280" y1="190" x2="280" y2="280" stroke="white" strokeWidth="2" strokeDasharray="4,4" />
+                        {/* Dynamic Tooltip */}
+                        {showTooltip && hoveredCategory && (
+                            <g transform={`translate(${tooltipPosition.x}, ${tooltipPosition.y})`}>
+                                <rect
+                                    x="-50"
+                                    y="-14"
+                                    width="100"
+                                    height="32"
+                                    fill="white"
+                                    rx="6"
+                                    filter="drop-shadow(0 2px 4px rgba(0,0,0,0.2))"
+                                />
+                                <polygon
+                                    points="-8,18 8,18 0,26"
+                                    fill="white"
+                                />
+                                <text
+                                    x="0"
+                                    y="6"
+                                    textAnchor="middle"
+                                    fill="#333"
+                                    fontSize="13"
+                                    fontWeight="600"
+                                >
+                                    Up by {categoryPercentages[hoveredCategory] || 15}%
+                                </text>
+                            </g>
+                        )}
                     </svg>
 
                     {/* X-axis labels */}
@@ -139,7 +204,13 @@ export const OverviewAreaChart: React.FC<OverviewChartProps> = ({
             {/* Legend in single row */}
             <div className="chart-legend">
                 {categories.map((cat, i) => (
-                    <div key={i} className="legend-item">
+                    <div
+                        key={i}
+                        className={`legend-item ${hoveredCategory === cat.name ? 'active' : ''}`}
+                        onMouseEnter={() => setHoveredCategory(cat.name)}
+                        onMouseLeave={() => setHoveredCategory(null)}
+                        style={{ cursor: 'pointer' }}
+                    >
                         <span className="legend-dot" style={{ backgroundColor: cat.color }} />
                         <span className="legend-label">{cat.name}</span>
                     </div>

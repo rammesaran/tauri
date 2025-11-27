@@ -162,6 +162,18 @@
     white-space: nowrap;
 }
 
+.legend-item.active {
+    opacity: 1;
+}
+
+.legend-item:hover .legend-dot {
+    transform: scale(1.2);
+}
+
+.legend-item .legend-dot {
+    transition: transform 0.2s ease;
+}
+
 /* RevPAR Chart */
 .revpar-chart-card {
     background: rgba(70, 130, 170, 0.25);
