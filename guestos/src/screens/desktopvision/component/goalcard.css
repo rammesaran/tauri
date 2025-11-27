@@ -1,171 +1,268 @@
+/* Goals Card - Dynamic Colors */
 .goals-card {
-  background: rgba(70, 130, 170, 0.3);
-  border-radius: 16px;
-  padding: 32px;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  min-height: 480px;
-  display: flex;
-  flex-direction: column;
+    background: rgba(70, 130, 170, 0.25);
+    border-radius: 20px;
+    padding: 28px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 380px;
 }
 
+/* Header */
 .goals-card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 12px;
 }
 
 .goals-card-title {
-  font-size: 24px;
-  font-weight: 700;
-  color: #ffffff;
-  margin: 0;
-  letter-spacing: 1px;
+    font-size: 22px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+    letter-spacing: 0.5px;
 }
 
 .goals-quarters {
-  display: flex;
-  gap: 12px;
-  align-items: center;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .quarter-btn {
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: rgba(255, 255, 255, 0.7);
-  padding: 8px 20px;
-  border-radius: 20px;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 500;
-  transition: all 0.3s ease;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: rgba(255, 255, 255, 0.7);
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    white-space: nowrap;
 }
 
 .quarter-btn:hover {
-  border-color: rgba(255, 255, 255, 0.5);
-  color: rgba(255, 255, 255, 0.9);
+    border-color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.9);
 }
 
 .quarter-btn.active {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.4);
-  color: #ffffff;
-  font-weight: 600;
+    background: rgba(20, 35, 55, 0.9);
+    border-color: rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    font-weight: 600;
 }
 
 .download-btn {
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: rgba(255, 255, 255, 0.7);
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: rgba(255, 255, 255, 0.6);
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
 }
 
 .download-btn:hover {
-  border-color: rgba(255, 255, 255, 0.5);
-  color: rgba(255, 255, 255, 0.9);
-  background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.05);
 }
 
+/* Description */
 .goals-description {
-  font-size: 15px;
-  line-height: 1.7;
-  color: rgba(255, 255, 255, 0.9);
-  margin: 0 0 40px 0;
-  font-weight: 400;
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.85);
+    margin: 0 0 28px 0;
+    font-weight: 400;
 }
 
-.goals-progress {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 20px 0;
+/* Progress Section */
+.goals-progress-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
 }
 
-.progress-timeline {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 16px;
-  padding: 0 10px;
+/* Labels Row */
+.progress-labels-row {
+    display: flex;
+    position: relative;
+    width: 100%;
 }
 
-.progress-timeline-bottom {
-  margin-bottom: 0;
-  margin-top: 16px;
-  justify-content: flex-end;
-  padding-right: calc(40% + 10px);
+.progress-labels-row.top {
+    justify-content: space-between;
+    margin-bottom: 0;
+    padding: 0 10px;
 }
 
-.progress-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  flex: 1;
+.progress-labels-row.bottom {
+    justify-content: space-around;
+    margin-top: 0;
+    padding: 0 50px;
 }
 
-.progress-timeline-bottom .progress-item {
-  flex: 0 0 auto;
-  margin-left: 40px;
+/* Label Slots */
+.label-slot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.progress-year-label {
-  font-size: 13px;
-  color: rgba(255, 255, 255, 0.8);
-  font-weight: 500;
-  white-space: nowrap;
+.label-slot.start {
+    align-items: flex-start;
 }
 
-.progress-percentage {
-  font-weight: 700;
-  color: #ffffff;
+.label-slot.center {
+    align-items: center;
 }
 
-.progress-connector {
-  height: 1px;
-  background: rgba(255, 255, 255, 0.2);
-  position: absolute;
-  width: 100%;
-  top: 50%;
-  left: 50%;
+.label-slot.end {
+    align-items: flex-end;
 }
 
-.progress-bar-container {
-  padding: 0 10px;
+.label-slot.between-1 {
+    margin-left: 10%;
 }
 
-.progress-bar {
-  width: 100%;
-  height: 40px;
-  border-radius: 20px;
-  display: flex;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+.label-slot.between-2 {
+    margin-right: 10%;
+}
+
+/* Label Content */
+.label-content {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.year-text {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.75);
+    font-weight: 500;
+}
+
+.dash-text {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+}
+
+.percent-text {
+    font-size: 14px;
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+
+/* Connector Lines */
+.connector-line {
+    width: 1px;
+    height: 24px;
+    background: rgba(255, 255, 255, 0.35);
+}
+
+.progress-labels-row.top .connector-line {
+    margin-top: 8px;
+}
+
+.progress-labels-row.bottom .connector-line {
+    margin-bottom: 8px;
+}
+
+/* Progress Bar */
+.progress-bar-outer {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 30px;
+    padding: 5px;
+    box-shadow: 
+        0 4px 20px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.progress-bar-inner {
+    display: flex;
+    height: 42px;
+    border-radius: 25px;
+    overflow: hidden;
 }
 
 .progress-segment {
-  height: 100%;
-  transition: all 0.3s ease;
-}
-
-.progress-segment:first-child {
-  border-radius: 20px 0 0 20px;
-}
-
-.progress-segment:last-child {
-  border-radius: 0 20px 20px 0;
+    flex: 1;
+    height: 100%;
+    transition: background 0.4s ease, filter 0.2s ease;
 }
 
 .progress-segment:hover {
-  filter: brightness(1.1);
-  transform: scaleY(1.05);
+    filter: brightness(1.15);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .goals-card {
+        padding: 20px;
+        min-height: 340px;
+    }
+
+    .goals-card-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .goals-quarters {
+        width: 100%;
+    }
+
+    .quarter-btn {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+
+    .year-text,
+    .percent-text,
+    .dash-text {
+        font-size: 11px;
+    }
+
+    .progress-bar-inner {
+        height: 32px;
+    }
+
+    .connector-line {
+        height: 18px;
+    }
+
+    .progress-labels-row.bottom {
+        padding: 0 30px;
+    }
+}
+
+@media (max-width: 400px) {
+    .year-text,
+    .percent-text,
+    .dash-text {
+        font-size: 10px;
+    }
+
+    .progress-labels-row.top {
+        padding: 0 5px;
+    }
+
+    .progress-labels-row.bottom {
+        padding: 0 20px;
+    }
 }
