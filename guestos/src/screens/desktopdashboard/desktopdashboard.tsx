@@ -30,56 +30,85 @@ function DesktopDashboard({ }: DesktopDashboardProps) {
         fires: { value: 200, change: -7.45, label: "From last quarter" }
     };
 
+    // Add this to your DesktopDashboard.tsx - Updated meetings mock data
+
     const meetings = [
         {
             id: 1,
             title: "Weekly 1-on-1",
             type: "Team strategy",
-            date: "Tue 09.08",
+            date: "Tue 02.09",
             time: "1:23 pm",
-            duration: "1 hour",
+            duration: "11:19 am",
             status: "scheduled",
-            avatar: "https://ui-avatars.com/api/?name=John+Doe&background=4A90E2&color=fff"
+            avatar: "https://ui-avatars.com/api/?name=John+Doe&background=4A90E2&color=fff",
+            role: "Lead"
         },
         {
             id: 2,
             title: "Weekly Team...",
             type: "Leadership meeting",
-            date: "Tue 09.08",
+            date: "Tue 02.09",
             time: "1:23 pm",
-            duration: "1:11 am",
+            duration: "11:19 am",
             status: "scheduled",
-            avatar: "https://ui-avatars.com/api/?name=Jane+Smith&background=7B68EE&color=fff"
+            avatar: "https://ui-avatars.com/api/?name=Jane+Smith&background=7B68EE&color=fff",
+            role: "Lead"
         },
         {
             id: 3,
             title: "Vision Session",
             type: "First Customer Call",
-            date: "Tue 09.08",
+            date: "Tue 02.09",
             time: "1:23 pm",
-            duration: "1:11 am",
+            duration: "11:19 am",
             status: "scheduled",
-            avatar: "https://ui-avatars.com/api/?name=Mike+Johnson&background=FF6B6B&color=fff"
+            avatar: "https://ui-avatars.com/api/?name=Sarah+Chen&background=FF6B6B&color=fff",
+            role: "Lead"
         },
         {
             id: 4,
             title: "Weekly Team...",
             type: "Leadership meeting",
-            date: "Tue 09.09",
+            date: "Tue 02.09",
             time: "1:23 pm",
-            duration: "1:11 am",
+            duration: "11:19 am",
             status: "scheduled",
-            avatar: "https://ui-avatars.com/api/?name=Sarah+Wilson&background=4ECDC4&color=fff"
+            avatar: "https://ui-avatars.com/api/?name=Mike+Brown&background=4ECDC4&color=fff",
+            role: "Lead"
         },
         {
             id: 5,
+            title: "Foundation Day",
+            type: "Leadership meeting",
+            date: "Tue 02.09",
+            time: "1:23 pm",
+            duration: "11:19 am",
+            status: "scheduled",
+            avatar: "https://ui-avatars.com/api/?name=Emily+Davis&background=FFD93D&color=000",
+            role: "Lead"
+        },
+        {
+            id: 6,
             title: "Weekly 1-on-1",
             type: "Leadership meeting",
-            date: "Tue 09.09",
+            date: "Tue 02.09",
             time: "1:23 pm",
-            duration: "1:11 am",
+            duration: "11:19 am",
             status: "scheduled",
-            avatar: "https://ui-avatars.com/api/?name=Tom+Brown&background=FFD93D&color=000"
+            avatar: "https://ui-avatars.com/api/?name=Alex+Wilson&background=9B59B6&color=fff",
+            role: "Lead"
+        },
+        {
+            id: 7,
+            title: "Weekly Team...",
+            type: "Leadership meeting",
+            date: "Tue 02.09",
+            time: "1:23 pm",
+            duration: "11:19 am",
+            status: "scheduled",
+            avatar: "https://ui-avatars.com/api/?name=Tom+Anderson&background=E74C3C&color=fff",
+            role: "Lead"
         }
     ];
 
