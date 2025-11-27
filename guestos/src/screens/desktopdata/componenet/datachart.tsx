@@ -1,35 +1,72 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './datachart.css';
 
 // Overview Area Chart
 interface OverviewCategory {
     name: string;
     color: string;
-    value: number;
 }
 
 interface OverviewChartProps {
-    title: string;
-    categories: OverviewCategory[];
-    onCategoryChange?: (category: string) => void;
+    title?: string;
+    categories?: OverviewCategory[];
     onDownload?: () => void;
     onViewAll?: () => void;
 }
 
+// Chart data for each category
+const categoryChartData: Record<string, { path: string; color: string }[]> = {
+    "All Category": [
+        { path: "M 0,260 C 80,255 160,250 240,240 C 320,230 400,220 480,200 C 560,180 640,160 720,140 L 800,120 L 800,280 L 0,280 Z", color: "#5BC0EB" },
+        { path: "M 0,250 C 80,242 160,235 240,220 C 320,205 400,185 480,160 C 560,135 640,110 720,90 L 800,70 L 800,280 L 0,280 Z", color: "#7ED957" },
+        { path: "M 0,240 C 80,230 160,218 240,200 C 320,180 400,155 480,130 C 560,105 640,85 720,68 L 800,55 L 800,280 L 0,280 Z", color: "#C6E94B" },
+        { path: "M 0,235 C 80,225 160,210 240,190 C 320,168 400,142 480,115 C 560,90 640,70 720,55 L 800,42 L 800,280 L 0,280 Z", color: "#FFA500" },
+        { path: "M 0,232 C 80,222 160,205 240,185 C 320,162 400,135 480,108 C 560,82 640,62 720,48 L 800,35 L 800,280 L 0,280 Z", color: "#FF6B9D" },
+    ],
+    "Tours & Travels": [
+        { path: "M 0,250 C 80,245 160,235 240,220 C 320,200 400,175 480,150 C 560,125 640,100 720,80 L 800,60 L 800,280 L 0,280 Z", color: "#FF6B9D" },
+    ],
+    "Hotel": [
+        { path: "M 0,255 C 80,248 160,240 240,225 C 320,208 400,188 480,165 C 560,142 640,120 720,100 L 800,85 L 800,280 L 0,280 Z", color: "#FFA500" },
+    ],
+    "Restaurants": [
+        { path: "M 0,260 C 80,252 160,242 240,228 C 320,212 400,192 480,170 C 560,148 640,128 720,110 L 800,95 L 800,280 L 0,280 Z", color: "#C6E94B" },
+    ],
+    "SPA": [
+        { path: "M 0,258 C 80,250 160,238 240,222 C 320,205 400,182 480,158 C 560,135 640,115 720,98 L 800,82 L 800,280 L 0,280 Z", color: "#7ED957" },
+    ],
+    "Others": [
+        { path: "M 0,262 C 80,255 160,245 240,232 C 320,218 400,200 480,180 C 560,160 640,142 720,125 L 800,110 L 800,280 L 0,280 Z", color: "#5BC0EB" },
+    ],
+};
+
 export const OverviewAreaChart: React.FC<OverviewChartProps> = ({
-    title,
-    categories,
-    onCategoryChange,
+    title = "Overview",
+    categories = [
+        { name: "Tours & Travels", color: "#FF6B9D" },
+        { name: "Hotel", color: "#FFA500" },
+        { name: "Restaurants", color: "#C6E94B" },
+        { name: "SPA", color: "#7ED957" },
+        { name: "Others", color: "#5BC0EB" }
+    ],
     onDownload,
     onViewAll
 }) => {
+    const [selectedCategory, setSelectedCategory] = useState("All Category");
+
+    const chartData = categoryChartData[selectedCategory] || categoryChartData["All Category"];
+
     return (
         <div className="overview-chart-card">
             <div className="overview-header">
                 <h3 className="overview-title">{title}</h3>
                 <div className="overview-actions">
-                    <select className="category-select" onChange={(e) => onCategoryChange?.(e.target.value)}>
-                        <option>All Category</option>
+                    <select
+                        className="category-select"
+                        value={selectedCategory}
+                        onChange={(e) => setSelectedCategory(e.target.value)}
+                    >
+                        <option value="All Category">All Category</option>
                         {categories.map((cat, i) => (
                             <option key={i} value={cat.name}>{cat.name}</option>
                         ))}
@@ -40,63 +77,61 @@ export const OverviewAreaChart: React.FC<OverviewChartProps> = ({
             </div>
 
             <div className="chart-area">
-                <svg className="area-chart-svg" viewBox="0 0 700 300" preserveAspectRatio="none">
-                    {/* Grid lines */}
-                    {[0, 5, 10, 15, 20].map((val) => (
-                        <line
-                            key={val}
-                            x1="0"
-                            y1={300 - (val * 15)}
-                            x2="700"
-                            y2={300 - (val * 15)}
-                            stroke="rgba(255,255,255,0.1)"
-                            strokeWidth="1"
-                        />
-                    ))}
+                {/* Y-axis labels */}
+                <div className="y-axis-labels">
+                    <span>20</span>
+                    <span>15</span>
+                    <span>10</span>
+                    <span>5</span>
+                    <span>0</span>
+                </div>
 
-                    {/* Stacked areas */}
-                    {/* Tours & Travels - Pink */}
-                    <path
-                        d="M 0,250 L 70,240 L 140,220 L 210,200 L 280,180 L 350,160 L 420,140 L 490,130 L 560,120 L 630,110 L 700,100 L 700,300 L 0,300 Z"
-                        fill="#FF6B9D"
-                        opacity="0.8"
-                    />
-                    {/* Hotel - Orange */}
-                    <path
-                        d="M 0,230 L 70,220 L 140,200 L 210,180 L 280,165 L 350,150 L 420,135 L 490,125 L 560,118 L 630,112 L 700,108 L 700,300 L 0,300 Z"
-                        fill="#FFA500"
-                        opacity="0.7"
-                    />
-                    {/* Restaurants - Yellow */}
-                    <path
-                        d="M 0,210 L 70,200 L 140,185 L 210,170 L 280,155 L 350,142 L 420,130 L 490,122 L 560,116 L 630,112 L 700,110 L 700,300 L 0,300 Z"
-                        fill="#FFD700"
-                        opacity="0.7"
-                    />
-                    {/* SPA - Green */}
-                    <path
-                        d="M 0,195 L 70,188 L 140,178 L 210,168 L 280,158 L 350,148 L 420,138 L 490,132 L 560,128 L 630,124 L 700,120 L 700,300 L 0,300 Z"
-                        fill="#90EE90"
-                        opacity="0.6"
-                    />
-                    {/* Others - Light Blue */}
-                    <path
-                        d="M 0,185 L 70,182 L 140,176 L 210,170 L 280,164 L 350,158 L 420,152 L 490,148 L 560,144 L 630,140 L 700,136 L 700,300 L 0,300 Z"
-                        fill="#87CEEB"
-                        opacity="0.5"
-                    />
+                <div className="chart-svg-container">
+                    <svg className="area-chart-svg" viewBox="0 0 800 280" preserveAspectRatio="none">
+                        {/* Grid lines */}
+                        {[0, 1, 2, 3, 4].map((i) => (
+                            <line
+                                key={i}
+                                x1="0"
+                                y1={i * 70}
+                                x2="800"
+                                y2={i * 70}
+                                stroke="rgba(255,255,255,0.1)"
+                                strokeWidth="1"
+                            />
+                        ))}
 
-                    {/* Annotation */}
-                    <g transform="translate(140, 160)">
-                        <rect x="-35" y="-20" width="70" height="25" fill="white" rx="4" />
-                        <text x="0" y="0" textAnchor="middle" fill="#333" fontSize="12" fontWeight="600">
-                            Up by 15%
-                        </text>
-                        <line x1="0" y1="5" x2="0" y2="40" stroke="white" strokeWidth="2" strokeDasharray="4,4" />
-                    </g>
-                </svg>
+                        {/* Dynamic chart areas based on selection */}
+                        {chartData.map((data, index) => (
+                            <path
+                                key={index}
+                                d={data.path}
+                                fill={data.color}
+                                opacity="0.9"
+                            />
+                        ))}
+
+                        {/* Annotation */}
+                        <g transform="translate(280, 180)">
+                            <rect x="-45" y="-18" width="90" height="28" fill="white" rx="6" />
+                            <text x="0" y="4" textAnchor="middle" fill="#333" fontSize="13" fontWeight="600">
+                                Up by 15%
+                            </text>
+                        </g>
+                        {/* Dotted line from annotation */}
+                        <line x1="280" y1="190" x2="280" y2="280" stroke="white" strokeWidth="2" strokeDasharray="4,4" />
+                    </svg>
+
+                    {/* X-axis labels */}
+                    <div className="x-axis-labels">
+                        {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((num) => (
+                            <span key={num}>{num}</span>
+                        ))}
+                    </div>
+                </div>
             </div>
 
+            {/* Legend in single row */}
             <div className="chart-legend">
                 {categories.map((cat, i) => (
                     <div key={i} className="legend-item">
@@ -117,84 +152,125 @@ interface RevPARData {
 }
 
 interface RevPARChartProps {
-    title: string;
-    dateRange: string;
-    amount: number;
-    change: string;
-    data: RevPARData[];
+    title?: string;
+    dateRange?: string;
+    amount?: number;
+    change?: string;
+    data?: RevPARData[];
 }
 
 export const RevPARChart: React.FC<RevPARChartProps> = ({
-    title,
-    dateRange,
-    amount,
-    change,
-    data
+    title = "Rev/PAR",
+    dateRange = "Sep 29th - Oct 3rd",
+    amount = 490,
+    change = "Revenue up by 15%",
+    data = [
+        { category: "Tours & Travels", income: 64, expense: 53 },
+        { category: "Hotel", income: 57, expense: 10 },
+        { category: "Restaurants", income: 98, expense: 82 },
+        { category: "SPA", income: 100, expense: 83 },
+        { category: "Others", income: 36, expense: 15 }
+    ]
 }) => {
     const maxValue = 100;
 
     return (
         <div className="revpar-chart-card">
             <div className="revpar-header">
-                <div>
-                    <h3 className="revpar-title">{title}</h3>
-                    <div className="revpar-date">{dateRange}</div>
+                <h3 className="revpar-title">{title}</h3>
+                <div className="revpar-date-section">
+                    <span className="revpar-date">{dateRange}</span>
+                    <button className="btn-icon-calendar">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                            <line x1="16" y1="2" x2="16" y2="6" />
+                            <line x1="8" y1="2" x2="8" y2="6" />
+                            <line x1="3" y1="10" x2="21" y2="10" />
+                        </svg>
+                    </button>
                 </div>
-                <button className="btn-icon-calendar">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                        <line x1="16" y1="2" x2="16" y2="6" />
-                        <line x1="8" y1="2" x2="8" y2="6" />
-                        <line x1="3" y1="10" x2="21" y2="10" />
+            </div>
+
+            <div className="revpar-amount-row">
+                <div className="revpar-amount">
+                    <span className="amount-symbol">$</span>
+                    <span className="amount-value">{amount}</span>
+                    <span className="amount-cents">.00</span>
+                </div>
+                <div className="revpar-change">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4CAF50" strokeWidth="2">
+                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+                        <polyline points="17 6 23 6 23 12" />
                     </svg>
-                </button>
+                    <span>{change}</span>
+                </div>
             </div>
 
-            <div className="revpar-amount">
-                <span className="amount-symbol">$</span>
-                <span className="amount-value">{amount}</span>
-                <span className="amount-cents">.00</span>
-            </div>
+            <div className="revpar-chart-area">
+                {/* Y-axis */}
+                <div className="revpar-y-axis">
+                    <span>100</span>
+                    <span>80</span>
+                    <span>60</span>
+                    <span>40</span>
+                    <span>20</span>
+                    <span>0</span>
+                </div>
 
-            <div className="revpar-change">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4CAF50" strokeWidth="2">
-                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
-                    <polyline points="17 6 23 6 23 12" />
-                </svg>
-                <span>{change}</span>
-            </div>
-
-            <div className="revpar-bars">
-                {data.map((item, index) => (
-                    <div key={index} className="bar-group">
-                        <div className="bar-container">
-                            <div
-                                className="bar bar-income"
-                                style={{ height: `${(item.income / maxValue) * 100}%` }}
-                            >
-                                <span className="bar-value">{item.income}</span>
+                <div className="revpar-bars">
+                    {data.map((item, index) => (
+                        <div key={index} className="bar-group">
+                            <div className="bar-container">
+                                {/* Income bar with background */}
+                                <div className="bar-wrapper">
+                                    <div className="bar-background"></div>
+                                    <div
+                                        className="bar bar-income"
+                                        style={{ height: `${(item.income / maxValue) * 100}%` }}
+                                    >
+                                        <span className="bar-value">{item.income}</span>
+                                    </div>
+                                </div>
+                                {/* Expense bar with background */}
+                                <div className="bar-wrapper">
+                                    <div className="bar-background"></div>
+                                    <div
+                                        className="bar bar-expense"
+                                        style={{ height: `${(item.expense / maxValue) * 100}%` }}
+                                    >
+                                        <span className="bar-value">{item.expense}</span>
+                                    </div>
+                                </div>
                             </div>
-                            <div
-                                className="bar bar-expense"
-                                style={{ height: `${(item.expense / maxValue) * 100}%` }}
-                            >
-                                <span className="bar-value">{item.expense}</span>
-                            </div>
+                            <div className="bar-label">{item.category}</div>
                         </div>
-                        <div className="bar-label">{item.category}</div>
-                    </div>
-                ))}
+                    ))}
+                </div>
             </div>
 
             <div className="revpar-legend">
                 <div className="legend-item">
-                    <span className="legend-dot" style={{ backgroundColor: '#90EE90' }} />
+                    <span className="legend-dot income-dot" />
                     <span>Income</span>
                 </div>
                 <div className="legend-item">
-                    <span className="legend-dot" style={{ backgroundColor: '#FFA500' }} />
+                    <span className="legend-dot expense-dot" />
                     <span>Expense</span>
                 </div>
+            </div>
+        </div>
+    );
+};
+
+// Combined Row Component
+export const ChartsRow: React.FC = () => {
+    return (
+        <div className="charts-row">
+            <div className="chart-wrapper overview-wrapper">
+                <OverviewAreaChart />
+            </div>
+            <div className="chart-wrapper revpar-wrapper">
+                <RevPARChart />
             </div>
         </div>
     );

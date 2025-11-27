@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import './datapage.css';
 
-import { OverviewAreaChart, RevPARChart } from './componenet/datachart';
+import { ChartsRow, OverviewAreaChart, RevPARChart } from './componenet/datachart';
 import { PredictiveInsights, RecentTransactions, SalesReport } from './componenet/bottomsection';
 import DashboardMetricsRow from './componenet/dashboardmetric';
 
@@ -156,8 +156,7 @@ function DataPage({ userName = "Glenn" }: DataPageProps) {
 
             {/* Middle Row - Overview and RevPAR */}
             <div className="data-middle-grid">
-                <OverviewAreaChart {...dataPageData.overview} />
-                <RevPARChart {...dataPageData.revPar} />
+                <ChartsRow />
             </div>
 
             {/* Bottom Row - Transactions, Sales, Insights */}
