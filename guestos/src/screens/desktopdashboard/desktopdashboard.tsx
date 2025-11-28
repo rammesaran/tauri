@@ -41,7 +41,7 @@ function DesktopDashboard({ }: DesktopDashboardProps) {
             time: "1:23 pm",
             duration: "11:19 am",
             status: "scheduled",
-            avatar: "https://ui-avatars.com/api/?name=John+Doe&background=4A90E2&color=fff",
+            avatar: "images/jack.jpg",
             role: "Lead"
         },
         {
@@ -52,7 +52,7 @@ function DesktopDashboard({ }: DesktopDashboardProps) {
             time: "1:23 pm",
             duration: "11:19 am",
             status: "scheduled",
-            avatar: "https://ui-avatars.com/api/?name=Jane+Smith&background=7B68EE&color=fff",
+            avatar: "images/cat.jpg",
             role: "Lead"
         },
         {
@@ -63,7 +63,7 @@ function DesktopDashboard({ }: DesktopDashboardProps) {
             time: "1:23 pm",
             duration: "11:19 am",
             status: "scheduled",
-            avatar: "https://ui-avatars.com/api/?name=Sarah+Chen&background=FF6B6B&color=fff",
+            avatar: "images/andy.jpg",
             role: "Lead"
         },
         {
@@ -74,7 +74,7 @@ function DesktopDashboard({ }: DesktopDashboardProps) {
             time: "1:23 pm",
             duration: "11:19 am",
             status: "scheduled",
-            avatar: "https://ui-avatars.com/api/?name=Mike+Brown&background=4ECDC4&color=fff",
+            avatar: "images/helan.jpg",
             role: "Lead"
         },
         {
@@ -85,7 +85,7 @@ function DesktopDashboard({ }: DesktopDashboardProps) {
             time: "1:23 pm",
             duration: "11:19 am",
             status: "scheduled",
-            avatar: "https://ui-avatars.com/api/?name=Emily+Davis&background=FFD93D&color=000",
+            avatar: "images/jack.jpg",
             role: "Lead"
         },
         {
@@ -96,7 +96,7 @@ function DesktopDashboard({ }: DesktopDashboardProps) {
             time: "1:23 pm",
             duration: "11:19 am",
             status: "scheduled",
-            avatar: "https://ui-avatars.com/api/?name=Alex+Wilson&background=9B59B6&color=fff",
+            avatar: "images/rose.jpg",
             role: "Lead"
         },
         {
@@ -107,7 +107,7 @@ function DesktopDashboard({ }: DesktopDashboardProps) {
             time: "1:23 pm",
             duration: "11:19 am",
             status: "scheduled",
-            avatar: "https://ui-avatars.com/api/?name=Tom+Anderson&background=E74C3C&color=fff",
+            avatar: "images/sam.jpg",
             role: "Lead"
         }
     ];

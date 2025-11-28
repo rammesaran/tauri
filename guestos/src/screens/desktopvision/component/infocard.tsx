@@ -5,10 +5,23 @@ interface InfoCardProps {
     title: string;
     description: string;
     icon: 'vision' | 'mission' | 'core-values';
+    gifUrl?: string;
 }
 
-const InfoCard: React.FC<InfoCardProps> = ({ title, description, icon }) => {
+const InfoCard: React.FC<InfoCardProps> = ({ title, description, icon, gifUrl }) => {
     const renderIcon = () => {
+        // If gifUrl is provided, render the GIF image
+        if (gifUrl) {
+            return (
+                <img
+                    src={gifUrl}
+                    alt={title}
+                    className="info-card-gif"
+                />
+            );
+        }
+
+        // Fallback to SVG icons if no gifUrl
         switch (icon) {
             case 'vision':
                 return (

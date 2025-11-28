@@ -1,212 +1,390 @@
+/* Organization Chart Card Container */
 .organization-chart-card {
-  background: rgba(70, 130, 170, 0.3);
-  border-radius: 16px;
-  padding: 32px;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  overflow-x: auto;
+    background: linear-gradient(145deg, rgba(74, 141, 183, 0.4) 0%, rgba(58, 124, 165, 0.5) 50%, rgba(45, 106, 143, 0.6) 100%);
+    border-radius: 20px;
+    padding: 32px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow-x: auto;
+    position: relative;
 }
 
+/* Header */
 .org-chart-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
 }
 
 .org-chart-title {
-  font-size: 24px;
-  font-weight: 700;
-  color: #ffffff;
-  margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
 }
 
 .btn-view-full-chart {
-  background: rgba(139, 92, 64, 0.8);
-  color: #ffffff;
-  padding: 10px 20px;
-  border-radius: 8px;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  border: 1px solid rgba(139, 92, 64, 0.4);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  transition: all 0.2s ease;
+    background: rgba(0, 77, 77, 0.85);
+    color: #ffffff;
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
 }
 
 .btn-view-full-chart:hover {
-  background: rgba(139, 92, 64, 1);
-  border-color: rgba(139, 92, 64, 0.6);
+    background: rgba(0, 77, 77, 1);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
+/* Chart Structure */
 .org-chart-structure {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-width: 1000px;
-  padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 1100px;
+    padding: 20px 0;
+    position: relative;
 }
 
+/* Level Containers */
 .org-level {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 40px;
-  position: relative;
-  width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 32px;
+    position: relative;
+    width: 100%;
 }
 
 .org-level-ceo {
-  margin-bottom: 20px;
+    margin-bottom: 0;
 }
 
 .org-level-managers {
-  margin-bottom: 20px;
-  margin-top: 20px;
+    margin-top: 0;
+    gap: 48px;
 }
 
 .org-level-employees {
-  margin-top: 20px;
+    margin-top: 0;
+    gap: 20px;
 }
 
-.org-branch {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
+/* Wrapper for each person with their connector */
+.org-manager-wrapper,
+.org-employee-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
+/* Person Node Card */
 .org-person-node {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 12px;
-  padding: 16px 20px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  min-width: 240px;
-  max-width: 280px;
-  transition: all 0.2s ease;
+    background: rgba(232, 240, 245, 0.95);
+    border-radius: 16px;
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 200px;
+    max-width: 240px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
 }
 
 .org-person-node:hover {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.25);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
-.org-person-node.current-user {
-  background: rgba(74, 144, 226, 0.15);
-  border-color: rgba(74, 144, 226, 0.4);
-}
-
+/* CEO Node */
 .ceo-node {
-  background: rgba(255, 215, 0, 0.1);
-  border-color: rgba(255, 215, 0, 0.3);
+    background: rgba(235, 240, 245, 0.98);
+    min-width: 220px;
 }
 
+/* Manager Node */
 .manager-node {
-  background: rgba(144, 238, 144, 0.1);
-  border-color: rgba(144, 238, 144, 0.3);
+    background: rgba(232, 240, 245, 0.95);
 }
 
+/* Employee Node */
+.employee-node {
+    background: rgba(232, 240, 245, 0.95);
+    min-width: 180px;
+    max-width: 200px;
+    padding: 12px 14px;
+}
+
+/* Current User Highlight */
+.org-person-node.current-user {
+    background: linear-gradient(135deg, rgba(180, 215, 230, 0.98) 0%, rgba(160, 200, 220, 0.98) 100%);
+    border: 2px solid rgba(74, 158, 200, 0.5);
+    box-shadow: 0 4px 20px rgba(74, 158, 200, 0.25);
+}
+
+/* Avatar */
 .org-avatar {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
 }
 
+.employee-node .org-avatar {
+    width: 42px;
+    height: 42px;
+}
+
+/* Person Info */
 .org-person-info {
-  flex: 1;
-  min-width: 0;
+    flex: 1;
+    min-width: 0;
 }
 
 .org-person-name {
-  font-size: 15px;
-  font-weight: 600;
-  color: #ffffff;
-  margin: 0 0 4px 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+    font-size: 14px;
+    font-weight: 700;
+    color: #1a3a52;
+    margin: 0 0 2px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .org-person-role {
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.7);
-  margin: 0 0 6px 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+    font-size: 11px;
+    color: #5a7a8a;
+    margin: 0 0 4px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
+.employee-node .org-person-name {
+    font-size: 13px;
+}
+
+.employee-node .org-person-role {
+    font-size: 10px;
+}
+
+/* Level Badge Wrapper */
+.org-person-level-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* Level Icons */
+.level-icon {
+    font-size: 10px;
+}
+
+.level-executive {
+    color: #f5a623;
+}
+
+.level-manager {
+    color: #4cd964;
+}
+
+.level-department {
+    color: #8e8e93;
+}
+
+/* Level Badge */
 .org-person-level {
-  display: inline-block;
-  background: rgba(255, 215, 0, 0.15);
-  color: #FFD700;
-  padding: 2px 8px;
-  border-radius: 8px;
-  font-size: 10px;
-  font-weight: 600;
-  border: 1px solid rgba(255, 215, 0, 0.3);
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    color: #5a7a8a;
 }
 
 .you-badge {
-  background: rgba(74, 144, 226, 0.2);
-  color: #4A90E2;
-  border-color: rgba(74, 144, 226, 0.4);
+    background: rgba(74, 144, 226, 0.15);
+    color: #2980b9;
+    padding: 2px 10px;
+    border-radius: 10px;
+    font-weight: 700;
 }
 
-/* Connector Lines */
-.org-connector {
-  background: rgba(255, 255, 255, 0.2);
-  position: relative;
+/* ============================================
+   CONNECTOR LINES
+   ============================================ */
+
+/* Vertical Lines */
+.org-vertical-line {
+    width: 2px;
+    background: rgba(74, 141, 183, 0.5);
+    position: relative;
 }
 
-.org-connector-vertical {
-  width: 2px;
-  height: 40px;
-  margin: 0 auto;
+/* CEO to Managers vertical line */
+.ceo-to-managers {
+    height: 30px;
 }
 
-.org-connector-vertical-short {
-  width: 2px;
-  height: 20px;
-  margin: 0 auto;
+/* Manager to Employees vertical line */
+.manager-to-employees {
+    height: 30px;
 }
 
-.org-connector-horizontal {
-  position: absolute;
-  top: -20px;
-  left: 25%;
-  right: 25%;
-  height: 2px;
-  width: 50%;
+/* Short vertical lines to each node */
+.short-line {
+    height: 20px;
 }
 
-.org-connector-horizontal-wide {
-  position: absolute;
-  top: -20px;
-  left: 10%;
-  right: 10%;
-  height: 2px;
-  width: 80%;
+/* Horizontal Lines */
+.org-horizontal-line {
+    height: 2px;
+    background: rgba(74, 141, 183, 0.5);
+    position: relative;
 }
 
-/* Responsive */
+/* Line connecting all managers */
+.managers-line {
+    width: 65%;
+    max-width: 750px;
+}
+
+/* Line connecting all employees */
+.employees-line {
+    width: 85%;
+    max-width: 950px;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 1400px) {
+    .org-chart-structure {
+        min-width: 900px;
+    }
+    
+    .org-level-managers {
+        gap: 32px;
+    }
+    
+    .org-level-employees {
+        gap: 16px;
+    }
+    
+    .org-person-node {
+        min-width: 180px;
+        max-width: 210px;
+        padding: 12px 14px;
+    }
+    
+    .employee-node {
+        min-width: 160px;
+        max-width: 180px;
+    }
+}
+
 @media (max-width: 1200px) {
-  .org-chart-structure {
-    min-width: 800px;
-  }
+    .organization-chart-card {
+        padding: 24px;
+    }
+    
+    .org-chart-structure {
+        min-width: 800px;
+    }
+    
+    .org-level-managers {
+        gap: 24px;
+    }
+    
+    .org-level-employees {
+        gap: 12px;
+    }
+    
+    .org-person-node {
+        min-width: 160px;
+        max-width: 190px;
+        padding: 10px 12px;
+    }
+    
+    .org-person-name {
+        font-size: 13px;
+    }
+    
+    .org-person-role {
+        font-size: 10px;
+    }
+    
+    .org-avatar {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .employee-node .org-avatar {
+        width: 36px;
+        height: 36px;
+    }
+}
 
-  .org-person-node {
-    min-width: 200px;
-    max-width: 220px;
-  }
+@media (max-width: 992px) {
+    .org-chart-header {
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-start;
+    }
+    
+    .btn-view-full-chart {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .organization-chart-card {
+        padding: 20px 16px;
+    }
+    
+    .org-chart-title {
+        font-size: 20px;
+    }
+    
+    .org-chart-structure {
+        min-width: 700px;
+    }
+    
+    .org-person-node {
+        min-width: 140px;
+        max-width: 170px;
+        padding: 8px 10px;
+        gap: 8px;
+    }
+    
+    .org-avatar {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .org-person-name {
+        font-size: 12px;
+    }
+    
+    .org-person-role {
+        font-size: 9px;
+    }
+    
+    .org-person-level {
+        font-size: 9px;
+    }
 }

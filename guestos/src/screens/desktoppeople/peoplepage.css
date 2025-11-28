@@ -74,17 +74,38 @@
   color: #ffffff;
 }
 
+/* Main 3-column layout: Person | ACE | (A + Training stacked) */
 .people-top-grid {
-  display: grid;
-  grid-template-columns: 380px 1fr 350px;
+  display: flex;
   gap: 24px;
   margin-bottom: 32px;
+  align-items: stretch;
 }
 
+/* Person Card - first child */
+.people-top-grid > *:first-child {
+  flex: 0 0 380px;
+  min-width: 320px;
+}
+
+/* ACE Assessment - second child */
+.people-top-grid > *:nth-child(2) {
+  flex: 1.2;
+  min-width: 400px;
+}
+
+/* Right column container - third child, stacked vertically */
 .people-right-column {
+  flex: 1;
+  min-width: 350px;
   display: flex;
   flex-direction: column;
   gap: 24px;
+}
+
+/* Cards inside right column stack vertically */
+.people-right-column > * {
+  width: 100%;
 }
 
 .people-org-section {
@@ -94,13 +115,37 @@
 /* Responsive Design */
 @media (max-width: 1600px) {
   .people-top-grid {
-    grid-template-columns: 1fr;
+    flex-wrap: wrap;
+  }
+
+  .people-top-grid > *:first-child {
+    flex: 1 1 300px;
+  }
+
+  .people-top-grid > *:nth-child(2) {
+    flex: 1 1 400px;
   }
 
   .people-right-column {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
+    flex: 1 1 300px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .people-top-grid {
+    flex-direction: column;
+  }
+
+  .people-top-grid > *:first-child,
+  .people-top-grid > *:nth-child(2) {
+    flex: 1 1 auto;
+    min-width: 100%;
+  }
+
+  .people-right-column {
+    flex: 1 1 auto;
+    min-width: 100%;
+    flex-direction: column;
   }
 }
 
@@ -115,10 +160,6 @@
 
   .people-title {
     font-size: 28px;
-  }
-
-  .people-right-column {
-    grid-template-columns: 1fr;
   }
 }
 

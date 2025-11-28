@@ -42,7 +42,7 @@ function PeoplePage({ userName = "Glenn" }: PeoplePageProps) {
                         name: "Jessica Nov",
                         role: "Front Desk Clerk",
                         status: "Active",
-                        avatar: "https://ui-avatars.com/api/?name=Jessica+Nov&background=4A90E2&color=fff",
+                        avatar: "public/images/jessica.png",
                         rating: 4,
                         team: "Front Desk Team",
                         location: "Downtown, LA",
@@ -112,7 +112,7 @@ function PeoplePage({ userName = "Glenn" }: PeoplePageProps) {
                                 name: "Sara Johnson",
                                 role: "General Manager",
                                 level: "Executive Level",
-                                avatar: "https://ui-avatars.com/api/?name=Sara+Johnson&background=7B68EE&color=fff",
+                                avatar: "images/andy.jpg",
                                 children: [2, 3, 4]
                             },
                             {
@@ -120,7 +120,7 @@ function PeoplePage({ userName = "Glenn" }: PeoplePageProps) {
                                 name: "Mike Chen",
                                 role: "Front Desk Manager",
                                 level: "Your Manager",
-                                avatar: "https://ui-avatars.com/api/?name=Mike+Chen&background=FF6B6B&color=fff",
+                                avatar: "images/sam.jpg",
                                 parentId: 1,
                                 children: [5, 6, 7, 8, 9]
                             },
@@ -129,7 +129,8 @@ function PeoplePage({ userName = "Glenn" }: PeoplePageProps) {
                                 name: "Lisa Rodriguez",
                                 role: "House Keeping Manager",
                                 level: "Department Head",
-                                avatar: "https://ui-avatars.com/api/?name=Lisa+Rodriguez&background=4ECDC4&color=fff",
+                                avatar: "images/rose.jpg",
+
                                 parentId: 1,
                                 children: []
                             },
@@ -138,7 +139,7 @@ function PeoplePage({ userName = "Glenn" }: PeoplePageProps) {
                                 name: "David Lawrence",
                                 role: "Operation Manager",
                                 level: "Department Head",
-                                avatar: "https://ui-avatars.com/api/?name=David+Lawrence&background=95E1D3&color=fff",
+                                avatar: "images/cat.jpg",
                                 parentId: 1,
                                 children: []
                             },
@@ -147,7 +148,7 @@ function PeoplePage({ userName = "Glenn" }: PeoplePageProps) {
                                 name: "Jessica Nov",
                                 role: "Front Desk Clerk",
                                 level: "You",
-                                avatar: "https://ui-avatars.com/api/?name=Jessica+Nov&background=4A90E2&color=fff",
+                                avatar: "images/helan.jpg",
                                 parentId: 2,
                                 isCurrentUser: true
                             },
@@ -156,7 +157,7 @@ function PeoplePage({ userName = "Glenn" }: PeoplePageProps) {
                                 name: "Jessie Watson",
                                 role: "Front Desk Clerk",
                                 level: null,
-                                avatar: "https://ui-avatars.com/api/?name=Jessie+Watson&background=A8E6CF&color=fff",
+                                avatar: "images/jack.jpg",
                                 parentId: 2
                             },
                             {
@@ -164,7 +165,7 @@ function PeoplePage({ userName = "Glenn" }: PeoplePageProps) {
                                 name: "Alex George",
                                 role: "Front Desk Supervisor",
                                 level: null,
-                                avatar: "https://ui-avatars.com/api/?name=Alex+George&background=FFD3B6&color=fff",
+                                avatar: "images/jessica.png",
                                 parentId: 2
                             },
                             {
@@ -172,7 +173,7 @@ function PeoplePage({ userName = "Glenn" }: PeoplePageProps) {
                                 name: "Emma Wilson",
                                 role: "Front Desk Trainee",
                                 level: null,
-                                avatar: "https://ui-avatars.com/api/?name=Emma+Wilson&background=FFAAA5&color=fff",
+                                avatar: "images/rose.jpg",
                                 parentId: 2
                             },
                             {
@@ -180,7 +181,7 @@ function PeoplePage({ userName = "Glenn" }: PeoplePageProps) {
                                 name: "Ryan Davis",
                                 role: "Front Desk Trainee",
                                 level: null,
-                                avatar: "https://ui-avatars.com/api/?name=Ryan+Davis&background=FF8B94&color=fff",
+                                avatar: "images/sam.jpg",
                                 parentId: 2
                             }
                         ]

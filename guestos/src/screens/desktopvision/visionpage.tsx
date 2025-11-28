@@ -13,16 +13,19 @@ interface VisionData {
         title: string;
         icon: 'vision';
         description: string;
+        gifUrl?: string;
     };
     mission: {
         title: string;
         icon: 'mission';
         description: string;
+        gifUrl?: string;
     };
     coreValues: {
         title: string;
         icon: 'core-values';
         description: string;
+        gifUrl?: string;
     };
     goals: {
         title: string;
@@ -68,16 +71,21 @@ function VisionPage({ userName = "Glenn" }: VisionPageProps) {
                     vision: {
                         title: "VISION",
                         icon: "vision",
+                        gifUrl: "/gifs/vision.gif",
                         description: "Our vision is to deliver hospitality that goes beyond service—creating moments of comfort, connection, and care. We strive to make every guest experience memorable while embracing sustainability and uplifting the communities we serve."
                     },
                     mission: {
                         title: "MISSION",
                         icon: "mission",
+                        gifUrl: "/gifs/mission.gif",
+
                         description: "Our mission is to redefine hospitality by empowering our staff, exceeding guest expectations, and fostering sustainable practices that benefit our planet and local communities."
                     },
                     coreValues: {
                         title: "CORE VALUES",
                         icon: "core-values",
+                        gifUrl: "/gifs/core.gif",
+
                         description: "Our Resorts, our values drive us to exceed expectations. We commit to integrity, innovation, teamwork, and exceptional service, ensuring every guest enjoys an unforgettable experience."
                     },
                     goals: {
@@ -139,16 +147,21 @@ function VisionPage({ userName = "Glenn" }: VisionPageProps) {
                     title={visionData.vision.title}
                     description={visionData.vision.description}
                     icon={visionData.vision.icon}
+                    gifUrl={visionData.vision.gifUrl}
                 />
                 <InfoCard
                     title={visionData.mission.title}
                     description={visionData.mission.description}
                     icon={visionData.mission.icon}
+                    gifUrl={visionData.mission.gifUrl}
+
                 />
                 <InfoCard
                     title={visionData.coreValues.title}
                     description={visionData.coreValues.description}
                     icon={visionData.coreValues.icon}
+                    gifUrl={visionData.coreValues.gifUrl}
+
                 />
                 <GoalsCard
                     title={visionData.goals.title}
