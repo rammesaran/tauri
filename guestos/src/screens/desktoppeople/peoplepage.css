@@ -13,6 +13,7 @@
   font-size: 18px;
 }
 
+/* Header Section - Left aligned title with Team Selector on Right */
 .people-header-section {
   display: flex;
   justify-content: space-between;
@@ -27,6 +28,7 @@
   color: #ffffff;
   margin: 0 0 8px 0;
   letter-spacing: -0.5px;
+  text-align: left;
 }
 
 .people-subtitle {
@@ -35,8 +37,10 @@
   margin: 0;
   line-height: 1.5;
   max-width: 600px;
+  text-align: left;
 }
 
+/* Team Selector */
 .team-selector {
   display: flex;
   align-items: center;
@@ -46,6 +50,7 @@
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
+  flex-shrink: 0;
 }
 
 .team-selector label {
