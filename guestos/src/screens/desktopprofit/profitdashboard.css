@@ -115,7 +115,7 @@
     white-space: nowrap;
 }
 
-/* FIXED: Legend in horizontal row */
+/* Legend in horizontal row */
 .profit-legend {
     display: flex;
     flex-direction: row;
@@ -146,7 +146,7 @@
 }
 
 /* ============================================ */
-/* UNIT ECONOMICS CARD - FULL WIDTH */
+/* UNIT ECONOMICS CARD - FIXED HEADER LAYOUT */
 /* ============================================ */
 .unit-economics-card {
     background: rgba(70, 130, 170, 0.25);
@@ -159,11 +159,13 @@
     flex-direction: column;
 }
 
+/* FIXED: Header with View All on the RIGHT */
 .unit-economics-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 6px;
+    width: 100%;
 }
 
 .unit-economics-title-row {
@@ -183,6 +185,7 @@
     margin: 0;
 }
 
+/* View All button - positioned on the right */
 .btn-view-all {
     background: transparent;
     border: none;
@@ -191,6 +194,8 @@
     cursor: pointer;
     text-decoration: underline;
     text-underline-offset: 3px;
+    margin-left: auto; /* Push to right */
+    flex-shrink: 0;
 }
 
 .btn-view-all:hover {
@@ -203,7 +208,7 @@
     margin: 0 0 24px 0;
 }
 
-/* FIXED: Metrics row fills ALL available space */
+/* Metrics row fills ALL available space */
 .unit-metrics-row {
     display: flex;
     gap: 20px;
@@ -212,7 +217,7 @@
     width: 100%;
 }
 
-/* FIXED: Metric boxes expand equally to fill container */
+/* Metric boxes expand equally to fill container */
 .unit-metric-box {
     flex: 1 1 0;
     min-width: 0;
