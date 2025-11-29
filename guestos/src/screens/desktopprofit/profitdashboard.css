@@ -15,16 +15,6 @@
     flex-direction: column;
 }
 
-/* 1. Profit Dashboard */
-.profit-card-wrapper.dashboard-wrapper {
-    /* Takes first column */
-}
-
-/* 2. Unit Economics - Center column, fills space */
-.profit-card-wrapper.economics-wrapper {
-    /* Takes middle column - will expand */
-}
-
 /* 3. Profit Tips + Target Column */
 .profit-card-wrapper.tips-target-column {
     display: flex;
@@ -125,18 +115,22 @@
     white-space: nowrap;
 }
 
+/* FIXED: Legend in horizontal row */
 .profit-legend {
     display: flex;
-    flex-direction: column;
-    gap: 8px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 16px;
     margin-top: auto;
     padding-top: 16px;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .profit-legend-item {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
 }
 
 .profit-legend-dot {
@@ -209,17 +203,19 @@
     margin: 0 0 24px 0;
 }
 
-/* Metrics row - fills available space */
+/* FIXED: Metrics row fills ALL available space */
 .unit-metrics-row {
     display: flex;
     gap: 20px;
     flex: 1;
     align-items: stretch;
+    width: 100%;
 }
 
-/* Metric boxes - equal width, full height */
+/* FIXED: Metric boxes expand equally to fill container */
 .unit-metric-box {
-    flex: 1;
+    flex: 1 1 0;
+    min-width: 0;
     border-radius: 20px;
     padding: 28px 20px;
     display: flex;
@@ -227,7 +223,6 @@
     align-items: center;
     justify-content: center;
     gap: 12px;
-    min-height: 180px;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -407,7 +402,6 @@
     
     .unit-metric-box {
         padding: 24px 16px;
-        min-height: 160px;
     }
     
     .unit-metric-icon {
@@ -422,6 +416,10 @@
         font-size: 28px;
         padding: 8px 24px;
     }
+    
+    .profit-legend {
+        gap: 12px;
+    }
 }
 
 @media (max-width: 1200px) {
@@ -431,10 +429,6 @@
     
     .unit-metrics-row {
         gap: 16px;
-    }
-    
-    .unit-metric-box {
-        min-height: 150px;
     }
 }
 
@@ -483,14 +477,16 @@
     .unit-metric-box {
         flex: 1 1 calc(50% - 10px);
         min-width: 140px;
-        min-height: 140px;
+    }
+    
+    .profit-legend {
+        gap: 10px;
     }
 }
 
 @media (max-width: 500px) {
     .unit-metric-box {
         flex: 1 1 100%;
-        min-height: 120px;
     }
     
     .unit-metric-icon {
@@ -504,5 +500,11 @@
     .unit-metric-value {
         font-size: 24px;
         padding: 6px 20px;
+    }
+    
+    .profit-legend {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
     }
 }
