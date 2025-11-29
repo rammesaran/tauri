@@ -1,7 +1,9 @@
-/* Profit Section Row - All 3 columns in one row */
+/* ============================================ */
+/* PROFIT SECTION ROW - CENTERED LAYOUT */
+/* ============================================ */
 .profit-section-row {
-    display: flex !important;
-    flex-direction: row !important;
+    display: grid;
+    grid-template-columns: 340px 1fr 340px;
     gap: 20px;
     width: 100%;
     align-items: stretch;
@@ -13,37 +15,38 @@
     flex-direction: column;
 }
 
-/* 1. Profit Dashboard - Compact */
+/* 1. Profit Dashboard */
 .profit-card-wrapper.dashboard-wrapper {
-    flex: 0 0 320px;
-    max-width: 350px;
+    /* Takes first column */
 }
 
-/* 2. Unit Economics - Takes more space */
+/* 2. Unit Economics - Center column, fills space */
 .profit-card-wrapper.economics-wrapper {
-    flex: 1.5;
-    min-width: 400px;
+    /* Takes middle column - will expand */
 }
 
 /* 3. Profit Tips + Target Column */
 .profit-card-wrapper.tips-target-column {
-    flex: 0 0 320px;
-    max-width: 380px;
     display: flex;
     flex-direction: column;
     gap: 12px;
 }
 
-.profit-card-wrapper.tips-target-column .profit-tips-card,
+.profit-card-wrapper.tips-target-column .profit-tips-card {
+    flex: 0 0 auto;
+}
+
 .profit-card-wrapper.tips-target-column .profit-target-card {
     flex: 1;
 }
 
-/* ============ PROFIT DASHBOARD ============ */
+/* ============================================ */
+/* PROFIT DASHBOARD CARD */
+/* ============================================ */
 .profit-dashboard-card {
     background: rgba(70, 130, 170, 0.25);
     border-radius: 20px;
-    padding: 18px;
+    padding: 20px;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.08);
     height: 100%;
@@ -55,11 +58,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
 }
 
 .profit-dashboard-title {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 700;
     color: #ffffff;
     margin: 0;
@@ -70,52 +73,54 @@
     align-items: center;
     gap: 6px;
     color: rgba(255, 255, 255, 0.85);
-    font-size: 12px;
+    font-size: 13px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 6px 12px;
+    border-radius: 6px;
 }
 
 .btn-dropdown {
     background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.25);
+    border: none;
     color: rgba(255, 255, 255, 0.8);
-    padding: 3px 5px;
-    border-radius: 5px;
+    padding: 0;
     cursor: pointer;
     display: flex;
     align-items: center;
 }
 
 .btn-dropdown:hover {
-    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
 }
 
 .profit-chart-content {
     flex: 1;
     display: flex;
-    align-items: flex-start;
-    gap: 8px;
+    flex-direction: column;
 }
 
 .profit-arcs-section {
-    position: relative;
-    flex-shrink: 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    flex: 1;
 }
 
 .profit-arcs-svg {
-    width: 120px;
-    height: 110px;
+    width: 140px;
+    height: 130px;
+    flex-shrink: 0;
 }
 
 .profit-labels {
-    position: absolute;
-    top: 12px;
-    left: 85px;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 8px;
+    padding-top: 10px;
 }
 
 .profit-label-text {
-    font-size: 10px;
+    font-size: 11px;
     color: #ffffff;
     white-space: nowrap;
 }
@@ -123,29 +128,32 @@
 .profit-legend {
     display: flex;
     flex-direction: column;
-    gap: 6px;
-    margin-left: auto;
+    gap: 8px;
     margin-top: auto;
+    padding-top: 16px;
 }
 
 .profit-legend-item {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
 }
 
 .profit-legend-dot {
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
+    flex-shrink: 0;
 }
 
 .profit-legend-text {
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 500;
 }
 
-/* ============ UNIT ECONOMICS - FIXED ============ */
+/* ============================================ */
+/* UNIT ECONOMICS CARD - FULL WIDTH */
+/* ============================================ */
 .unit-economics-card {
     background: rgba(70, 130, 170, 0.25);
     border-radius: 20px;
@@ -161,7 +169,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
 }
 
 .unit-economics-title-row {
@@ -171,11 +179,11 @@
 }
 
 .unit-icon {
-    font-size: 18px;
+    font-size: 20px;
 }
 
 .unit-economics-title {
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 700;
     color: #ffffff;
     margin: 0;
@@ -198,33 +206,34 @@
 .unit-economics-subtitle {
     font-size: 14px;
     color: rgba(255, 255, 255, 0.65);
-    margin: 0 0 20px 0;
+    margin: 0 0 24px 0;
 }
 
-/* KEY FIX: Make metrics row fill available space */
+/* Metrics row - fills available space */
 .unit-metrics-row {
     display: flex;
-    gap: 16px;
+    gap: 20px;
     flex: 1;
     align-items: stretch;
 }
 
-/* KEY FIX: Make metric boxes fill the row height */
+/* Metric boxes - equal width, full height */
 .unit-metric-box {
     flex: 1;
     border-radius: 20px;
-    padding: 24px 16px;
+    padding: 28px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 12px;
+    min-height: 180px;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .unit-metric-box:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
 .unit-metric-box.green {
@@ -240,33 +249,33 @@
 }
 
 .unit-metric-icon {
-    font-size: 36px;
-    opacity: 0.85;
-    margin-bottom: 4px;
+    font-size: 40px;
+    opacity: 0.9;
 }
 
 .unit-metric-label {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 600;
-    color: rgba(0, 0, 0, 0.7);
+    color: rgba(0, 0, 0, 0.75);
 }
 
 .unit-metric-value {
-    font-size: 28px;
+    font-size: 32px;
     font-weight: 700;
     color: rgba(0, 0, 0, 0.85);
-    background: rgba(255, 255, 255, 0.4);
-    padding: 8px 20px;
+    background: rgba(255, 255, 255, 0.45);
+    padding: 10px 28px;
     border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    margin-top: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
 }
 
-/* ============ PROFIT TIPS ============ */
+/* ============================================ */
+/* PROFIT TIPS CARD */
+/* ============================================ */
 .profit-tips-card {
     background: rgba(70, 130, 170, 0.25);
     border-radius: 16px;
-    padding: 18px;
+    padding: 20px;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.08);
 }
@@ -274,80 +283,81 @@
 .profit-tips-header {
     display: flex;
     align-items: center;
-    gap: 8px;
-    margin-bottom: 10px;
+    gap: 10px;
+    margin-bottom: 12px;
 }
 
 .tips-icon {
-    font-size: 16px;
+    font-size: 18px;
 }
 
 .profit-tips-title {
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 700;
     color: #ffffff;
     margin: 0;
 }
 
 .profit-tips-content {
-    font-size: 13px;
-    line-height: 1.5;
+    font-size: 14px;
+    line-height: 1.6;
     color: rgba(255, 255, 255, 0.85);
     margin: 0;
 }
 
-/* ============ PROFIT TARGET ============ */
+/* ============================================ */
+/* PROFIT TARGET CARD */
+/* ============================================ */
 .profit-target-card {
     background: rgba(70, 130, 170, 0.25);
     border-radius: 16px;
-    padding: 18px;
+    padding: 20px;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    flex-direction: column;
 }
 
 .profit-target-title {
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 700;
     color: #ffffff;
-    margin: 0 0 10px 0;
+    margin: 0 0 12px 0;
 }
 
 .profit-target-info {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
 }
 
 .target-label {
-    font-size: 11px;
+    font-size: 12px;
     color: rgba(255, 255, 255, 0.7);
 }
 
 .target-status {
-    font-size: 11px;
+    font-size: 12px;
     color: rgba(255, 255, 255, 0.7);
 }
 
 .profit-target-bar-container {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
 }
 
 .target-icon-left,
 .target-icon-right {
-    font-size: 12px;
+    font-size: 14px;
     opacity: 0.7;
 }
 
 .profit-target-bar {
     flex: 1;
-    height: 20px;
-    background: linear-gradient(90deg, 
-        rgba(255, 255, 255, 0.1) 0%,
-        rgba(255, 255, 255, 0.15) 100%
-    );
-    border-radius: 10px;
+    height: 24px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
     overflow: hidden;
     position: relative;
 }
@@ -361,39 +371,126 @@
         #84CC16 70%,
         #22C55E 100%
     );
-    border-radius: 10px;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    padding-right: 6px;
+    padding-right: 8px;
     transition: width 0.5s ease;
 }
 
 .target-percentage {
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 700;
     color: #ffffff;
     background: rgba(0, 0, 0, 0.3);
-    padding: 2px 6px;
+    padding: 2px 8px;
     border-radius: 4px;
 }
 
 .target-markers {
     display: flex;
     justify-content: space-between;
-    padding: 6px 24px 0;
+    padding: 8px 28px 0;
     color: rgba(255, 255, 255, 0.3);
-    font-size: 6px;
+    font-size: 8px;
 }
 
-/* ============ RESPONSIVE ============ */
+/* ============================================ */
+/* RESPONSIVE DESIGN */
+/* ============================================ */
 @media (max-width: 1400px) {
-    .profit-card-wrapper.economics-wrapper {
-        min-width: 350px;
+    .profit-section-row {
+        grid-template-columns: 300px 1fr 300px;
+        gap: 16px;
     }
     
     .unit-metric-box {
-        padding: 20px 14px;
+        padding: 24px 16px;
+        min-height: 160px;
+    }
+    
+    .unit-metric-icon {
+        font-size: 36px;
+    }
+    
+    .unit-metric-label {
+        font-size: 16px;
+    }
+    
+    .unit-metric-value {
+        font-size: 28px;
+        padding: 8px 24px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .profit-section-row {
+        grid-template-columns: 280px 1fr 280px;
+    }
+    
+    .unit-metrics-row {
+        gap: 16px;
+    }
+    
+    .unit-metric-box {
+        min-height: 150px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .profit-section-row {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+    }
+    
+    .profit-card-wrapper.dashboard-wrapper {
+        grid-column: 1;
+        grid-row: 1;
+    }
+    
+    .profit-card-wrapper.tips-target-column {
+        grid-column: 2;
+        grid-row: 1;
+    }
+    
+    .profit-card-wrapper.economics-wrapper {
+        grid-column: 1 / -1;
+        grid-row: 2;
+    }
+}
+
+@media (max-width: 700px) {
+    .profit-section-row {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+    }
+    
+    .profit-card-wrapper.dashboard-wrapper,
+    .profit-card-wrapper.economics-wrapper,
+    .profit-card-wrapper.tips-target-column {
+        grid-column: 1;
+    }
+    
+    .profit-card-wrapper.tips-target-column {
+        flex-direction: column;
+    }
+    
+    .unit-metrics-row {
+        flex-wrap: wrap;
+    }
+    
+    .unit-metric-box {
+        flex: 1 1 calc(50% - 10px);
+        min-width: 140px;
+        min-height: 140px;
+    }
+}
+
+@media (max-width: 500px) {
+    .unit-metric-box {
+        flex: 1 1 100%;
+        min-height: 120px;
     }
     
     .unit-metric-icon {
@@ -406,86 +503,6 @@
     
     .unit-metric-value {
         font-size: 24px;
-        padding: 6px 16px;
-    }
-}
-
-@media (max-width: 1200px) {
-    .profit-card-wrapper.dashboard-wrapper {
-        flex: 0 0 280px;
-        max-width: 300px;
-    }
-    
-    .profit-card-wrapper.tips-target-column {
-        flex: 0 0 280px;
-        max-width: 320px;
-    }
-}
-
-@media (max-width: 1000px) {
-    .profit-section-row {
-        flex-wrap: wrap;
-    }
-
-    .profit-card-wrapper.dashboard-wrapper {
-        flex: 1 1 45%;
-        max-width: none;
-    }
-
-    .profit-card-wrapper.economics-wrapper {
-        flex: 1 1 100%;
-        min-width: unset;
-        order: -1;
-    }
-
-    .profit-card-wrapper.tips-target-column {
-        flex: 1 1 45%;
-        max-width: none;
-        flex-direction: row;
-    }
-}
-
-@media (max-width: 700px) {
-    .profit-section-row {
-        flex-direction: column !important;
-    }
-
-    .profit-card-wrapper.dashboard-wrapper,
-    .profit-card-wrapper.economics-wrapper,
-    .profit-card-wrapper.tips-target-column {
-        flex: none !important;
-        width: 100%;
-        max-width: none;
-    }
-
-    .profit-card-wrapper.tips-target-column {
-        flex-direction: column;
-    }
-
-    .unit-metrics-row {
-        flex-wrap: wrap;
-    }
-
-    .unit-metric-box {
-        flex: 1 1 calc(50% - 8px);
-        min-width: 140px;
-    }
-}
-
-@media (max-width: 500px) {
-    .unit-metric-box {
-        flex: 1 1 100%;
-    }
-    
-    .unit-metric-icon {
-        font-size: 28px;
-    }
-    
-    .unit-metric-label {
-        font-size: 14px;
-    }
-    
-    .unit-metric-value {
-        font-size: 22px;
+        padding: 6px 20px;
     }
 }
