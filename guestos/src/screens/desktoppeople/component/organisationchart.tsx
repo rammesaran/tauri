@@ -104,7 +104,7 @@ const OrganizationChart: React.FC<OrganizationChartProps> = ({
 
                 {/* Managers Level */}
                 <div className="org-level org-level-managers">
-                    {managers.map((manager, index) => (
+                    {managers.map((manager,) => (
                         <div key={manager.id} className="org-manager-wrapper">
                             <div className="org-vertical-line short-line"></div>
                             {renderPersonNode(manager, 'manager')}

@@ -1,0 +1,254 @@
+/* Unit Economics Card */
+.unit-economics-card {
+    background: linear-gradient(145deg, #2d5a7b 0%, #1e4a6d 50%, #1a3d5c 100%);
+    border-radius: 24px;
+    padding: 28px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+.unit-economics-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.unit-economics-title-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.unit-economics-icon {
+    color: rgba(255, 255, 255, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.unit-economics-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+    letter-spacing: -0.3px;
+}
+
+.unit-economics-view-all {
+    background: transparent;
+    border: none;
+    color: #7DD3FC;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    padding: 4px 8px;
+    transition: all 0.2s ease;
+}
+
+.unit-economics-view-all:hover {
+    color: #ffffff;
+}
+
+/* Subtitle */
+.unit-economics-subtitle {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.75);
+    margin: 0 0 24px 0;
+    line-height: 1.5;
+}
+
+/* Cards Grid */
+.unit-economics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    flex: 1;
+}
+
+/* Individual Unit Card */
+.unit-card {
+    border-radius: 20px;
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    min-height: 200px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.unit-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Card Color Variants */
+.unit-card-green {
+    background: linear-gradient(180deg, #5DE0A3 0%, #4ADE80 100%);
+}
+
+.unit-card-pink {
+    background: linear-gradient(180deg, #F297B5 0%, #E88AA8 100%);
+}
+
+.unit-card-yellow {
+    background: linear-gradient(180deg, #FFE066 0%, #F7D94C 100%);
+}
+
+/* Card Icon */
+.unit-card-icon {
+    color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 4px;
+}
+
+.unit-card-icon svg {
+    width: 48px;
+    height: 48px;
+}
+
+/* Card Title */
+.unit-card-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.8);
+    margin: 0;
+    text-align: center;
+}
+
+/* Card Amount Box */
+.unit-card-amount {
+    background: rgba(255, 255, 255, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 12px;
+    padding: 12px 24px;
+    margin-top: 8px;
+    backdrop-filter: blur(10px);
+}
+
+.unit-card-amount-value {
+    font-size: 32px;
+    font-weight: 700;
+    color: rgba(0, 0, 0, 0.85);
+    letter-spacing: -1px;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .unit-economics-grid {
+        gap: 12px;
+    }
+
+    .unit-card {
+        padding: 20px 16px;
+        min-height: 180px;
+    }
+
+    .unit-card-icon svg {
+        width: 40px;
+        height: 40px;
+    }
+
+    .unit-card-title {
+        font-size: 16px;
+    }
+
+    .unit-card-amount-value {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 900px) {
+    .unit-economics-card {
+        padding: 24px;
+    }
+
+    .unit-economics-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+    }
+
+    .unit-card {
+        padding: 16px 12px;
+        min-height: 160px;
+        border-radius: 16px;
+    }
+
+    .unit-card-icon svg {
+        width: 36px;
+        height: 36px;
+    }
+
+    .unit-card-title {
+        font-size: 14px;
+    }
+
+    .unit-card-amount {
+        padding: 8px 16px;
+    }
+
+    .unit-card-amount-value {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 600px) {
+    .unit-economics-card {
+        padding: 20px;
+        border-radius: 20px;
+    }
+
+    .unit-economics-title {
+        font-size: 18px;
+    }
+
+    .unit-economics-subtitle {
+        font-size: 13px;
+        margin-bottom: 20px;
+    }
+
+    .unit-economics-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .unit-card {
+        flex-direction: row;
+        justify-content: flex-start;
+        padding: 16px 20px;
+        min-height: auto;
+        gap: 16px;
+    }
+
+    .unit-card-icon {
+        margin-bottom: 0;
+    }
+
+    .unit-card-icon svg {
+        width: 32px;
+        height: 32px;
+    }
+
+    .unit-card-title {
+        flex: 1;
+        text-align: left;
+    }
+
+    .unit-card-amount {
+        margin-top: 0;
+        padding: 8px 16px;
+    }
+
+    .unit-card-amount-value {
+        font-size: 20px;
+    }
+}

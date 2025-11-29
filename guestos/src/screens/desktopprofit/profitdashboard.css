@@ -22,11 +22,13 @@
 /* 2. Unit Economics - Takes more space */
 .profit-card-wrapper.economics-wrapper {
     flex: 1.5;
+    min-width: 400px;
 }
 
 /* 3. Profit Tips + Target Column */
 .profit-card-wrapper.tips-target-column {
-    flex: 1;
+    flex: 0 0 320px;
+    max-width: 380px;
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -143,11 +145,11 @@
     font-weight: 500;
 }
 
-/* ============ UNIT ECONOMICS ============ */
+/* ============ UNIT ECONOMICS - FIXED ============ */
 .unit-economics-card {
     background: rgba(70, 130, 170, 0.25);
     border-radius: 20px;
-    padding: 20px;
+    padding: 24px;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.08);
     height: 100%;
@@ -173,7 +175,7 @@
 }
 
 .unit-economics-title {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 700;
     color: #ffffff;
     margin: 0;
@@ -183,73 +185,88 @@
     background: transparent;
     border: none;
     color: #4FC3F7;
-    font-size: 13px;
+    font-size: 14px;
     cursor: pointer;
     text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.btn-view-all:hover {
+    color: #ffffff;
 }
 
 .unit-economics-subtitle {
-    font-size: 12px;
-    color: rgba(255, 255, 255, 0.6);
-    margin: 0 0 16px 0;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.65);
+    margin: 0 0 20px 0;
 }
 
+/* KEY FIX: Make metrics row fill available space */
 .unit-metrics-row {
     display: flex;
-    gap: 12px;
+    gap: 16px;
     flex: 1;
     align-items: stretch;
 }
 
+/* KEY FIX: Make metric boxes fill the row height */
 .unit-metric-box {
     flex: 1;
-    border-radius: 16px;
-    padding: 14px 10px;
+    border-radius: 20px;
+    padding: 24px 16px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 6px;
+    gap: 10px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.unit-metric-box:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 .unit-metric-box.green {
-    background: #5EC9A3;
+    background: linear-gradient(180deg, #5DE0A3 0%, #4ADE80 100%);
 }
 
 .unit-metric-box.pink {
-    background: #E9A7B8;
+    background: linear-gradient(180deg, #F5A3B5 0%, #EC8CA4 100%);
 }
 
 .unit-metric-box.yellow {
-    background: #D9CF6E;
+    background: linear-gradient(180deg, #F0E068 0%, #E5D54A 100%);
 }
 
 .unit-metric-icon {
-    font-size: 24px;
-    opacity: 0.8;
+    font-size: 36px;
+    opacity: 0.85;
+    margin-bottom: 4px;
 }
 
 .unit-metric-label {
-    font-size: 12px;
-    font-weight: 500;
-    color: rgba(0, 0, 0, 0.6);
+    font-size: 16px;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.7);
 }
 
 .unit-metric-value {
-    font-size: 22px;
+    font-size: 28px;
     font-weight: 700;
-    color: rgba(0, 0, 0, 0.8);
-    background: rgba(255, 255, 255, 0.5);
-    padding: 4px 14px;
-    border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.6);
+    color: rgba(0, 0, 0, 0.85);
+    background: rgba(255, 255, 255, 0.4);
+    padding: 8px 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    margin-top: 4px;
 }
 
 /* ============ PROFIT TIPS ============ */
 .profit-tips-card {
     background: rgba(70, 130, 170, 0.25);
     border-radius: 16px;
-    padding: 16px;
+    padding: 18px;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.08);
 }
@@ -283,7 +300,7 @@
 .profit-target-card {
     background: rgba(70, 130, 170, 0.25);
     border-radius: 16px;
-    padding: 16px;
+    padding: 18px;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.08);
 }
@@ -370,10 +387,38 @@
 }
 
 /* ============ RESPONSIVE ============ */
+@media (max-width: 1400px) {
+    .profit-card-wrapper.economics-wrapper {
+        min-width: 350px;
+    }
+    
+    .unit-metric-box {
+        padding: 20px 14px;
+    }
+    
+    .unit-metric-icon {
+        font-size: 32px;
+    }
+    
+    .unit-metric-label {
+        font-size: 14px;
+    }
+    
+    .unit-metric-value {
+        font-size: 24px;
+        padding: 6px 16px;
+    }
+}
+
 @media (max-width: 1200px) {
     .profit-card-wrapper.dashboard-wrapper {
         flex: 0 0 280px;
         max-width: 300px;
+    }
+    
+    .profit-card-wrapper.tips-target-column {
+        flex: 0 0 280px;
+        max-width: 320px;
     }
 }
 
@@ -388,11 +433,14 @@
     }
 
     .profit-card-wrapper.economics-wrapper {
-        flex: 1 1 45%;
+        flex: 1 1 100%;
+        min-width: unset;
+        order: -1;
     }
 
     .profit-card-wrapper.tips-target-column {
-        flex: 1 1 100%;
+        flex: 1 1 45%;
+        max-width: none;
         flex-direction: row;
     }
 }
@@ -419,13 +467,25 @@
     }
 
     .unit-metric-box {
-        flex: 1 1 calc(50% - 6px);
-        min-width: 100px;
+        flex: 1 1 calc(50% - 8px);
+        min-width: 140px;
     }
 }
 
 @media (max-width: 500px) {
     .unit-metric-box {
         flex: 1 1 100%;
+    }
+    
+    .unit-metric-icon {
+        font-size: 28px;
+    }
+    
+    .unit-metric-label {
+        font-size: 14px;
+    }
+    
+    .unit-metric-value {
+        font-size: 22px;
     }
 }
