@@ -70,7 +70,7 @@ export const StaffEngagementCard: React.FC<StaffEngagementProps> = ({
     );
 };
 
-// Guest Satisfaction Card
+// Guest Satisfaction Card - FIXED: Emoji inside center
 interface RoomType {
     label: string;
     color: string;
@@ -97,9 +97,8 @@ export const GuestSatisfactionCard: React.FC<GuestSatisfactionProps> = ({
     ],
     onViewAll
 }) => {
-    // Calculate the arc for semi-circle gauge
     const radius = 70;
-    const circumference = Math.PI * radius; // Half circle
+    const circumference = Math.PI * radius;
     const progressOffset = circumference - (score / 100) * circumference;
 
     return (
@@ -115,9 +114,10 @@ export const GuestSatisfactionCard: React.FC<GuestSatisfactionProps> = ({
                     <svg className="gauge-svg" viewBox="0 0 160 100">
                         <defs>
                             <linearGradient id="gaugeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                                <stop offset="0%" stopColor="#F5A623" />
+                                <stop offset="0%" stopColor="#50C878" />
                                 <stop offset="50%" stopColor="#A8E063" />
-                                <stop offset="100%" stopColor="#50C878" />
+                                <stop offset="75%" stopColor="#F5D062" />
+                                <stop offset="100%" stopColor="#F5A623" />
                             </linearGradient>
                         </defs>
                         {/* Background arc */}
@@ -125,7 +125,7 @@ export const GuestSatisfactionCard: React.FC<GuestSatisfactionProps> = ({
                             d="M 10 90 A 70 70 0 0 1 150 90"
                             fill="none"
                             stroke="rgba(255, 255, 255, 0.15)"
-                            strokeWidth="12"
+                            strokeWidth="14"
                             strokeLinecap="round"
                         />
                         {/* Progress arc */}
@@ -133,25 +133,36 @@ export const GuestSatisfactionCard: React.FC<GuestSatisfactionProps> = ({
                             d="M 10 90 A 70 70 0 0 1 150 90"
                             fill="none"
                             stroke="url(#gaugeGradient)"
-                            strokeWidth="12"
+                            strokeWidth="14"
                             strokeLinecap="round"
                             strokeDasharray={circumference}
                             strokeDashoffset={progressOffset}
                         />
                     </svg>
 
-                    {/* Center content */}
+                    {/* Center content - ALL inside here: emoji, label, score, change */}
                     <div className="gauge-center">
-                        <div className="gauge-emoji">{emoji}</div>
+                        {/* Emoji with dark circle */}
+                        <div className="gauge-emoji-wrapper">
+                            <div className="gauge-emoji-circle">
+                                <span className="gauge-emoji">{emoji}</span>
+                            </div>
+                        </div>
+
                         <div className="gauge-label">Average</div>
                         <div className="gauge-score">{score}%</div>
                         <div className="gauge-change">
-                            <span className="check-icon">✓</span>
+                            <span className="change-icon-box">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+                                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+                                    <polyline points="17 6 23 6 23 12" />
+                                </svg>
+                            </span>
                             {change}
                         </div>
                     </div>
 
-                    {/* Markers */}
+                    {/* Markers at bottom */}
                     <div className="gauge-markers">
                         <span className="marker-left">0</span>
                         <span className="marker-right">100</span>
