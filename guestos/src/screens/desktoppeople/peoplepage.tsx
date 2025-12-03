@@ -42,7 +42,7 @@ function PeoplePage({ userName = "Glenn" }: PeoplePageProps) {
                         name: "Jessica Nov",
                         role: "Front Desk Clerk",
                         status: "Active",
-                        avatar: "public/images/jessica.png",
+                        avatar: "/images/jessica.png",
                         rating: 4,
                         team: "Front Desk Team",
                         location: "Downtown, LA",

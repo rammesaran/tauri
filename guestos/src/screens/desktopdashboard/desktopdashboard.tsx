@@ -148,9 +148,8 @@ function DesktopDashboard({ }: DesktopDashboardProps) {
 
     return (
         <div className="desktop-dashboard">
-            {/* Header */}
             <Header
-                currentPage="dashboard"
+                currentPage={currentPage}
                 onNavigate={(page) => setCurrentPage(page)}
             />
 
