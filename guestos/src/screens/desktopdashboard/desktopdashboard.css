@@ -1,7 +1,7 @@
 /* Desktop Dashboard - Default view */
 .desktop-dashboard {
     display: grid;
-    grid-template-columns: 1fr 350px;
+    grid-template-columns: 1fr 420px; /* Increased from 350px to 420px */
     grid-template-rows: auto 1fr;
     min-height: 100vh;
     background: linear-gradient(180deg, #1e3a52 0%, #0f2537 100%);
@@ -229,16 +229,17 @@
     min-height: 400px;
 }
 
-/* Meetings Sidebar */
+/* Meetings Sidebar - Updated padding */
 .meetings-sidebar {
     background: rgba(255, 255, 255, 0.03);
     border-left: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 32px 24px;
+    padding: 24px 16px;
     overflow-y: auto;
+    overflow-x: hidden;
 }
 
 /* ============================================ */
-/* VISION PAGE FULL-SCREEN FIX - ADD THIS */
+/* VISION PAGE FULL-SCREEN FIX */
 /* ============================================ */
 
 .full-page-content {
@@ -292,6 +293,13 @@
     }
 }
 
+/* Medium desktop - slightly narrower sidebar */
+@media (min-width: 1025px) and (max-width: 1280px) {
+    .desktop-dashboard {
+        grid-template-columns: 1fr 380px;
+    }
+}
+
 /* Large desktop optimization */
 @media (min-width: 1400px) {
     .desktop-main {
@@ -304,6 +312,10 @@
 
     .bottom-grid {
         gap: 24px;
+    }
+    
+    .desktop-dashboard {
+        grid-template-columns: 1fr 450px;
     }
 }
 

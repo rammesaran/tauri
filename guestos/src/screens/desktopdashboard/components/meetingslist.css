@@ -3,8 +3,8 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-    padding: 20px;
-    gap: 16px;
+    padding: 16px;
+    gap: 14px;
     overflow: hidden;
 }
 
@@ -17,7 +17,7 @@
 }
 
 .meetings-list-title {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 600;
     color: white;
     margin: 0;
@@ -61,7 +61,7 @@
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 20px;
-    padding: 16px;
+    padding: 14px;
     box-shadow: 
         0 8px 32px rgba(0, 0, 0, 0.2),
         inset 0 1px 0 rgba(255, 255, 255, 0.1);
@@ -72,14 +72,14 @@
 /* Filter Icons Row */
 .filter-icons-row {
     display: flex;
-    gap: 10px;
+    gap: 16px;
     margin-bottom: 16px;
-    flex-wrap: wrap;
+    justify-content: flex-start;
 }
 
 .filter-icon-btn {
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
     border: none;
     cursor: pointer;
@@ -91,7 +91,7 @@
 }
 
 .icon-inner {
-    font-size: 16px;
+    font-size: 18px;
     line-height: 1;
 }
 
@@ -128,13 +128,12 @@
 .featured-meeting-content {
     display: flex;
     align-items: center;
-    gap: 16px;
-    flex-wrap: nowrap;
+    gap: 12px;
 }
 
 .featured-avatar {
-    width: 56px;
-    height: 56px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     object-fit: cover;
     border: 3px solid rgba(255, 255, 255, 0.2);
@@ -152,9 +151,6 @@
     font-weight: 600;
     color: white;
     margin: 0 0 4px 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .featured-meeting-type {
@@ -166,8 +162,8 @@
 .join-btn {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 10px 20px;
+    gap: 6px;
+    padding: 10px 18px;
     background: rgba(255, 255, 255, 0.9);
     border: none;
     border-radius: 10px;
@@ -182,7 +178,7 @@
 }
 
 .join-btn .join-icon {
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .join-btn:hover {
@@ -195,9 +191,10 @@
 .meetings-list-items {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 14px;
     flex: 1;
     overflow-y: auto;
+    overflow-x: hidden;
     padding-right: 4px;
 }
 
@@ -215,50 +212,56 @@
     border-radius: 2px;
 }
 
-/* Meeting Item - Glass Style */
+/* Meeting Item - Stacked Layout like reference */
 .meeting-item-glass {
     display: flex;
-    gap: 16px;
+    flex-direction: row;
+    gap: 12px;
     align-items: flex-start;
+    width: 100%;
 }
 
-/* DateTime Section (Left) */
+/* DateTime Section (Left) - Compact vertical stack */
 .meeting-datetime-section {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 4px;
-    min-width: 70px;
+    width: 65px;
+    flex-shrink: 0;
 }
 
 .meeting-clock-icon {
-    width: 48px;
-    height: 48px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
     border: 2px solid rgba(255, 255, 255, 0.2);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 8px;
-    font-size: 20px;
+    margin-bottom: 4px;
+    font-size: 18px;
 }
 
 .meeting-date {
-    font-size: 13px;
+    font-size: 12px;
     color: rgba(255, 255, 255, 0.9);
     font-weight: 500;
     white-space: nowrap;
+    text-align: center;
 }
 
 .meeting-time {
     font-size: 12px;
     color: #4fd1c5;
     font-weight: 500;
+    text-align: center;
 }
 
-/* Meeting Card Content (Right) */
+/* Meeting Card Content (Right) - Full width card */
 .meeting-card-content {
     flex: 1;
+    min-width: 0;
     background: linear-gradient(
         135deg,
         rgba(255, 255, 255, 0.08) 0%,
@@ -268,7 +271,7 @@
     -webkit-backdrop-filter: blur(16px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 16px;
-    padding: 16px;
+    padding: 14px;
     transition: all 0.3s ease;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
@@ -279,23 +282,25 @@
         rgba(255, 255, 255, 0.12) 0%,
         rgba(255, 255, 255, 0.05) 100%
     );
-    transform: translateX(4px);
+    transform: translateX(2px);
     border-color: rgba(255, 255, 255, 0.15);
 }
 
+/* Card Top Row - Avatar, Title, Action Buttons */
 .meeting-card-top {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     margin-bottom: 12px;
 }
 
 .meeting-avatar {
-    width: 44px;
-    height: 44px;
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
     object-fit: cover;
     border: 2px solid rgba(255, 255, 255, 0.2);
+    flex-shrink: 0;
 }
 
 .meeting-details {
@@ -307,7 +312,7 @@
     font-size: 15px;
     font-weight: 600;
     color: white;
-    margin: 0 0 2px 0;
+    margin: 0 0 3px 0;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -317,16 +322,20 @@
     font-size: 13px;
     color: rgba(255, 255, 255, 0.5);
     margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .meeting-action-btns {
     display: flex;
     gap: 8px;
+    flex-shrink: 0;
 }
 
 .action-btn-circle {
-    width: 36px;
-    height: 36px;
+    width: 34px;
+    height: 34px;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -351,7 +360,7 @@
     background: rgba(45, 212, 191, 0.3);
 }
 
-/* Meeting Card Bottom - Tags */
+/* Meeting Card Bottom - Tags Row */
 .meeting-card-bottom {
     display: flex;
     align-items: center;
@@ -362,9 +371,10 @@
 .meeting-duration-tag,
 .meeting-status-tag {
     font-size: 12px;
-    padding: 6px 12px;
+    padding: 5px 12px;
     border-radius: 20px;
     font-weight: 500;
+    white-space: nowrap;
 }
 
 .meeting-role-tag {
@@ -389,11 +399,11 @@
 /* Responsive */
 @media (max-width: 400px) {
     .meetings-list-component {
-        padding: 16px;
+        padding: 12px;
     }
     
     .filter-icons-row {
-        gap: 8px;
+        gap: 10px;
     }
     
     .filter-icon-btn {
@@ -401,22 +411,31 @@
         height: 38px;
     }
     
+    .icon-inner {
+        font-size: 16px;
+    }
+    
     .featured-avatar {
-        width: 48px;
-        height: 48px;
+        width: 44px;
+        height: 44px;
     }
     
     .join-btn {
-        padding: 10px 16px;
-        font-size: 14px;
+        padding: 8px 14px;
+        font-size: 13px;
     }
     
     .meeting-datetime-section {
-        min-width: 60px;
+        width: 55px;
     }
     
     .meeting-clock-icon {
-        width: 40px;
-        height: 40px;
+        width: 38px;
+        height: 38px;
+    }
+    
+    .meeting-avatar {
+        width: 36px;
+        height: 36px;
     }
 }
